@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings Servers - Cloud & Game Hosting Terbaik</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; line-height: 1.6; }
+
+        /* Navbar */
+        header { background-color: #1e293b; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #38bdf8; }
+        nav a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-weight: 500; transition: 0.2s; }
+        nav a:hover { color: #38bdf8; }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 60px 20px; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); }
+        .hero h1 { color: #38bdf8; font-size: 2.5rem; margin-bottom: 15px; }
+        .hero p { color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Features */
+        .features { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; padding: 40px 8%; background-color: #0b1120; text-align: center; }
+        .feat-item { flex: 1; min-width: 200px; max-width: 250px; }
+        .feat-item h4 { color: #38bdf8; margin-bottom: 8px; }
+        .feat-item p { color: #94a3b8; font-size: 0.9rem; }
+
+        /* Pricing Section */
+        .pricing-section { padding: 60px 20px; text-align: center; }
+        .pricing-section h2 { font-size: 2rem; margin-bottom: 10px; color: #f8fafc; }
+        .pricing-section p { color: #94a3b8; margin-bottom: 40px; }
+
+        .container { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 30px 25px; width: 280px; text-align: center; position: relative; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+        
+        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background-color: #0284c7; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+        .card h3 { color: #f8fafc; margin-bottom: 10px; font-size: 1.3rem; }
+        .harga { font-size: 1.8rem; font-weight: bold; color: #38bdf8; margin: 15px 0; }
+        .card ul { list-style: none; margin-bottom: 25px; text-align: left; }
+        .card ul li { color: #cbd5e1; font-size: 0.9rem; padding: 6px 0; border-bottom: 1px solid #334155; }
+
+        .btn-order { 
+            display: block;
+            background-color: #0284c7; 
+            color: white; 
+            text-decoration: none;
+            padding: 12px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            transition: 0.2s;
+        }
+        .btn-order:hover { background-color: #0369a1; }
+
+        /* Payment Section */
+        .payment-section { background-color: #0b1120; padding: 40px 20px; text-align: center; border-top: 1px solid #1e293b; }
+        .payment-section h3 { color: #f8fafc; margin-bottom: 15px; }
+        .payment-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .payment-badge { background-color: #1e293b; border: 1px solid #334155; padding: 8px 16px; border-radius: 6px; font-weight: bold; color: #38bdf8; font-size: 0.9rem; }
+
+        /* Footer */
+        footer { background-color: #0b1120; text-align: center; padding: 25px; color: #64748b; font-size: 0.85rem; border-top: 1px solid #1e293b; }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo">⚡ Wings Servers</div>
+        <nav>
+            <a href="#paket">Layanan</a>
+            <a href="#fitur">Keunggulan</a>
+            <a href="#bayar">Pembayaran</a>
+            <a href="https://wa.me/6281217318511" target="_blank">Hubungi Kami</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Performa Server Maksimal Tanpa Batas</h1>
+        <p>Penyedia VPS High Performance dan Panel Pterodactyl Murah, Cepat, dengan Garansi Uptime Terbaik.</p>
+    </section>
+
+    <!-- Fitur Keunggulan -->
+    <section class="features" id="fitur">
+        <div class="feat-item">
+            <h4>⚡ Prosesor Cepat</h4>
+            <p>Menggunakan Hardware NVMe SSD untuk performa baca/tulis cepat.</p>
+        </div>
+        <div class="feat-item">
+            <h4>🛡️ Anti DDoS</h4>
+            <p>Perlindungan ekstra dari serangan cyber agar server tetap aman.</p>
+        </div>
+        <div class="feat-item">
+            <h4>⏱️ Uptime 99.9%</h4>
+            <p>Server selalu online 24 jam non-stop tanpa terkendala.</p>
+        </div>
+    </section>
+
+    <!-- Paket Harga -->
+    <section class="pricing-section" id="paket">
+        <h2>Pilihan Paket Layanan</h2>
+        <p>Pilih paket server sesuai dengan kebutuhan project atau game Anda.</p>
+
+        <div class="container">
+            <!-- Paket 1 -->
+            <div class="card">
+                <h3>VPS Hemat</h3>
+                <div class="harga">Rp 45.000 <span style="font-size: 0.9rem; color: #94a3b8;">/bln</span></div>
+                <ul>
+                    <li>✓ 1 vCPU Cores</li>
+                    <li>✓ 1 GB RAM DDR4</li>
+                    <li>✓ 20 GB NVMe Storage</li>
+                    <li>✓ Bandwidth Unmetered</li>
+                    <li>✓ Full Root Access</li>
+                </ul>
+                <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20mau%20pesan%20VPS%20Hemat" target="_blank" class="btn-order">Pesan Sekarang</a>
+            </div>
+
+            <!-- Paket 2 -->
+            <div class="card">
+                <div class="badge">Paling Laris</div>
+                <h3>Panel Pterodactyl</h3>
+                <div class="harga">Rp 25.000 <span style="font-size: 0.9rem; color: #94a3b8;">/bln</span></div>
+                <ul>
+                    <li>✓ 2 GB RAM DDR4</li>
+                    <li>✓ CPU 100% Limit</li>
+                    <li>✓ Subdomain Gratis</li>
+                    <li>✓ Support Game & Bot WA</li>
+                    <li>✓ Panel Pterodactyl v1.x</li>
+                </ul>
+                <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20mau%20pesan%20Panel%20Pterodactyl" target="_blank" class="btn-order">Pesan Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metode Pembayaran -->
+    <section class="payment-section" id="bayar">
+        <h3>Metode Pembayaran Yang Diterima</h3>
+        <div class="payment-list">
+            <span class="payment-badge">QRIS</span>
+            <span class="payment-badge">DANA</span>
+            <span class="payment-badge">GoPay</span>
+            <span class="payment-badge">OVO</span>
+            <span class="payment-badge">Bank Transfer</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Wings Servers. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
