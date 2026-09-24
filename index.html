@@ -1,57 +1,396 @@
-<!-- SEKSI 2: PAKET PANEL PTERODACTYL -->
-  <div class="section-title" id="panel-paket">
-    <i class="fa-solid fa-gamepad"></i> PANEL PTERODACTYL HOSTING
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wings Servers - Premium VPS & Pterodactyl Hosting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --cyan: #00f2fe;
+      --blue: #4facfe;
+      --dark-bg: #050814;
+      --card-bg: rgba(10, 18, 40, 0.75);
+      --border-glow: rgba(0, 242, 254, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: #fff;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(0, 242, 254, 0.15) 0%, transparent 60%),
+        linear-gradient(to right, rgba(0, 242, 254, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(5, 8, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 0 10px var(--cyan);
+      text-decoration: none;
+    }
+
+    .logo i { color: var(--cyan); }
+
+    nav a {
+      color: #a0aec0;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 10px var(--cyan);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #fff, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #a0aec0;
+      margin-bottom: 30px;
+    }
+
+    /* PRICING SECTION */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #fff;
+      text-align: center;
+      margin: 60px 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+    }
+
+    .section-title i { color: var(--cyan); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border-glow);
+      border-radius: 18px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--cyan);
+      box-shadow: 0 15px 40px rgba(0, 242, 254, 0.25);
+    }
+
+    .card.popular {
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+    }
+
+    .badge-popular {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #0052d4, var(--cyan));
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      color: var(--cyan);
+      margin-bottom: 15px;
+    }
+
+    .card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: #a0aec0;
+      margin-bottom: 20px;
+      min-height: 40px;
+    }
+
+    .card-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--cyan);
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    }
+
+    .card-price span {
+      font-size: 0.9rem;
+      color: #a0aec0;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .card-specs {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 15px;
+    }
+
+    .card-specs li {
+      padding: 8px 0;
+      color: #cbd5e0;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-specs li i {
+      color: var(--cyan);
+    }
+
+    .btn-order {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(90deg, #0052d4, #4364f7, var(--cyan));
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
+
+    .btn-order:hover {
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      color: #000;
+      box-shadow: 0 0 25px var(--cyan);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid rgba(0, 242, 254, 0.2);
+      background: rgba(5, 8, 20, 0.9);
+      color: #a0aec0;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-bolt"></i> WINGS SERVERS
+    </a>
+    <nav>
+      <a href="#vps-paket">VPS Hosting</a>
+      <a href="#panel-paket">Panel Pterodactyl</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>PERFORMA SERVER TANPA BATAS</h1>
+    <p>Layanan VPS Hosting dan Panel Game Pterodactyl dengan Performa Tinggi, Storage NVMe Cepat, & DDoS Protection Terlengkap.</p>
+  </section>
+
+  <div class="container">
+
+    <!-- SEKSI 1: PAKET VPS HOSTING -->
+    <div class="section-title" id="vps-paket">
+      <i class="fa-solid fa-server"></i> VPS HIGH PERFORMANCE
+    </div>
+
+    <div class="pricing-grid">
+      <!-- VPS Starter -->
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-microchip"></i></div>
+        <div class="card-title">VPS STARTER</div>
+        <div class="card-desc">Cocok untuk Website, Bot Telegram, & Server Pembelajaran</div>
+        <div class="card-price">Rp 35.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 1 Core CPU</li>
+          <li><i class="fa-solid fa-check"></i> 1 GB RAM</li>
+          <li><i class="fa-solid fa-check"></i> 20 GB SSD Storage</li>
+          <li><i class="fa-solid fa-check"></i> Akses Full Root</li>
+          <li><i class="fa-solid fa-check"></i> Dedicated IPv4</li>
+        </ul>
+        <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+      <!-- VPS Pro -->
+      <div class="card popular">
+        <div class="badge-popular">PALING POPULER</div>
+        <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+        <div class="card-title">VPS PRO</div>
+        <div class="card-desc">Performa Stabil untuk Website Bisnis & Aplikasi Web</div>
+        <div class="card-price">Rp 65.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 2 Core CPU</li>
+          <li><i class="fa-solid fa-check"></i> 2 GB RAM</li>
+          <li><i class="fa-solid fa-check"></i> 40 GB SSD Storage</li>
+          <li><i class="fa-solid fa-check"></i> Akses Full Root</li>
+          <li><i class="fa-solid fa-check"></i> Dedicated IPv4</li>
+        </ul>
+        <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+      <!-- VPS Ultimate -->
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-crown"></i></div>
+        <div class="card-title">VPS ULTIMATE</div>
+        <div class="card-desc">Kapasitas Maksimal untuk Traffic Tinggi & Database Besar</div>
+        <div class="card-price">Rp 120.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 4 Core CPU</li>
+          <li><i class="fa-solid fa-check"></i> 4 GB RAM</li>
+          <li><i class="fa-solid fa-check"></i> 80 GB SSD Storage</li>
+          <li><i class="fa-solid fa-check"></i> Akses Full Root</li>
+          <li><i class="fa-solid fa-check"></i> Dedicated IPv4</li>
+        </ul>
+        <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
+      </div>
+    </div>
+
+
+    <!-- SEKSI 2: PAKET PANEL PTERODACTYL -->
+    <div class="section-title" id="panel-paket">
+      <i class="fa-solid fa-gamepad"></i> PANEL PTERODACTYL HOSTING
+    </div>
+
+    <div class="pricing-grid">
+      
+      <!-- Panel 1 GB -->
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
+        <div class="card-title">PANEL 1 GB</div>
+        <div class="card-desc">Super Hemat untuk Bot WhatsApp & Bot Ringan</div>
+        <div class="card-price">Rp 1.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 1 GB RAM Dedicated</li>
+          <li><i class="fa-solid fa-check"></i> 1 vCPU Core</li>
+          <li><i class="fa-solid fa-check"></i> 5 GB NVMe Storage</li>
+          <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
+          <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
+        </ul>
+        <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+      <!-- Panel 5 GB -->
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-dragon"></i></div>
+        <div class="card-title">PANEL 5 GB</div>
+        <div class="card-desc">Pilihan Pas untuk Server Game Minecraft & SA-MP</div>
+        <div class="card-price">Rp 5.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 5 GB RAM Dedicated</li>
+          <li><i class="fa-solid fa-check"></i> 2 vCPU Cores</li>
+          <li><i class="fa-solid fa-check"></i> 25 GB NVMe Storage</li>
+          <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
+          <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
+        </ul>
+        <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+      <!-- Panel UNLIMITED (Popular) -->
+      <div class="card popular">
+        <div class="badge-popular">PALING LARIS</div>
+        <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
+        <div class="card-title">PANEL UNLIMITED</div>
+        <div class="card-desc">Performa Bebas Tanpa Batas RAM & CPU</div>
+        <div class="card-price">Rp 10.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> UNLIMITED RAM</li>
+          <li><i class="fa-solid fa-check"></i> MAX vCPU Cores</li>
+          <li><i class="fa-solid fa-check"></i> 100 GB NVMe Storage</li>
+          <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
+          <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
+        </ul>
+        <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="pricing-grid">
-    
-    <!-- Panel 1 GB -->
-    <div class="card">
-      <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
-      <div class="card-title">PANEL 1 GB</div>
-      <div class="card-desc">Super Hemat untuk Bot WhatsApp & Bot Ringan</div>
-      <div class="card-price">Rp 1.000 <span>/bln</span></div>
-      <ul class="card-specs">
-        <li><i class="fa-solid fa-check"></i> 1 GB RAM Dedicated</li>
-        <li><i class="fa-solid fa-check"></i> 1 vCPU Core</li>
-        <li><i class="fa-solid fa-check"></i> 5 GB NVMe Storage</li>
-        <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
-        <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
-      </ul>
-      <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
-    </div>
+  <footer>
+    <p>&copy; 2026 Wings Servers. All Rights Reserved.</p>
+  </footer>
 
-    <!-- Panel 5 GB -->
-    <div class="card">
-      <div class="card-icon"><i class="fa-solid fa-dragon"></i></div>
-      <div class="card-title">PANEL 5 GB</div>
-      <div class="card-desc">Pilihan Pas untuk Server Game Minecraft & SA-MP</div>
-      <div class="card-price">Rp 5.000 <span>/bln</span></div>
-      <ul class="card-specs">
-        <li><i class="fa-solid fa-check"></i> 5 GB RAM Dedicated</li>
-        <li><i class="fa-solid fa-check"></i> 2 vCPU Cores</li>
-        <li><i class="fa-solid fa-check"></i> 25 GB NVMe Storage</li>
-        <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
-        <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
-      </ul>
-      <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
-    </div>
-
-    <!-- Panel UNLIMITED (Popular) -->
-    <div class="card popular">
-      <div class="badge-popular">PALING LARIS</div>
-      <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
-      <div class="card-title">PANEL UNLIMITED</div>
-      <div class="card-desc">Performa Bebas Tanpa Batas RAM & CPU</div>
-      <div class="card-price">Rp 10.000 <span>/bln</span></div>
-      <ul class="card-specs">
-        <li><i class="fa-solid fa-check"></i> UNLIMITED RAM</li>
-        <li><i class="fa-solid fa-check"></i> MAX vCPU Cores</li>
-        <li><i class="fa-solid fa-check"></i> 100 GB NVMe Storage</li>
-        <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
-        <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
-      </ul>
-      <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
-    </div>
-
-  </div>
+</body>
+</html>
