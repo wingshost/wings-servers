@@ -16,8 +16,8 @@
       --cyan: #00f2fe;
       --blue: #4facfe;
       --dark-bg: #030712;
-      --card-bg: #0d1426;
-      --border-glow: rgba(0, 242, 254, 0.2);
+      --card-bg: rgba(13, 20, 38, 0.85); /* Dibuat sedikit transparan agar background terlihat elegan */
+      --border-glow: rgba(0, 242, 254, 0.25);
     }
 
     * {
@@ -32,6 +32,42 @@
       color: #fff;
       overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
+      position: relative;
+    }
+
+    /* BACKGROUND ANIMASI BERGERAK & BERSINAR HD */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(125deg, #030712, #0d1426, #030712);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    .bg-animation::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, rgba(79, 172, 254, 0.05) 30%, transparent 70%);
+      animation: rotateGlow 20s linear infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* HEADER RESPONSIF */
@@ -40,7 +76,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 5%;
-      background: rgba(3, 7, 18, 0.95);
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0, 242, 254, 0.15);
       position: sticky;
       top: 0;
@@ -82,7 +119,7 @@
     /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 50px 20px 30px;
+      padding: 40px 20px 20px;
       max-width: 800px;
       margin: 0 auto;
     }
@@ -95,6 +132,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1.3;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
     }
 
     .hero p {
@@ -106,8 +144,9 @@
     /* STATUS SERVER BAR */
     .status-bar {
       max-width: 90%;
-      margin: 0 auto 40px;
+      margin: 20px auto 40px;
       background: var(--card-bg);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--border-glow);
       border-radius: 12px;
       padding: 12px 15px;
@@ -116,6 +155,7 @@
       gap: 8px;
       font-size: 0.9rem;
       color: #cbd5e1;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     }
 
     .status-item {
@@ -129,7 +169,7 @@
       height: 8px;
       background-color: #00ff66;
       border-radius: 50%;
-      box-shadow: 0 0 8px #00ff66;
+      box-shadow: 0 0 10px #00ff66;
     }
 
     /* CONTAINER UTAMA */
@@ -144,11 +184,12 @@
       font-size: 1.3rem;
       color: #fff;
       text-align: center;
-      margin: 40px 0 25px;
+      margin: 60px 0 25px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
     }
 
     .section-title i { color: var(--cyan); }
@@ -162,15 +203,24 @@
 
     .card {
       background: var(--card-bg);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--border-glow);
       border-radius: 15px;
       padding: 25px 20px;
       text-align: center;
       position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
     }
 
     .card.popular {
       border: 2px solid var(--cyan);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
     }
 
     .badge-popular {
@@ -185,12 +235,14 @@
       padding: 4px 12px;
       border-radius: 12px;
       font-weight: 900;
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
     }
 
     .card-icon {
       font-size: 2.2rem;
       color: var(--cyan);
       margin-bottom: 12px;
+      filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.4));
     }
 
     .card-title {
@@ -211,6 +263,7 @@
       font-size: 1.6rem;
       color: var(--cyan);
       margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
     }
 
     .card-price span {
@@ -281,6 +334,13 @@
       font-weight: 700;
       font-size: 0.9rem;
       text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
+
+    .btn-order:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
     }
 
     /* TESTIMONIAL & FAQ */
@@ -292,9 +352,11 @@
 
     .testimonial-card, .faq-item {
       background: var(--card-bg);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--border-glow);
       border-radius: 12px;
       padding: 20px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     }
 
     .testimonial-card p {
@@ -333,7 +395,8 @@
       text-align: center;
       padding: 25px;
       border-top: 1px solid rgba(0, 242, 254, 0.15);
-      background: rgba(3, 7, 18, 0.95);
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(10px);
       color: #94a3b8;
       font-size: 0.85rem;
       margin-top: 50px;
@@ -355,6 +418,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Background Animasi Bergerak & Bersinar HD -->
+  <div class="bg-animation"></div>
 
   <header>
     <a href="index.html" class="logo">
