@@ -283,7 +283,11 @@
         </div>
         
         <div class="plan-options">
-          <div class="plan-card active" onclick="selectPlan('Panel 2 GB', 'Rp 2.000', '2 GB', '1 vCPU')">
+          <div class="plan-card active" onclick="selectPlan('Panel 1 GB', 'Rp 1.000', '1 GB', '1 vCPU')">
+            <h4>1 GB RAM</h4>
+            <p>Rp 1.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 2 GB', 'Rp 2.000', '2 GB', '1 vCPU')">
             <h4>2 GB RAM</h4>
             <p>Rp 2.000/bln</p>
           </div>
@@ -315,8 +319,8 @@
             <h4>9 GB RAM</h4>
             <p>Rp 9.000/bln</p>
           </div>
-          <div class="plan-card" onclick="selectPlan('Panel 10 GB', 'Rp 10.000', '10 GB', '4 vCPU')">
-            <h4>10 GB RAM</h4>
+          <div class="plan-card" onclick="selectPlan('Panel UNLIMITED', 'Rp 10.000', 'UNLIMITED', 'MAX vCPU')" style="grid-column: span 3; border-color: var(--cyan); background: rgba(0, 242, 254, 0.15);">
+            <h4>🔥 PANEL UNLIMITED</h4>
             <p>Rp 10.000/bln</p>
           </div>
         </div>
@@ -372,11 +376,11 @@
 
         <div class="summary-item">
           <span>Layanan</span>
-          <span id="sumPlan">Panel 2 GB</span>
+          <span id="sumPlan">Panel 1 GB</span>
         </div>
         <div class="summary-item">
           <span>RAM Dedicated</span>
-          <span id="sumRam">2 GB</span>
+          <span id="sumRam">1 GB</span>
         </div>
         <div class="summary-item">
           <span>CPU Cores</span>
@@ -390,7 +394,7 @@
         <div class="total-price">
           <div>
             <div style="font-size: 0.85rem; color: #a0aec0;">Total Pembayaran:</div>
-            <h3 id="sumTotal">Rp 2.000</h3>
+            <h3 id="sumTotal">Rp 1.000</h3>
           </div>
         </div>
 
@@ -403,9 +407,9 @@
   </div>
 
   <script>
-    let selectedPlan = 'Panel 2 GB';
-    let selectedPrice = 'Rp 2.000';
-    let selectedRam = '2 GB';
+    let selectedPlan = 'Panel 1 GB';
+    let selectedPrice = 'Rp 1.000';
+    let selectedRam = '1 GB';
     let selectedCpu = '1 vCPU';
     let selectedPayment = 'QRIS';
 
