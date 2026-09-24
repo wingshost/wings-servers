@@ -1,1 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beli Panel Pterodactyl - Wings Servers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --cyan: #00f2fe;
+      --blue: #4facfe;
+      --dark-bg: #050814;
+      --card-bg: rgba(10, 18, 40, 0.75);
+      --border-glow: rgba(0, 242, 254, 0.35);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: #fff;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(0, 242, 254, 0.15) 0%, transparent 60%),
+        linear-gradient(to right, rgba(0, 242, 254, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    /* Header / Navbar Navigasi */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(5, 8, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 0 10px var(--cyan);
+      text-decoration: none;
+    }
+
+    .logo i { color: var(--cyan); }
+
+    .btn-back {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      text-shadow: 0 0 10px var(--cyan);
+    }
+
+    /* Layout Kontainer Order */
+    .checkout-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 850px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Section Card */
+    .order-box {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border-glow);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .box-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+
+    .box-title i {
+      color: var(--cyan);
+    }
+
+    /* Form Inputs */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 1rem;
+      color: #a0aec0;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(5, 12, 30, 0.7);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    }
+
+    /* Grid Pilihan Paket RAM */
+    .plan-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .plan-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 10px;
+      padding: 15px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .plan-card:hover, .plan-card.active {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.1);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
+
+    .plan-card h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .plan-card p {
+      font-size: 0.85rem;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* Pilihan Metode Pembayaran */
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .method-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .method-card:hover, .method-card.active {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.1);
+    }
+
+    .method-card i {
+      font-size: 1.3rem;
+      color: var(--cyan);
+    }
+
+    /* Ringkasan Pesanan (Summary) */
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      color: #a0aec0;
+      font-size: 1rem;
+    }
+
+    .summary-item span:last-child {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .total-price {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 15px;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-price h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--cyan);
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    }
+
+    .btn-checkout {
+      display: block;
+      width: 100%;
+      padding: 15px 0;
+      margin-top: 25px;
+      background: linear-gradient(90deg, #0052d4, #4364f7, var(--cyan));
+      color: #fff;
+      text-align: center;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    .btn-checkout:hover {
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      color: #000;
+      box-shadow: 0 0 30px var(--cyan);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-bolt"></i> WINGS SERVERS
+    </a>
+    <a href="index.html" class="btn-back">
+      <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+    </a>
+  </header>
+
+  <!-- Section Order -->
+  <div class="checkout-container">
+    
+    <!-- Kolom Kiri: Form Detail Konfigurasi -->
+    <div>
+      
+      <!-- 1. Pilih Spesifikasi Panel -->
+      <div class="order-box" style="margin-bottom: 25px;">
+        <div class="box-title">
+          <i class="fa-solid fa-server"></i> 1. Pilih Paket Panel Pterodactyl
+        </div>
+        
+        <div class="plan-options">
+          <div class="plan-card active" onclick="selectPlan('Panel 3 GB', 'Rp 25.000', '3 GB', '1.5 vCPU')">
+            <h4>3 GB RAM</h4>
+            <p>Rp 25.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 6 GB', 'Rp 45.000', '6 GB', '2.5 vCPU')">
+            <h4>6 GB RAM</h4>
+            <p>Rp 45.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 12 GB', 'Rp 80.000', '12 GB', '4 vCPU')">
+            <h4>12 GB RAM</h4>
+            <p>Rp 80.000/bln</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Informasi Server/User -->
+      <div class="order-box" style="margin-bottom: 25px;">
+        <div class="box-title">
+          <i class="fa-solid fa-user-gear"></i> 2. Detail Akun & Server
+        </div>
+        
+        <div class="form-group">
+          <label>Nama Server / Project</label>
+          <input type="text" id="serverName" class="form-control" placeholder="Contoh: SMP Minecraft / Bot Whatsapp" value="My Game Server">
+        </div>
+
+        <div class="form-group">
+          <label>Username / Email Panel</label>
+          <input type="email" id="userEmail" class="form-control" placeholder="Email untuk login ke Panel Pterodactyl">
+        </div>
+      </div>
+
+      <!-- 3. Metode Pembayaran -->
+      <div class="order-box">
+        <div class="box-title">
+          <i class="fa-solid fa-wallet"></i> 3. Metode Pembayaran
+        </div>
+        
+        <div class="payment-methods">
+          <div class="method-card active" onclick="selectPayment('QRIS (All E-Wallet / Bank)')">
+            <i class="fa-solid fa-qrcode"></i>
+            <div>
+              <strong>QRIS</strong>
+              <div style="font-size: 0.8rem; color: #a0aec0;">Dana, GoPay, Ovo, Bank</div>
+            </div>
+          </div>
+
+          <div class="method-card" onclick="selectPayment('Transfer Bank Manual')">
+            <i class="fa-solid fa-building-columns"></i>
+            <div>
+              <strong>Transfer Bank</strong>
+              <div style="font-size: 0.8rem; color: #a0aec0;">BCA / Mandiri / BRI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Kolom Kanan: Summary / Ringkasan Biaya -->
+    <div>
+      <div class="order-box" style="position: sticky; top: 30px;">
+        <div class="box-title">
+          <i class="fa-solid fa-receipt"></i> Ringkasan Pesanan
+        </div>
+
+        <div class="summary-item">
+          <span>Layanan</span>
+          <span id="sumPlan">Panel 3 GB</span>
+        </div>
+        <div class="summary-item">
+          <span>RAM Dedicated</span>
+          <span id="sumRam">3 GB</span>
+        </div>
+        <div class="summary-item">
+          <span>CPU Cores</span>
+          <span id="sumCpu">1.5 vCPU</span>
+        </div>
+        <div class="summary-item">
+          <span>Metode Bayar</span>
+          <span id="sumPay">QRIS</span>
+        </div>
+
+        <div class="total-price">
+          <div>
+            <div style="font-size: 0.85rem; color: #a0aec0;">Total Pembayaran:</div>
+            <h3 id="sumTotal">Rp 25.000</h3>
+          </div>
+        </div>
+
+        <button class="btn-checkout" onclick="processOrder()">
+          <i class="fa-brands fa-whatsapp"></i> PROSES PEMBELIAN
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let selectedPlan = 'Panel 3 GB';
+    let selectedPrice = 'Rp 25.000';
+    let selectedRam = '3 GB';
+    let selectedCpu = '1.5 vCPU';
+    let selectedPayment = 'QRIS';
+
+    function selectPlan(plan, price, ram, cpu) {
+      selectedPlan = plan;
+      selectedPrice = price;
+      selectedRam = ram;
+      selectedCpu = cpu;
+
+      document.getElementById('sumPlan').innerText = plan;
+      document.getElementById('sumTotal').innerText = price;
+      document.getElementById('sumRam').innerText = ram;
+      document.getElementById('sumCpu').innerText = cpu;
+
+      // Update active style
+      const cards = document.querySelectorAll('.plan-card');
+      cards.forEach(card => card.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+    }
+
+    function selectPayment(method) {
+      selectedPayment = method;
+      document.getElementById('sumPay').innerText = method;
+
+      const cards = document.querySelectorAll('.method-card');
+      cards.forEach(card => card.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+    }
+
+    function processOrder() {
+      const serverName = document.getElementById('serverName').value || 'Tanpa Nama';
+      const userEmail = document.getElementById('userEmail').value || 'Belum Diisi';
+
+      // Pesan WhatsApp Otomatis
+      const text = `Halo Wings Servers, saya mau beli Panel Pterodactyl:%0A%0A` +
+                   `🔹 *Paket*: ${selectedPlan}%0A` +
+                   `🔹 *Harga*: ${selectedPrice}/bln%0A` +
+                   `🔹 *Nama Server*: ${serverName}%0A` +
+                   `🔹 *Email Panel*: ${userEmail}%0A` +
+                   `🔹 *Metode Bayar*: ${selectedPayment}%0A%0A` +
+                   `Mohon instruksi pembayarannya! Terima kasih.`;
+
+      window.open(`https://wa.me/6281217318511?text=${text}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
