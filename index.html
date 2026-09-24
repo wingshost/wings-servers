@@ -11,9 +11,9 @@
     :root {
       --cyan: #00f2fe;
       --blue: #4facfe;
-      --dark-bg: #050814;
-      --card-bg: rgba(10, 18, 40, 0.75);
-      --border-glow: rgba(0, 242, 254, 0.35);
+      --dark-bg: #030712;
+      --card-bg: rgba(13, 20, 38, 0.75);
+      --border-glow: rgba(0, 242, 254, 0.3);
     }
 
     * {
@@ -30,7 +30,7 @@
       position: relative;
     }
 
-    /* CANVAS BACKGROUND BERGERAK */
+    /* CANVAS BACKGROUND BERGERAK 3D */
     #bgCanvas {
       position: fixed;
       top: 0;
@@ -41,23 +41,24 @@
       pointer-events: none;
     }
 
-    /* HEADER */
+    /* HEADER 3D GLASS */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 18px 8%;
-      background: rgba(5, 8, 20, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+      background: rgba(3, 7, 18, 0.8);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.15);
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .logo {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 900;
       letter-spacing: 2px;
       text-decoration: none;
@@ -66,42 +67,40 @@
       gap: 12px;
     }
 
-    /* AVATAR KARAKTER ANIME DI SAMPING NAMA */
-    .logo-anime-avatar {
-      width: 42px;
-      height: 42px;
+    /* LOGO 3D ORB ICON */
+    .logo-3d-orb {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      border: 2px solid var(--cyan);
-      box-shadow: 0 0 12px var(--cyan);
-      object-fit: cover;
-      animation: pulseAvatar 2s infinite alternate;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--cyan), #0052d4);
+      box-shadow: 0 0 20px var(--cyan), inset -4px -4px 10px rgba(0,0,0,0.6);
+      animation: orbPulse 3s infinite alternate;
     }
 
-    @keyframes pulseAvatar {
-      0% { transform: scale(1); box-shadow: 0 0 8px var(--cyan); }
-      100% { transform: scale(1.1); box-shadow: 0 0 18px var(--cyan); }
+    @keyframes orbPulse {
+      0% { transform: scale(1); box-shadow: 0 0 15px var(--cyan); }
+      100% { transform: scale(1.08); box-shadow: 0 0 25px var(--cyan), 0 0 10px #fff; }
     }
 
     .logo-text {
-      background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 100%);
+      background: linear-gradient(135deg, #ffffff 40%, var(--cyan) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
     }
 
     .logo-text span {
       color: var(--cyan);
       -webkit-text-fill-color: var(--cyan);
-      text-shadow: 0 0 20px var(--cyan);
     }
 
     nav {
       display: flex;
-      gap: 20px;
+      gap: 25px;
     }
 
     nav a {
-      color: #a0aec0;
+      color: #94a3b8;
       text-decoration: none;
       font-weight: 600;
       font-size: 1.05rem;
@@ -116,48 +115,50 @@
     /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 70px 20px 40px;
+      padding: 80px 20px 40px;
       max-width: 900px;
       margin: 0 auto;
     }
 
     .hero h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.8rem;
+      font-size: 3rem;
       margin-bottom: 15px;
       background: linear-gradient(90deg, #fff, var(--cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .hero p {
-      font-size: 1.15rem;
-      color: #a0aec0;
+      font-size: 1.2rem;
+      color: #94a3b8;
       margin-bottom: 30px;
     }
 
-    /* INDIKATOR STATUS SERVER */
+    /* STATUS SERVER BAR 3D */
     .status-bar {
       max-width: 800px;
-      margin: 0 auto 50px;
-      background: rgba(10, 18, 40, 0.85);
+      margin: 0 auto 60px;
+      background: rgba(13, 20, 38, 0.85);
       border: 1px solid var(--border-glow);
       border-radius: 50px;
-      padding: 12px 25px;
+      padding: 14px 30px;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .status-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-size: 0.95rem;
       font-weight: 600;
+      color: #cbd5e1;
     }
 
     .dot-live {
@@ -165,7 +166,7 @@
       height: 10px;
       background-color: #00ff66;
       border-radius: 50%;
-      box-shadow: 0 0 10px #00ff66;
+      box-shadow: 0 0 12px #00ff66;
       animation: blink 1.5s infinite;
     }
 
@@ -175,7 +176,7 @@
       100% { opacity: 1; }
     }
 
-    /* PRICING SECTION */
+    /* PRICING SECTION 3D CARDS */
     .container {
       max-width: 1200px;
       margin: 0 auto 60px;
@@ -187,12 +188,12 @@
       font-size: 1.8rem;
       color: #fff;
       text-align: center;
-      margin: 50px 0 30px;
+      margin: 60px 0 35px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+      text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
     }
 
     .section-title i { color: var(--cyan); }
@@ -205,25 +206,25 @@
 
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(15px);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border-glow);
-      border-radius: 18px;
-      padding: 30px;
+      border-radius: 20px;
+      padding: 35px 25px;
       text-align: center;
       position: relative;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-12px) scale(1.02);
       border-color: var(--cyan);
-      box-shadow: 0 15px 40px rgba(0, 242, 254, 0.25);
+      box-shadow: 0 25px 50px rgba(0, 242, 254, 0.25), inset 0 1px 0 rgba(255,255,255,0.3);
     }
 
     .card.popular {
       border: 2px solid var(--cyan);
-      box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.35);
     }
 
     .badge-popular {
@@ -232,19 +233,21 @@
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(90deg, #0052d4, var(--cyan));
-      color: #fff;
+      color: #000;
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      padding: 5px 15px;
+      font-size: 0.75rem;
+      padding: 6px 16px;
       border-radius: 20px;
-      font-weight: 700;
+      font-weight: 900;
       letter-spacing: 1px;
+      box-shadow: 0 0 15px var(--cyan);
     }
 
     .card-icon {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: var(--cyan);
       margin-bottom: 15px;
+      filter: drop-shadow(0 0 10px rgba(0,242,254,0.5));
     }
 
     .card-title {
@@ -256,36 +259,36 @@
 
     .card-desc {
       font-size: 0.95rem;
-      color: #a0aec0;
+      color: #94a3b8;
       margin-bottom: 20px;
       min-height: 40px;
     }
 
     .card-price {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
+      font-size: 2.1rem;
       color: var(--cyan);
       margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+      text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
     }
 
     .card-price span {
-      font-size: 0.9rem;
-      color: #a0aec0;
+      font-size: 0.85rem;
+      color: #94a3b8;
       font-family: 'Rajdhani', sans-serif;
     }
 
     .card-specs {
       list-style: none;
       text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 15px;
     }
 
     .card-specs li {
       padding: 8px 0;
-      color: #cbd5e0;
+      color: #cbd5e1;
       font-size: 1rem;
       display: flex;
       align-items: center;
@@ -296,17 +299,18 @@
 
     .os-support {
       margin-bottom: 25px;
-      padding-top: 10px;
+      padding-top: 12px;
       border-top: 1px dashed rgba(255, 255, 255, 0.15);
       text-align: left;
     }
 
     .os-title {
-      font-size: 0.85rem;
-      color: #a0aec0;
+      font-size: 0.8rem;
+      color: #94a3b8;
       margin-bottom: 8px;
       text-transform: uppercase;
       font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .os-tags {
@@ -316,12 +320,12 @@
     }
 
     .os-tag {
-      background: rgba(0, 242, 254, 0.1);
-      border: 1px solid rgba(0, 242, 254, 0.3);
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
       color: var(--cyan);
       font-size: 0.75rem;
       padding: 3px 8px;
-      border-radius: 4px;
+      border-radius: 6px;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
@@ -331,43 +335,46 @@
     .btn-order {
       display: block;
       width: 100%;
-      padding: 12px 0;
+      padding: 13px 0;
       background: linear-gradient(90deg, #0052d4, #4364f7, var(--cyan));
       color: #fff;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-family: 'Orbitron', sans-serif;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: 0.3s;
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
     }
 
     .btn-order:hover {
       background: linear-gradient(90deg, var(--cyan), var(--blue));
-      color: #000;
-      box-shadow: 0 0 25px var(--cyan);
+      color: #030712;
+      box-shadow: 0 0 30px var(--cyan);
+      transform: translateY(-2px);
     }
 
-    /* SEKSI TESTIMONI */
+    /* SEKSI TESTIMONI 3D */
     .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      gap: 25px;
     }
 
     .testimonial-card {
       background: var(--card-bg);
       border: 1px solid var(--border-glow);
-      border-radius: 12px;
-      padding: 25px;
-      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 30px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .testimonial-card p {
       font-style: italic;
-      color: #cbd5e0;
+      color: #cbd5e1;
       margin-bottom: 15px;
+      line-height: 1.6;
     }
 
     .client-info {
@@ -376,9 +383,9 @@
       color: var(--cyan);
     }
 
-    /* SEKSI FAQ */
+    /* SEKSI FAQ 3D */
     .faq-container {
-      max-width: 800px;
+      max-width: 850px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -388,9 +395,10 @@
     .faq-item {
       background: var(--card-bg);
       border: 1px solid var(--border-glow);
-      border-radius: 10px;
-      padding: 20px;
-      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 22px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     .faq-question {
@@ -400,94 +408,94 @@
       margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .faq-question i { color: var(--cyan); }
 
     .faq-answer {
-      color: #a0aec0;
+      color: #94a3b8;
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
-      border-top: 1px solid rgba(0, 242, 254, 0.2);
-      background: rgba(5, 8, 20, 0.9);
-      color: #a0aec0;
+      padding: 35px;
+      border-top: 1px solid rgba(0, 242, 254, 0.15);
+      background: rgba(3, 7, 18, 0.95);
+      color: #94a3b8;
       font-size: 0.95rem;
-      margin-top: 60px;
+      margin-top: 80px;
     }
 
-    /* WIDGET KARAKTER ANIME BERGERAK MELAYANG */
-    .anime-mascot-container {
+    /* 3D HOLOGRAPHIC ORB MASCOT WIDGET (POJOK KIRI) */
+    .mascot-3d-container {
       position: fixed;
       bottom: 75px;
       left: 20px;
       z-index: 998;
       display: flex;
       align-items: flex-end;
-      gap: 10px;
+      gap: 12px;
       pointer-events: auto;
     }
 
-    .anime-mascot-img {
-      width: 100px;
-      height: auto;
-      filter: drop-shadow(0 0 15px var(--cyan));
+    .mascot-3d-orb {
+      width: 75px;
+      height: 75px;
+      background: radial-gradient(circle at 35% 35%, #fff, var(--cyan), #0052d4, #030712);
+      border-radius: 50%;
+      box-shadow: 0 0 30px var(--cyan), inset -6px -6px 15px rgba(0,0,0,0.8);
       cursor: pointer;
-      animation: floatMascot 3s ease-in-out infinite;
+      animation: floatOrb 3.5s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #030712;
+      font-size: 28px;
       transition: transform 0.3s;
     }
 
-    .anime-mascot-img:hover {
-      transform: scale(1.15) rotate(5deg);
+    .mascot-3d-orb:hover {
+      transform: scale(1.15) rotate(15deg);
     }
 
-    @keyframes floatMascot {
+    @keyframes floatOrb {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
+      50% { transform: translateY(-15px); box-shadow: 0 0 45px var(--cyan), inset -6px -6px 15px rgba(0,0,0,0.8); }
       100% { transform: translateY(0px); }
     }
 
-    .speech-bubble {
-      background: rgba(10, 18, 40, 0.92);
+    .speech-bubble-3d {
+      background: rgba(13, 20, 38, 0.92);
       border: 1px solid var(--cyan);
-      border-radius: 15px 15px 15px 0px;
-      padding: 10px 14px;
+      border-radius: 16px 16px 16px 4px;
+      padding: 12px 16px;
       color: #fff;
       font-size: 0.85rem;
       font-weight: 600;
-      max-width: 190px;
-      box-shadow: 0 0 15px rgba(0,242,254,0.3);
-      backdrop-filter: blur(8px);
-      position: relative;
-      margin-bottom: 40px;
-      animation: pulseBubble 3s infinite alternate;
+      max-width: 200px;
+      box-shadow: 0 10px 25px rgba(0,242,254,0.3);
+      backdrop-filter: blur(10px);
+      margin-bottom: 25px;
     }
 
-    @keyframes pulseBubble {
-      0% { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,242,254,0.3); }
-      100% { border-color: var(--blue); box-shadow: 0 0 20px rgba(0,242,254,0.6); }
-    }
-
-    /* PANEL PEMILIH TEMA BACKGROUND (POJOK KIRI BAWAH) */
+    /* PANEL PEMILIH TEMA 3D (POJOK KIRI BAWAH) */
     .theme-picker {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background: rgba(10, 18, 40, 0.9);
+      background: rgba(13, 20, 38, 0.9);
       border: 1px solid var(--border-glow);
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 30px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       z-index: 999;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
 
     .theme-picker span {
@@ -506,46 +514,46 @@
       transition: 0.2s;
     }
 
-    .theme-btn:hover { transform: scale(1.2); }
+    .theme-btn:hover { transform: scale(1.25); }
     .theme-cyan { background: #00f2fe; }
-    .theme-purple { background: #b000ff; }
+    .theme-purple { background: #d400ff; }
     .theme-green { background: #00ff66; }
-    .theme-dark { background: #555555; }
+    .theme-dark { background: #64748b; }
 
-    /* CHAT BUTTON */
+    /* CHAT BUTTON 3D */
     .chat-btn-float {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       background: linear-gradient(135deg, var(--cyan), var(--blue));
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #000;
-      font-size: 26px;
+      color: #030712;
+      font-size: 28px;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.6);
       z-index: 9999;
       transition: all 0.3s ease;
     }
 
     .chat-btn-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px rgba(0, 242, 254, 0.9);
+      transform: scale(1.12);
+      box-shadow: 0 0 40px rgba(0, 242, 254, 0.9);
     }
 
     .chat-box {
       position: fixed;
-      bottom: 95px;
+      bottom: 100px;
       right: 25px;
-      width: 330px;
-      background: #0a1228;
+      width: 340px;
+      background: #0d1426;
       border: 1px solid var(--cyan);
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,242,254,0.3);
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,242,254,0.35);
       z-index: 9999;
       display: none;
       flex-direction: column;
@@ -554,14 +562,14 @@
 
     .chat-header {
       background: linear-gradient(90deg, #0052d4, var(--cyan));
-      padding: 15px;
+      padding: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #fff;
+      color: #030712;
       font-family: 'Orbitron', sans-serif;
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 900;
     }
 
     .chat-header i { cursor: pointer; }
@@ -575,15 +583,15 @@
 
     .chat-body label {
       font-size: 0.85rem;
-      color: #a0aec0;
+      color: #94a3b8;
     }
 
     .chat-body input, .chat-body textarea {
       width: 100%;
-      padding: 10px;
-      background: rgba(255,255,255,0.05);
+      padding: 11px;
+      background: rgba(255,255,255,0.04);
       border: 1px solid rgba(0,242,254,0.3);
-      border-radius: 6px;
+      border-radius: 8px;
       color: #fff;
       outline: none;
       font-size: 0.95rem;
@@ -591,11 +599,11 @@
 
     .btn-send-chat {
       background: linear-gradient(90deg, var(--cyan), var(--blue));
-      color: #000;
-      font-weight: 700;
+      color: #030712;
+      font-weight: 900;
       border: none;
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-family: 'Orbitron', sans-serif;
       transition: 0.3s;
@@ -604,13 +612,13 @@
 </head>
 <body>
 
-  <!-- BACKGROUND CANVAS BERGERAK -->
+  <!-- BACKGROUND CANVAS 3D PARTIKEL -->
   <canvas id="bgCanvas"></canvas>
 
   <header>
     <a href="index.html" class="logo">
-      <!-- FOTO AVATAR KARAKTER ANIME CYBER PINGGIR NAMA -->
-      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=WingsCyber" alt="Anime Mascot" class="logo-anime-avatar">
+      <!-- LOGO 3D ORB -->
+      <div class="logo-3d-orb"></div>
       <span class="logo-text">WINGS <span>SERVERS</span></span>
     </a>
     <nav>
@@ -626,7 +634,7 @@
     <p>Layanan VPS Hosting dan Panel Game Pterodactyl dengan Performa Tinggi, Storage NVMe Cepat, & DDoS Protection Terlengkap.</p>
   </section>
 
-  <!-- INDIKATOR STATUS SERVER -->
+  <!-- INDIKATOR STATUS SERVER 3D -->
   <div class="status-bar">
     <div class="status-item"><div class="dot-live"></div> Server Node: Operational</div>
     <div class="status-item"><i class="fa-solid fa-shield-halved" style="color:var(--cyan)"></i> DDoS Protection: Active</div>
@@ -753,7 +761,7 @@
     </div>
 
     <div class="pricing-grid">
-      <!-- Panel 1 GB -->
+      <!-- Panel 1 GB s/d Unlimited -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
         <div class="card-title">PANEL 1 GB</div>
@@ -768,7 +776,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%201%20GB%20(Rp%201.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 2 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
         <div class="card-title">PANEL 2 GB</div>
@@ -783,7 +790,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%202%20GB%20(Rp%202.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 3 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
         <div class="card-title">PANEL 3 GB</div>
@@ -798,7 +804,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%203%20GB%20(Rp%203.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 4 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
         <div class="card-title">PANEL 4 GB</div>
@@ -813,7 +818,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%204%20GB%20(Rp%204.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 5 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-dragon"></i></div>
         <div class="card-title">PANEL 5 GB</div>
@@ -828,7 +832,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%205%20GB%20(Rp%205.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 6 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
         <div class="card-title">PANEL 6 GB</div>
@@ -843,7 +846,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%206%20GB%20(Rp%206.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 7 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
         <div class="card-title">PANEL 7 GB</div>
@@ -858,7 +860,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%207%20GB%20(Rp%207.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 8 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
         <div class="card-title">PANEL 8 GB</div>
@@ -873,7 +874,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%208%20GB%20(Rp%208.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 9 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
         <div class="card-title">PANEL 9 GB</div>
@@ -888,7 +888,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%209%20GB%20(Rp%209.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel UNLIMITED -->
       <div class="card popular">
         <div class="badge-popular">PALING LARIS</div>
         <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
@@ -906,7 +905,7 @@
     </div>
 
 
-    <!-- SEKSI 3: TESTIMONI PELANGGAN -->
+    <!-- SEKSI 3: TESTIMONI -->
     <div class="section-title" id="testimoni">
       <i class="fa-solid fa-comments"></i> APA KATA KLIEN KAMI
     </div>
@@ -926,7 +925,7 @@
     </div>
 
 
-    <!-- SEKSI 4: FAQ (PERTANYAAN UMUM) -->
+    <!-- SEKSI 4: FAQ -->
     <div class="section-title" id="faq">
       <i class="fa-solid fa-circle-question"></i> PERTANYAAN UMUM (FAQ)
     </div>
@@ -951,24 +950,26 @@
     <p>&copy; 2026 Wings Servers. All Rights Reserved.</p>
   </footer>
 
-  <!-- KARAKTER ANIME BERGERAK MELAYANG DI POJOK SISI WEB -->
-  <div class="anime-mascot-container">
-    <div class="speech-bubble" id="mascotBubble">
-      Halo! Butuh VPS atau Panel Pterodactyl? Klik aku untuk chat ya! ⚡
+  <!-- HOLOGRAPHIC 3D ORB MASCOT WIDGET -->
+  <div class="mascot-3d-container">
+    <div class="speech-bubble-3d">
+      Halo! Butuh VPS / Panel Pterodactyl? Klik bola 3D ini untuk chat ya! ⚡
     </div>
-    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=WingsCyberMascot" alt="Anime Cyber Mascot" class="anime-mascot-img" onclick="toggleChat()" title="Klik untuk bantuan!">
+    <div class="mascot-3d-orb" onclick="toggleChat()" title="Live Support 3D">
+      <i class="fa-solid fa-robot"></i>
+    </div>
   </div>
 
-  <!-- PANEL PEMILIH TEMA BACKGROUND (POJOK KIRI BAWAH) -->
+  <!-- PANEL PEMILIH TEMA 3D -->
   <div class="theme-picker">
     <span>TEMA:</span>
     <div class="theme-btn theme-cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
-    <div class="theme-btn theme-purple" onclick="setTheme('purple')" title="Purple Galaxy"></div>
+    <div class="theme-btn theme-purple" onclick="setTheme('purple')" title="Purple Nebula"></div>
     <div class="theme-btn theme-green" onclick="setTheme('green')" title="Matrix Green"></div>
-    <div class="theme-btn theme-dark" onclick="setTheme('dark')" title="Dark Minimal"></div>
+    <div class="theme-btn theme-dark" onclick="setTheme('dark')" title="Carbon Dark"></div>
   </div>
 
-  <!-- TOMBOL MELAYANG CHAT WEB -->
+  <!-- TOMBOL CHAT MELAYANG -->
   <div class="chat-btn-float" onclick="toggleChat()">
     <i class="fa-solid fa-comments"></i>
   </div>
@@ -989,7 +990,7 @@
     </div>
   </div>
 
-  <!-- SCRIPT BACKGROUND BERGERAK & PEMILIH TEMA -->
+  <!-- SCRIPT BACKGROUND 3D PARTIKEL & TEMA -->
   <script>
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
@@ -997,7 +998,7 @@
     let width, height;
     let particles = [];
     let particleColor = '#00f2fe';
-    let lineColor = 'rgba(0, 242, 254, 0.15)';
+    let lineColor = 'rgba(0, 242, 254, 0.12)';
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -1006,13 +1007,13 @@
     window.addEventListener('resize', resize);
     resize();
 
-    class Particle {
+    class Particle3D {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.8;
-        this.vy = (Math.random() - 0.5) * 0.8;
-        this.radius = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.radius = Math.random() * 2.2 + 0.8;
       }
 
       update() {
@@ -1033,9 +1034,9 @@
 
     function initParticles() {
       particles = [];
-      const particleCount = Math.floor((width * height) / 12000);
+      const particleCount = Math.floor((width * height) / 10000);
       for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+        particles.push(new Particle3D());
       }
     }
     initParticles();
@@ -1052,12 +1053,12 @@
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 120) {
+          if (dist < 130) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = lineColor;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.4;
             ctx.stroke();
           }
         }
@@ -1071,27 +1072,27 @@
       if (type === 'cyan') {
         root.style.setProperty('--cyan', '#00f2fe');
         root.style.setProperty('--blue', '#4facfe');
-        root.style.setProperty('--dark-bg', '#050814');
+        root.style.setProperty('--dark-bg', '#030712');
         particleColor = '#00f2fe';
-        lineColor = 'rgba(0, 242, 254, 0.15)';
+        lineColor = 'rgba(0, 242, 254, 0.12)';
       } else if (type === 'purple') {
         root.style.setProperty('--cyan', '#d400ff');
         root.style.setProperty('--blue', '#7b00ff');
-        root.style.setProperty('--dark-bg', '#10051a');
+        root.style.setProperty('--dark-bg', '#0b0312');
         particleColor = '#d400ff';
-        lineColor = 'rgba(212, 0, 255, 0.15)';
+        lineColor = 'rgba(212, 0, 255, 0.12)';
       } else if (type === 'green') {
         root.style.setProperty('--cyan', '#00ff66');
         root.style.setProperty('--blue', '#00b33c');
-        root.style.setProperty('--dark-bg', '#041409');
+        root.style.setProperty('--dark-bg', '#020f07');
         particleColor = '#00ff66';
-        lineColor = 'rgba(0, 255, 102, 0.15)';
+        lineColor = 'rgba(0, 255, 102, 0.12)';
       } else if (type === 'dark') {
-        root.style.setProperty('--cyan', '#a0aec0');
-        root.style.setProperty('--blue', '#4a5568');
-        root.style.setProperty('--dark-bg', '#0f1117');
-        particleColor = '#a0aec0';
-        lineColor = 'rgba(160, 174, 192, 0.15)';
+        root.style.setProperty('--cyan', '#94a3b8');
+        root.style.setProperty('--blue', '#475569');
+        root.style.setProperty('--dark-bg', '#090d16');
+        particleColor = '#94a3b8';
+        lineColor = 'rgba(148, 163, 184, 0.12)';
       }
     }
 
