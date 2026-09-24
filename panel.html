@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WINGS SERVERS - Pterodactyl Panel Hosting</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --cyan: #00f2fe;
+      --blue: #4facfe;
+      --dark-bg: #030712;
+      --card-bg: rgba(13, 20, 38, 0.85);
+      --border-glow: rgba(0, 242, 254, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      position: relative;
+    }
+
+    /* BACKGROUND ANIMASI BERGERAK & BERSINAR HD */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(125deg, #030712, #0d1426, #030712);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    .bg-animation::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, rgba(79, 172, 254, 0.05) 30%, transparent 70%);
+      animation: rotateGlow 20s linear infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span { color: var(--cyan); }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--cyan);
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 30px 20px 10px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #fff, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* CONTAINER UTAMA */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      padding: 0 15px;
+    }
+
+    /* JUDUL SECTION YANG DEKAT DENGAN BAGIAN ATAS */
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      color: #fff;
+      text-align: center;
+      margin: 20px 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    }
+
+    .section-title i { color: var(--cyan); }
+
+    /* PRICING GRID */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glow);
+      border-radius: 15px;
+      padding: 25px 20px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+    }
+
+    .card.popular {
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+    }
+
+    .badge-popular {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #0052d4, var(--cyan));
+      color: #000;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-weight: 900;
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.4));
+    }
+
+    .card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 15px;
+    }
+
+    .card-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      color: var(--cyan);
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+    }
+
+    .card-price span {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .card-specs {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 12px;
+    }
+
+    .card-specs li {
+      padding: 6px 0;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-specs li i { color: var(--cyan); }
+
+    .btn-order {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(90deg, #0052d4, var(--cyan));
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    }
+
+    .btn-order:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      border-top: 1px solid rgba(0, 242, 254, 0.15);
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(10px);
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-top: 50px;
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.3rem; }
+      .hero p { font-size: 1.05rem; }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .logo { font-size: 1.5rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .pricing-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-animation"></div>
+
+  <header>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-server" style="color:var(--cyan)"></i> WINGS <span>SERVERS</span>
+    </a>
+    <nav>
+      <a href="index.html">VPS</a>
+      <a href="panel.html" class="active">Panel</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>PANEL PTERODACTYL HOSTING</h1>
+    <p>Hosting Panel Game & Bot WhatsApp Terstabil dengan NVMe Storage Cepat & Aktif 24 Jam.</p>
+  </section>
+
+  <div class="container">
+
+    <!-- PANEL SECTION - BERDEKATAN LANGSUNG DENGAN HEADER -->
+    <div class="section-title">
+      <i class="fa-solid fa-gamepad"></i> PANEL PTERODACTYL HOSTING
+    </div>
+
+    <div class="pricing-grid">
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
+        <div class="card-title">PANEL 1 GB</div>
+        <div class="card-desc">Bot WhatsApp & Script Ringan</div>
+        <div class="card-price">Rp 1.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 1 GB RAM Dedicated</li>
+          <li><i class="fa-solid fa-check"></i> 1 vCPU Core</li>
+          <li><i class="fa-solid fa-check"></i> 5 GB NVMe Storage</li>
+        </ul>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20pesan%20Panel%201GB" target="_blank" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+        <div class="card-title">PANEL 2 GB</div>
+        <div class="card-desc">Multi-Bot & Small Server</div>
+        <div class="card-price">Rp 2.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 2 GB RAM Dedicated</li>
+          <li><i class="fa-solid fa-check"></i> 1 vCPU Core</li>
+          <li><i class="fa-solid fa-check"></i> 10 GB NVMe Storage</li>
+        </ul>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20pesan%20Panel%202GB" target="_blank" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+        <div class="card-title">PANEL 4 GB</div>
+        <div class="card-desc">Minecraft & Game Ringan</div>
+        <div class="card-price">Rp 4.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> 4 GB RAM Dedicated</li>
+          <li><i class="fa-solid fa-check"></i> 2 vCPU Cores</li>
+          <li><i class="fa-solid fa-check"></i> 20 GB NVMe Storage</li>
+        </ul>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20pesan%20Panel%204GB" target="_blank" class="btn-order">Pesan Sekarang</a>
+      </div>
+
+      <div class="card popular">
+        <div class="badge-popular">BEST SELLER</div>
+        <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
+        <div class="card-title">PANEL UNLIMITED</div>
+        <div class="card-desc">Bebas Tanpa Batas RAM & CPU</div>
+        <div class="card-price">Rp 10.000 <span>/bln</span></div>
+        <ul class="card-specs">
+          <li><i class="fa-solid fa-check"></i> UNLIMITED RAM</li>
+          <li><i class="fa-solid fa-check"></i> MAX vCPU Cores</li>
+          <li><i class="fa-solid fa-check"></i> 100 GB NVMe Storage</li>
+        </ul>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20pesan%20Panel%20Unlimited" target="_blank" class="btn-order">Pesan Sekarang</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Wings Servers. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
