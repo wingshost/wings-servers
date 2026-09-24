@@ -48,7 +48,6 @@
       z-index: 1000;
     }
 
-    /* DESAIN NAMA / LOGO KEREN */
     .logo {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.8rem;
@@ -308,6 +307,103 @@
       background: rgba(5, 8, 20, 0.9);
       color: #a0aec0;
       font-size: 0.95rem;
+    }
+
+    /* CUSTOM LIGHTWEIGHT LIVE CHAT WEB */
+    .chat-btn-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #000;
+      font-size: 26px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+      z-index: 9999;
+      transition: all 0.3s ease;
+    }
+
+    .chat-btn-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.9);
+    }
+
+    .chat-box {
+      position: fixed;
+      bottom: 95px;
+      right: 25px;
+      width: 330px;
+      background: #0a1228;
+      border: 1px solid var(--cyan);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,242,254,0.3);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: linear-gradient(90deg, #0052d4, var(--cyan));
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .chat-header i { cursor: pointer; }
+
+    .chat-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-body label {
+      font-size: 0.85rem;
+      color: #a0aec0;
+    }
+
+    .chat-body input, .chat-body textarea {
+      width: 100%;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(0,242,254,0.3);
+      border-radius: 6px;
+      color: #fff;
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    .chat-body input:focus, .chat-body textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    .btn-send-chat {
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      transition: 0.3s;
+    }
+
+    .btn-send-chat:hover {
+      box-shadow: 0 0 15px var(--cyan);
     }
   </style>
 </head>
@@ -609,19 +705,50 @@
     <p>&copy; 2026 Wings Servers. All Rights Reserved.</p>
   </footer>
 
-  <!-- START OF TAWK.TO SCRIPT -->
-  <script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/6ab5260ea23cc0344792b985/1k39ppagt';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
+  <!-- TOMBOL MELAYANG CHAT WEB RINGAN -->
+  <div class="chat-btn-float" onclick="toggleChat()">
+    <i class="fa-solid fa-comments"></i>
+  </div>
+
+  <!-- KOTAK CHAT POPUP LIGHTWEIGHT -->
+  <div class="chat-box" id="customChatBox">
+    <div class="chat-header">
+      <span><i class="fa-solid fa-headset"></i> Live Support</span>
+      <i class="fa-solid fa-xmark" onclick="toggleChat()"></i>
+    </div>
+    <div class="chat-body">
+      <label>Nama Anda:</label>
+      <input type="text" id="chatName" placeholder="Masukkan nama kamu...">
+      
+      <label>Pesan Pertanyaan:</label>
+      <textarea id="chatMsg" rows="3" placeholder="Tanyakan seputar VPS / Panel..."></textarea>
+      
+      <button class="btn-send-chat" onclick="sendCustomChat()">KIRIM PESAN</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChat() {
+      const box = document.getElementById('customChatBox');
+      box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendCustomChat() {
+      const name = document.getElementById('chatName').value.trim();
+      const msg = document.getElementById('chatMsg').value.trim();
+      
+      if(!name || !msg) {
+        alert('Mohon isi Nama dan Pesan Anda!');
+        return;
+      }
+
+      // Masukkan Nomor WhatsApp atau Username Telegram Anda
+      const noWA = "6281234567890"; // GANTI DENGAN NOMOR WA KAMU
+      const text = `Halo Admin Wings Servers,%0A%0ANama: ${encodeURIComponent(name)}%0APesan: ${encodeURIComponent(msg)}`;
+      
+      window.open(`https://wa.me/${noWA}?text=${text}`, '_blank');
+    }
   </script>
-  <!-- END OF TAWK.TO SCRIPT -->
 
 </body>
 </html>
