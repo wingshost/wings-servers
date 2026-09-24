@@ -13,8 +13,8 @@
       --blue: #4facfe;
       --purple: #7f00ff;
       --dark-bg: #050814;
-      --card-bg: rgba(10, 18, 40, 0.65);
-      --border-glow: rgba(0, 242, 254, 0.4);
+      --card-bg: rgba(10, 18, 40, 0.7);
+      --border-glow: rgba(0, 242, 254, 0.35);
     }
 
     * {
@@ -28,9 +28,8 @@
       background-color: var(--dark-bg);
       color: #fff;
       overflow-x: hidden;
-      /* Background Cyber Circuit & Grid */
       background-image: 
-        radial-gradient(circle at 50% 20%, rgba(0, 242, 254, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 50% 15%, rgba(0, 242, 254, 0.15) 0%, transparent 60%),
         linear-gradient(to right, rgba(0, 242, 254, 0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
       background-size: 100% 100%, 40px 40px, 40px 40px;
@@ -42,8 +41,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 8%;
-      background: rgba(5, 8, 20, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(5, 8, 20, 0.85);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0, 242, 254, 0.2);
       position: sticky;
       top: 0;
@@ -85,7 +84,7 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 60px 20px 30px;
+      padding: 50px 20px 20px;
     }
 
     .hero h1 {
@@ -110,10 +109,11 @@
     .features-bar {
       display: flex;
       justify-content: center;
-      gap: 40px;
-      margin: 40px auto 60px;
+      gap: 30px;
+      margin: 30px auto 50px;
       flex-wrap: wrap;
-      max-width: 1000px;
+      max-width: 1100px;
+      padding: 0 20px;
     }
 
     .feature-item {
@@ -122,19 +122,19 @@
       gap: 15px;
       background: rgba(0, 242, 254, 0.05);
       border: 1px solid rgba(0, 242, 254, 0.2);
-      padding: 15px 25px;
+      padding: 12px 20px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
     }
 
     .feature-item i {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: var(--cyan);
       filter: drop-shadow(0 0 5px var(--cyan));
     }
 
     .feature-text h4 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #fff;
     }
 
@@ -143,91 +143,109 @@
       color: #8a99ad;
     }
 
-    /* Pricing Section */
-    .pricing-container {
+    /* Section Titles */
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      font-size: 2rem;
+      margin: 40px 0 25px;
+      color: #fff;
       display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: stretch;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-      flex-wrap: wrap;
+      gap: 12px;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
     }
 
-    /* 3D Glassmorphism Cards */
+    .section-title i {
+      color: var(--cyan);
+    }
+
+    /* Pricing Grid (4 Kolom / Multi Grid) */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Card Styling */
     .card {
-      flex: 1;
-      min-width: 300px;
-      max-width: 360px;
       background: var(--card-bg);
       backdrop-filter: blur(15px);
       border: 1px solid var(--border-glow);
-      border-radius: 20px;
-      padding: 35px 25px;
+      border-radius: 18px;
+      padding: 30px 22px;
       position: relative;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 242, 254, 0.05);
+      transition: all 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     }
 
     .card:hover {
-      transform: translateY(-10px) scale(1.02);
+      transform: translateY(-8px);
       border-color: var(--cyan);
-      box-shadow: 0 15px 40px rgba(0, 242, 254, 0.3), inset 0 0 20px rgba(0, 242, 254, 0.1);
+      box-shadow: 0 12px 35px rgba(0, 242, 254, 0.3);
     }
 
-    /* Card Featured/Popular */
+    /* Card Highlight Populer */
     .card.popular {
       border: 2px solid var(--cyan);
-      box-shadow: 0 0 30px rgba(0, 242, 254, 0.25);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
     }
 
     .badge-popular {
       position: absolute;
-      top: -15px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(90deg, var(--blue), var(--cyan));
       color: #000;
       font-weight: 800;
-      font-size: 0.85rem;
-      padding: 5px 20px;
+      font-size: 0.75rem;
+      padding: 4px 16px;
       border-radius: 20px;
       font-family: 'Orbitron', sans-serif;
-      box-shadow: 0 0 15px var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+      white-space: nowrap;
     }
 
     .card-icon {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: var(--cyan);
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       text-shadow: 0 0 10px var(--cyan);
     }
 
     .card-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .card-desc {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #8a99ad;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      min-height: 38px;
     }
 
     .card-price {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.3rem;
+      font-size: 1.9rem;
       font-weight: 900;
       color: var(--cyan);
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
     }
 
     .card-price span {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #8a99ad;
       font-family: 'Rajdhani', sans-serif;
     }
@@ -235,14 +253,14 @@
     .card-specs {
       list-style: none;
       text-align: left;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 20px;
+      padding-top: 15px;
     }
 
     .card-specs li {
-      margin-bottom: 12px;
-      font-size: 1rem;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
       color: #d1d5db;
       display: flex;
       align-items: center;
@@ -251,22 +269,23 @@
 
     .card-specs li i {
       color: var(--cyan);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .btn-order {
       display: block;
       width: 100%;
       padding: 12px 0;
+      text-align: center;
       background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
       color: #fff;
       text-decoration: none;
       font-family: 'Orbitron', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       border-radius: 10px;
       transition: 0.3s;
-      box-shadow: 0 0 15px rgba(67, 100, 247, 0.4);
+      box-shadow: 0 0 15px rgba(67, 100, 247, 0.3);
     }
 
     .btn-order:hover {
@@ -292,20 +311,20 @@
       <i class="fa-solid fa-bolt"></i> WINGS SERVERS
     </div>
     <ul class="nav-links">
-      <li><a href="#layanan">Layanan</a></li>
-      <li><a href="#keunggulan">Keunggulan</a></li>
+      <li><a href="#vps-paket">Paket VPS</a></li>
+      <li><a href="#panel-paket">Panel Pterodactyl</a></li>
       <li><a href="https://wa.me/6281217318511" target="_blank">Hubungi Kami</a></li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
-  <div class="hero" id="layanan">
+  <div class="hero">
     <h1>Performa Server Maksimal Tanpa Batas</h1>
-    <p>Penyedia VPS High Performance dan Panel Pterodactyl Murah, Cepat, dengan Garansi Uptime Terbaik.</p>
+    <p>Penyedia Cloud VPS High Performance & Panel Pterodactyl Murah, Cepat, dengan Garansi Uptime Terbaik.</p>
   </div>
 
-  <!-- Keunggulan (Icons High-Tech) -->
-  <div class="features-bar" id="keunggulan">
+  <!-- Keunggulan (High-Tech Bar) -->
+  <div class="features-bar">
     <div class="feature-item">
       <i class="fa-solid fa-microchip"></i>
       <div class="feature-text">
@@ -316,72 +335,163 @@
     <div class="feature-item">
       <i class="fa-solid fa-shield-halved"></i>
       <div class="feature-text">
-        <h4>Anti-DDoS</h4>
-        <p>Perlindungan ekstra dari serangan cyber</p>
+        <h4>Anti-DDoS Protection</h4>
+        <p>Perlindungan dari serangan cyber</p>
       </div>
     </div>
     <div class="feature-item">
       <i class="fa-solid fa-clock"></i>
       <div class="feature-text">
         <h4>Uptime 99.9%</h4>
-        <p>Server selalu online 24 jam non-stop</p>
+        <p>Server online 24 jam non-stop</p>
       </div>
     </div>
   </div>
 
-  <!-- Pricing Section -->
-  <div class="pricing-container">
+  <!-- SEKSI 1: PAKET CLOUD VPS -->
+  <div class="section-title" id="vps-paket">
+    <i class="fa-solid fa-server"></i> PAKET CLOUD VPS
+  </div>
+
+  <div class="pricing-grid">
     
-    <!-- Kartu 1: VPS LITE -->
+    <!-- VPS 1 GB -->
     <div class="card">
-      <div class="card-icon"><i class="fa-solid fa-server"></i></div>
-      <div class="card-title">VPS LITE</div>
-      <div class="card-desc">Cocok untuk BOT Telegram, WA & Web Ringan</div>
-      <div class="card-price">Rp 50.000 <span>/bln</span></div>
+      <div class="card-icon"><i class="fa-solid fa-microchip"></i></div>
+      <div class="card-title">VPS 1 GB</div>
+      <div class="card-desc">Cocok untuk BOT Telegram/WA & Web Staging</div>
+      <div class="card-price">Rp 30.000 <span>/bln</span></div>
       <ul class="card-specs">
         <li><i class="fa-solid fa-check"></i> 1 GB RAM DDR4</li>
         <li><i class="fa-solid fa-check"></i> 1 vCPU Core</li>
-        <li><i class="fa-solid fa-check"></i> 20 GB NVMe Storage</li>
-        <li><i class="fa-solid fa-check"></i> Unmetered Bandwidth</li>
+        <li><i class="fa-solid fa-check"></i> 25 GB NVMe SSD</li>
+        <li><i class="fa-solid fa-check"></i> Bandwidth Unmetered</li>
         <li><i class="fa-solid fa-check"></i> Full Root Access</li>
-        <li><i class="fa-solid fa-check"></i> Lokasi SG / ID</li>
       </ul>
-      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20mau%20order%20Paket%20VPS%20Lite" class="btn-order" target="_blank">Pesan Sekarang</a>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20VPS%201GB" class="btn-order" target="_blank">Pesan Sekarang</a>
     </div>
 
-    <!-- Kartu 2: VPS PRO -->
+    <!-- VPS 2 GB -->
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-server"></i></div>
+      <div class="card-title">VPS 2 GB</div>
+      <div class="card-desc">Ideal untuk Website WordPress & Multiple Bot</div>
+      <div class="card-price">Rp 50.000 <span>/bln</span></div>
+      <ul class="card-specs">
+        <li><i class="fa-solid fa-check"></i> 2 GB RAM DDR4</li>
+        <li><i class="fa-solid fa-check"></i> 1 vCPU Core</li>
+        <li><i class="fa-solid fa-check"></i> 40 GB NVMe SSD</li>
+        <li><i class="fa-solid fa-check"></i> Bandwidth Unmetered</li>
+        <li><i class="fa-solid fa-check"></i> Full Root Access</li>
+      </ul>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20VPS%202GB" class="btn-order" target="_blank">Pesan Sekarang</a>
+    </div>
+
+    <!-- VPS 4 GB (Popular) -->
     <div class="card popular">
-      <div class="badge-popular">PALING POPULER</div>
+      <div class="badge-popular">BEST SELLER</div>
       <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
-      <div class="card-title">VPS PRO</div>
-      <div class="card-desc">Performa Tinggi untuk App & Server Game</div>
-      <div class="card-price">Rp 100.000 <span>/bln</span></div>
+      <div class="card-title">VPS 4 GB</div>
+      <div class="card-desc">Performa Mantap untuk App, Game & Database</div>
+      <div class="card-price">Rp 90.000 <span>/bln</span></div>
       <ul class="card-specs">
         <li><i class="fa-solid fa-check"></i> 4 GB RAM DDR4</li>
         <li><i class="fa-solid fa-check"></i> 2 vCPU Cores</li>
-        <li><i class="fa-solid fa-check"></i> 50 GB NVMe Storage</li>
-        <li><i class="fa-solid fa-check"></i> Unmetered Bandwidth</li>
-        <li><i class="fa-solid fa-check"></i> Anti-DDoS Protection</li>
+        <li><i class="fa-solid fa-check"></i> 60 GB NVMe SSD</li>
+        <li><i class="fa-solid fa-check"></i> Anti-DDoS Protected</li>
         <li><i class="fa-solid fa-check"></i> Full Root Access</li>
       </ul>
-      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20mau%20order%20Paket%20VPS%20Pro" class="btn-order" target="_blank">Pesan Sekarang</a>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20VPS%204GB" class="btn-order" target="_blank">Pesan Sekarang</a>
     </div>
 
-    <!-- Kartu 3: PANEL PTERODACTYL -->
+    <!-- VPS 8 GB -->
     <div class="card">
-      <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
-      <div class="card-title">PANEL PTERODACTYL</div>
-      <div class="card-desc">Khusus Game Minecraft, SAMP & Bot Hosting</div>
-      <div class="card-price">Rp 150.000 <span>/bln</span></div>
+      <div class="card-icon"><i class="fa-solid fa-cubes"></i></div>
+      <div class="card-title">VPS 8 GB</div>
+      <div class="card-desc">Kapasitas Besar untuk Server Game & Production</div>
+      <div class="card-price">Rp 170.000 <span>/bln</span></div>
+      <ul class="card-specs">
+        <li><i class="fa-solid fa-check"></i> 8 GB RAM DDR4</li>
+        <li><i class="fa-solid fa-check"></i> 4 vCPU Cores</li>
+        <li><i class="fa-solid fa-check"></i> 100 GB NVMe SSD</li>
+        <li><i class="fa-solid fa-check"></i> Anti-DDoS Protected</li>
+        <li><i class="fa-solid fa-check"></i> Full Root Access</li>
+      </ul>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20VPS%208GB" class="btn-order" target="_blank">Pesan Sekarang</a>
+    </div>
+
+    <!-- VPS 16 GB -->
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-hard-drive"></i></div>
+      <div class="card-title">VPS 16 GB</div>
+      <div class="card-desc">Powerhouse Server untuk Trafik Tinggi & Heavy Compute</div>
+      <div class="card-price">Rp 320.000 <span>/bln</span></div>
+      <ul class="card-specs">
+        <li><i class="fa-solid fa-check"></i> 16 GB RAM DDR4</li>
+        <li><i class="fa-solid fa-check"></i> 6 vCPU Cores</li>
+        <li><i class="fa-solid fa-check"></i> 180 GB NVMe SSD</li>
+        <li><i class="fa-solid fa-check"></i> Anti-DDoS Protected</li>
+        <li><i class="fa-solid fa-check"></i> Full Root Access</li>
+      </ul>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20VPS%2016GB" class="btn-order" target="_blank">Pesan Sekarang</a>
+    </div>
+
+  </div>
+
+  <!-- SEKSI 2: PAKET PANEL PTERODACTYL -->
+  <div class="section-title" id="panel-paket">
+    <i class="fa-solid fa-gamepad"></i> PANEL PTERODACTYL HOSTING
+  </div>
+
+  <div class="pricing-grid">
+    
+    <!-- Panel Basic -->
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
+      <div class="card-title">PANEL 3 GB</div>
+      <div class="card-desc">Pas untuk Small Server Minecraft & Bot Node.js</div>
+      <div class="card-price">Rp 25.000 <span>/bln</span></div>
+      <ul class="card-specs">
+        <li><i class="fa-solid fa-check"></i> 3 GB RAM Dedicated</li>
+        <li><i class="fa-solid fa-check"></i> 1.5 vCPU Core</li>
+        <li><i class="fa-solid fa-check"></i> 15 GB NVMe High Speed</li>
+        <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
+        <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
+      </ul>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20Panel%203GB" class="btn-order" target="_blank">Pesan Sekarang</a>
+    </div>
+
+    <!-- Panel Medium -->
+    <div class="card popular">
+      <div class="badge-popular">PALING LARIS</div>
+      <div class="card-icon"><i class="fa-solid fa-dragon"></i></div>
+      <div class="card-title">PANEL 6 GB</div>
+      <div class="card-desc">Favorit Server Game SMP Minecraft & SA-MP</div>
+      <div class="card-price">Rp 45.000 <span>/bln</span></div>
       <ul class="card-specs">
         <li><i class="fa-solid fa-check"></i> 6 GB RAM Dedicated</li>
-        <li><i class="fa-solid fa-check"></i> 3 vCPU Cores</li>
-        <li><i class="fa-solid fa-check"></i> 100 GB NVMe Storage</li>
+        <li><i class="fa-solid fa-check"></i> 2.5 vCPU Cores</li>
+        <li><i class="fa-solid fa-check"></i> 30 GB NVMe High Speed</li>
         <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
-        <li><i class="fa-solid fa-check"></i> SFTP & Auto Backup</li>
-        <li><i class="fa-solid fa-check"></i> Instant Setup</li>
+        <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
       </ul>
-      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20mau%20order%20Paket%20Panel%20Pterodactyl" class="btn-order" target="_blank">Pesan Sekarang</a>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20Panel%206GB" class="btn-order" target="_blank">Pesan Sekarang</a>
+    </div>
+
+    <!-- Panel Pro -->
+    <div class="card">
+      <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
+      <div class="card-title">PANEL 12 GB</div>
+      <div class="card-desc">Untuk Server Game Komunitas Banyak Mod/Plugin</div>
+      <div class="card-price">Rp 80.000 <span>/bln</span></div>
+      <ul class="card-specs">
+        <li><i class="fa-solid fa-check"></i> 12 GB RAM Dedicated</li>
+        <li><i class="fa-solid fa-check"></i> 4 vCPU Cores</li>
+        <li><i class="fa-solid fa-check"></i> 60 GB NVMe High Speed</li>
+        <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
+        <li><i class="fa-solid fa-check"></i> Auto Backup & SFTP</li>
+      </ul>
+      <a href="https://wa.me/6281217318511?text=Halo%20Wings%20Servers,%20saya%20order%20Panel%2012GB" class="btn-order" target="_blank">Pesan Sekarang</a>
     </div>
 
   </div>
