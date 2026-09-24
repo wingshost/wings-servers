@@ -48,7 +48,7 @@
       z-index: 1000;
     }
 
-    /* DESAIN NAMA / LOGO KEREN TERBARU */
+    /* DESAIN NAMA / LOGO KEREN */
     .logo {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.8rem;
@@ -226,7 +226,7 @@
     .card-specs {
       list-style: none;
       text-align: left;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 15px;
     }
@@ -242,6 +242,42 @@
 
     .card-specs li i {
       color: var(--cyan);
+    }
+
+    /* BADGE OS YANG DIDUKUNG */
+    .os-support {
+      margin-bottom: 25px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+      text-align: left;
+    }
+
+    .os-title {
+      font-size: 0.85rem;
+      color: #a0aec0;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .os-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .os-tag {
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: var(--cyan);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .btn-order {
@@ -278,7 +314,6 @@
 <body>
 
   <header>
-    <!-- NAMA LENGKAP BERSAMA EFEK GLOW FONT KEREN -->
     <a href="index.html" class="logo">
       <i class="fa-solid fa-bolt-lightning logo-icon"></i>
       <span class="logo-text">WINGS <span>SERVERS</span></span>
@@ -315,6 +350,15 @@
           <li><i class="fa-solid fa-check"></i> Akses Full Root</li>
           <li><i class="fa-solid fa-check"></i> Dedicated IPv4</li>
         </ul>
+        <div class="os-support">
+          <div class="os-title"><i class="fa-solid fa-desktop"></i> OS Support:</div>
+          <div class="os-tags">
+            <span class="os-tag"><i class="fa-brands fa-ubuntu"></i> Ubuntu</span>
+            <span class="os-tag"><i class="fa-brands fa-debian"></i> Debian</span>
+            <span class="os-tag"><i class="fa-brands fa-centos"></i> CentOS</span>
+            <span class="os-tag"><i class="fa-solid fa-compact-disc"></i> AlmaLinux</span>
+          </div>
+        </div>
         <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
       </div>
 
@@ -331,6 +375,16 @@
           <li><i class="fa-solid fa-check"></i> Akses Full Root</li>
           <li><i class="fa-solid fa-check"></i> Dedicated IPv4</li>
         </ul>
+        <div class="os-support">
+          <div class="os-title"><i class="fa-solid fa-desktop"></i> OS Support:</div>
+          <div class="os-tags">
+            <span class="os-tag"><i class="fa-brands fa-ubuntu"></i> Ubuntu</span>
+            <span class="os-tag"><i class="fa-brands fa-debian"></i> Debian</span>
+            <span class="os-tag"><i class="fa-brands fa-centos"></i> CentOS</span>
+            <span class="os-tag"><i class="fa-solid fa-compact-disc"></i> AlmaLinux</span>
+            <span class="os-tag"><i class="fa-brands fa-windows"></i> Windows</span>
+          </div>
+        </div>
         <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
       </div>
 
@@ -348,6 +402,16 @@
           <li><i class="fa-solid fa-check"></i> Akses Full Root</li>
           <li><i class="fa-solid fa-check"></i> Dedicated IPv4</li>
         </ul>
+        <div class="os-support">
+          <div class="os-title"><i class="fa-solid fa-desktop"></i> OS Support:</div>
+          <div class="os-tags">
+            <span class="os-tag"><i class="fa-brands fa-ubuntu"></i> Ubuntu</span>
+            <span class="os-tag"><i class="fa-brands fa-debian"></i> Debian</span>
+            <span class="os-tag"><i class="fa-brands fa-centos"></i> CentOS</span>
+            <span class="os-tag"><i class="fa-solid fa-compact-disc"></i> AlmaLinux</span>
+            <span class="os-tag"><i class="fa-brands fa-windows"></i> Windows</span>
+          </div>
+        </div>
         <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
       </div>
 
@@ -364,6 +428,16 @@
           <li><i class="fa-solid fa-check"></i> Akses Full Root</li>
           <li><i class="fa-solid fa-check"></i> Dedicated IPv4</li>
         </ul>
+        <div class="os-support">
+          <div class="os-title"><i class="fa-solid fa-desktop"></i> OS Support:</div>
+          <div class="os-tags">
+            <span class="os-tag"><i class="fa-brands fa-ubuntu"></i> Ubuntu</span>
+            <span class="os-tag"><i class="fa-brands fa-debian"></i> Debian</span>
+            <span class="os-tag"><i class="fa-brands fa-centos"></i> CentOS</span>
+            <span class="os-tag"><i class="fa-solid fa-compact-disc"></i> AlmaLinux</span>
+            <span class="os-tag"><i class="fa-brands fa-windows"></i> Windows Server</span>
+          </div>
+        </div>
         <a href="order-panel.html" class="btn-order">Pesan Sekarang</a>
       </div>
     </div>
