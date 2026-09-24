@@ -46,7 +46,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 8%;
+      padding: 18px 8%;
       background: rgba(5, 8, 20, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0, 242, 254, 0.2);
@@ -66,10 +66,20 @@
       gap: 12px;
     }
 
-    .logo-icon {
-      color: var(--cyan);
-      filter: drop-shadow(0 0 10px var(--cyan));
-      animation: pulseGlow 2s infinite alternate;
+    /* AVATAR KARAKTER ANIME DI SAMPING NAMA */
+    .logo-anime-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+      object-fit: cover;
+      animation: pulseAvatar 2s infinite alternate;
+    }
+
+    @keyframes pulseAvatar {
+      0% { transform: scale(1); box-shadow: 0 0 8px var(--cyan); }
+      100% { transform: scale(1.1); box-shadow: 0 0 18px var(--cyan); }
     }
 
     .logo-text {
@@ -85,17 +95,16 @@
       text-shadow: 0 0 20px var(--cyan);
     }
 
-    @keyframes pulseGlow {
-      0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--cyan)); }
-      100% { transform: scale(1.1); filter: drop-shadow(0 0 18px var(--cyan)); }
+    nav {
+      display: flex;
+      gap: 20px;
     }
 
     nav a {
       color: #a0aec0;
       text-decoration: none;
-      margin-left: 25px;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       transition: 0.3s;
     }
 
@@ -107,14 +116,14 @@
     /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 80px 20px 50px;
+      padding: 70px 20px 40px;
       max-width: 900px;
       margin: 0 auto;
     }
 
     .hero h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
+      font-size: 2.8rem;
       margin-bottom: 15px;
       background: linear-gradient(90deg, #fff, var(--cyan));
       -webkit-background-clip: text;
@@ -123,15 +132,53 @@
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: #a0aec0;
       margin-bottom: 30px;
+    }
+
+    /* INDIKATOR STATUS SERVER */
+    .status-bar {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      background: rgba(10, 18, 40, 0.85);
+      border: 1px solid var(--border-glow);
+      border-radius: 50px;
+      padding: 12px 25px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .dot-live {
+      width: 10px;
+      height: 10px;
+      background-color: #00ff66;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ff66;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
     }
 
     /* PRICING SECTION */
     .container {
       max-width: 1200px;
-      margin: 0 auto 80px;
+      margin: 0 auto 60px;
       padding: 0 20px;
     }
 
@@ -140,7 +187,7 @@
       font-size: 1.8rem;
       color: #fff;
       text-align: center;
-      margin: 60px 0 30px;
+      margin: 50px 0 30px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -245,9 +292,7 @@
       gap: 10px;
     }
 
-    .card-specs li i {
-      color: var(--cyan);
-    }
+    .card-specs li i { color: var(--cyan); }
 
     .os-support {
       margin-bottom: 25px;
@@ -262,7 +307,6 @@
       margin-bottom: 8px;
       text-transform: uppercase;
       font-weight: 700;
-      letter-spacing: 0.5px;
     }
 
     .os-tags {
@@ -305,6 +349,68 @@
       box-shadow: 0 0 25px var(--cyan);
     }
 
+    /* SEKSI TESTIMONI */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 25px;
+      backdrop-filter: blur(10px);
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      color: #cbd5e0;
+      margin-bottom: 15px;
+    }
+
+    .client-info {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      color: var(--cyan);
+    }
+
+    /* SEKSI FAQ */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-glow);
+      border-radius: 10px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .faq-question {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-question i { color: var(--cyan); }
+
+    .faq-answer {
+      color: #a0aec0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
     footer {
       text-align: center;
       padding: 30px;
@@ -312,35 +418,88 @@
       background: rgba(5, 8, 20, 0.9);
       color: #a0aec0;
       font-size: 0.95rem;
+      margin-top: 60px;
     }
 
-    /* PANEL PEMILIH TEMA BACKGROUND (SEBELAH KIRI) */
+    /* WIDGET KARAKTER ANIME BERGERAK MELAYANG */
+    .anime-mascot-container {
+      position: fixed;
+      bottom: 75px;
+      left: 20px;
+      z-index: 998;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      pointer-events: auto;
+    }
+
+    .anime-mascot-img {
+      width: 100px;
+      height: auto;
+      filter: drop-shadow(0 0 15px var(--cyan));
+      cursor: pointer;
+      animation: floatMascot 3s ease-in-out infinite;
+      transition: transform 0.3s;
+    }
+
+    .anime-mascot-img:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    @keyframes floatMascot {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .speech-bubble {
+      background: rgba(10, 18, 40, 0.92);
+      border: 1px solid var(--cyan);
+      border-radius: 15px 15px 15px 0px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      max-width: 190px;
+      box-shadow: 0 0 15px rgba(0,242,254,0.3);
+      backdrop-filter: blur(8px);
+      position: relative;
+      margin-bottom: 40px;
+      animation: pulseBubble 3s infinite alternate;
+    }
+
+    @keyframes pulseBubble {
+      0% { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,242,254,0.3); }
+      100% { border-color: var(--blue); box-shadow: 0 0 20px rgba(0,242,254,0.6); }
+    }
+
+    /* PANEL PEMILIH TEMA BACKGROUND (POJOK KIRI BAWAH) */
     .theme-picker {
       position: fixed;
-      bottom: 25px;
-      left: 25px;
+      bottom: 20px;
+      left: 20px;
       background: rgba(10, 18, 40, 0.9);
       border: 1px solid var(--border-glow);
-      padding: 10px 15px;
+      padding: 8px 14px;
       border-radius: 30px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
       z-index: 999;
       backdrop-filter: blur(10px);
     }
 
     .theme-picker span {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-family: 'Orbitron', sans-serif;
       color: var(--cyan);
       font-weight: 700;
     }
 
     .theme-btn {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       cursor: pointer;
       border: 2px solid #fff;
@@ -450,12 +609,15 @@
 
   <header>
     <a href="index.html" class="logo">
-      <i class="fa-solid fa-bolt-lightning logo-icon"></i>
+      <!-- FOTO AVATAR KARAKTER ANIME CYBER PINGGIR NAMA -->
+      <img src="https://api.dicebear.com/7.x/bottts/svg?seed=WingsCyber" alt="Anime Mascot" class="logo-anime-avatar">
       <span class="logo-text">WINGS <span>SERVERS</span></span>
     </a>
     <nav>
-      <a href="#vps-paket">VPS Hosting</a>
-      <a href="#panel-paket">Panel Pterodactyl</a>
+      <a href="#vps-paket">VPS</a>
+      <a href="#panel-paket">Panel</a>
+      <a href="#testimoni">Review</a>
+      <a href="#faq">FAQ</a>
     </nav>
   </header>
 
@@ -463,6 +625,13 @@
     <h1>PERFORMA SERVER TANPA BATAS</h1>
     <p>Layanan VPS Hosting dan Panel Game Pterodactyl dengan Performa Tinggi, Storage NVMe Cepat, & DDoS Protection Terlengkap.</p>
   </section>
+
+  <!-- INDIKATOR STATUS SERVER -->
+  <div class="status-bar">
+    <div class="status-item"><div class="dot-live"></div> Server Node: Operational</div>
+    <div class="status-item"><i class="fa-solid fa-shield-halved" style="color:var(--cyan)"></i> DDoS Protection: Active</div>
+    <div class="status-item"><i class="fa-solid fa-gauge-high" style="color:var(--cyan)"></i> Uptime: 99.9%</div>
+  </div>
 
   <div class="container">
 
@@ -584,7 +753,7 @@
     </div>
 
     <div class="pricing-grid">
-      <!-- Panel 1 GB s/d Unlimited -->
+      <!-- Panel 1 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
         <div class="card-title">PANEL 1 GB</div>
@@ -596,9 +765,10 @@
           <li><i class="fa-solid fa-check"></i> 5 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%201%20GB%20(Rp%201.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%201%20GB%20(Rp%201.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 2 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
         <div class="card-title">PANEL 2 GB</div>
@@ -610,9 +780,10 @@
           <li><i class="fa-solid fa-check"></i> 10 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%202%20GB%20(Rp%202.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%202%20GB%20(Rp%202.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 3 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
         <div class="card-title">PANEL 3 GB</div>
@@ -624,9 +795,10 @@
           <li><i class="fa-solid fa-check"></i> 15 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%203%20GB%20(Rp%203.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%203%20GB%20(Rp%203.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 4 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
         <div class="card-title">PANEL 4 GB</div>
@@ -638,9 +810,10 @@
           <li><i class="fa-solid fa-check"></i> 20 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%204%20GB%20(Rp%204.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%204%20GB%20(Rp%204.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 5 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-dragon"></i></div>
         <div class="card-title">PANEL 5 GB</div>
@@ -652,9 +825,10 @@
           <li><i class="fa-solid fa-check"></i> 25 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%205%20GB%20(Rp%205.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%205%20GB%20(Rp%205.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 6 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
         <div class="card-title">PANEL 6 GB</div>
@@ -666,9 +840,10 @@
           <li><i class="fa-solid fa-check"></i> 30 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%206%20GB%20(Rp%206.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%206%20GB%20(Rp%206.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 7 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
         <div class="card-title">PANEL 7 GB</div>
@@ -680,9 +855,10 @@
           <li><i class="fa-solid fa-check"></i> 35 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%207%20GB%20(Rp%207.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%207%20GB%20(Rp%207.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 8 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
         <div class="card-title">PANEL 8 GB</div>
@@ -694,9 +870,10 @@
           <li><i class="fa-solid fa-check"></i> 40 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%208%20GB%20(Rp%208.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%208%20GB%20(Rp%208.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel 9 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
         <div class="card-title">PANEL 9 GB</div>
@@ -708,9 +885,10 @@
           <li><i class="fa-solid fa-check"></i> 45 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%209%20GB%20(Rp%209.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%209%20GB%20(Rp%209.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
+      <!-- Panel UNLIMITED -->
       <div class="card popular">
         <div class="badge-popular">PALING LARIS</div>
         <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
@@ -723,9 +901,48 @@
           <li><i class="fa-solid fa-check"></i> 100 GB NVMe Storage</li>
           <li><i class="fa-solid fa-check"></i> Database MySQL Include</li>
         </ul>
-        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%20UNLIMITED%20(Rp%2010.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
+        <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20UNLIMITED%20(Rp%2010.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
+    </div>
 
+
+    <!-- SEKSI 3: TESTIMONI PELANGGAN -->
+    <div class="section-title" id="testimoni">
+      <i class="fa-solid fa-comments"></i> APA KATA KLIEN KAMI
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p>"Beli panel di Wings Servers buat bot WA aktif 24 jam tanpa lag sama sekali. Pelayanan admin juga cepet banget!"</p>
+        <div class="client-info">— Rifki, Owner Bot WhatsApp</div>
+      </div>
+      <div class="testimonial-card">
+        <p>"VPS 8GB-nya stabil banget buat server game komunitas kita. Ping kecil dan anti lag. Recommended!"</p>
+        <div class="client-info">— Dimas, Komunitas Game Online</div>
+      </div>
+      <div class="testimonial-card">
+        <p>"Harganya paling murah tapi kualitasnya setara provider mahal. Sukses terus Wings Servers!"</p>
+        <div class="client-info">— Bayu A., Web Developer</div>
+      </div>
+    </div>
+
+
+    <!-- SEKSI 4: FAQ (PERTANYAAN UMUM) -->
+    <div class="section-title" id="faq">
+      <i class="fa-solid fa-circle-question"></i> PERTANYAAN UMUM (FAQ)
+    </div>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question"><i class="fa-solid fa-chevron-right"></i> Berapa lama proses aktivasi setelah pembayaran?</div>
+        <div class="faq-answer">Sangat cepat! Setelah melakukan pembayaran dan konfirmasi via WhatsApp, detail akun panel atau VPS kamu akan langsung dikirim dalam waktu 5 - 10 menit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><i class="fa-solid fa-chevron-right"></i> Apakah panel Pterodactyl aktif 24 jam non-stop?</div>
+        <div class="faq-answer">Ya, server dan panel Anda akan aktif beroperasi 24 jam penuh tanpa henti, sangat aman untuk bot maupun server game.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><i class="fa-solid fa-chevron-right"></i> Metode pembayaran apa saja yang didukung?</div>
+        <div class="faq-answer">Kami mendukung berbagai pembayaran instan seperti QRIS, Transfer Bank, dan E-Wallet (DANA/OVO/GoPay).</div>
+      </div>
     </div>
 
   </div>
@@ -734,7 +951,15 @@
     <p>&copy; 2026 Wings Servers. All Rights Reserved.</p>
   </footer>
 
-  <!-- PANEL PILIH BACKGROUND SENDIRI (POJOK KIRI BAWAH) -->
+  <!-- KARAKTER ANIME BERGERAK MELAYANG DI POJOK SISI WEB -->
+  <div class="anime-mascot-container">
+    <div class="speech-bubble" id="mascotBubble">
+      Halo! Butuh VPS atau Panel Pterodactyl? Klik aku untuk chat ya! ⚡
+    </div>
+    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=WingsCyberMascot" alt="Anime Cyber Mascot" class="anime-mascot-img" onclick="toggleChat()" title="Klik untuk bantuan!">
+  </div>
+
+  <!-- PANEL PEMILIH TEMA BACKGROUND (POJOK KIRI BAWAH) -->
   <div class="theme-picker">
     <span>TEMA:</span>
     <div class="theme-btn theme-cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
@@ -841,7 +1066,6 @@
     }
     animate();
 
-    /* UBAH TEMA BACKGROUND SECARA LIVE */
     function setTheme(type) {
       const root = document.documentElement;
       if (type === 'cyan') {
