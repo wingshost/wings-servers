@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wings Servers - Premium VPS & Pterodactyl Hosting</title>
+  <title>WINGS SERVERS - Premium VPS & Pterodactyl Hosting</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -48,19 +48,42 @@
       z-index: 1000;
     }
 
+    /* DESAIN NAMA / LOGO KEREN TERBARU */
     .logo {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 900;
-      color: #fff;
+      letter-spacing: 2px;
+      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 10px;
-      text-shadow: 0 0 10px var(--cyan);
-      text-decoration: none;
+      gap: 12px;
     }
 
-    .logo i { color: var(--cyan); }
+    .logo-icon {
+      color: var(--cyan);
+      filter: drop-shadow(0 0 10px var(--cyan));
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    .logo-text {
+      background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+      position: relative;
+    }
+
+    .logo-text span {
+      color: var(--cyan);
+      -webkit-text-fill-color: var(--cyan);
+      text-shadow: 0 0 20px var(--cyan);
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--cyan)); }
+      100% { transform: scale(1.1); filter: drop-shadow(0 0 18px var(--cyan)); }
+    }
 
     nav a {
       color: #a0aec0;
@@ -255,8 +278,10 @@
 <body>
 
   <header>
+    <!-- NAMA LENGKAP BERSAMA EFEK GLOW FONT KEREN -->
     <a href="index.html" class="logo">
-      <i class="fa-solid fa-bolt"></i> WINGS SERVERS
+      <i class="fa-solid fa-bolt-lightning logo-icon"></i>
+      <span class="logo-text">WINGS <span>SERVERS</span></span>
     </a>
     <nav>
       <a href="#vps-paket">VPS Hosting</a>
@@ -344,7 +369,7 @@
     </div>
 
 
-    <!-- SEKSI 2: PAKET PANEL PTERODACTYL (1GB - 10GB/UNLIMITED) -->
+    <!-- SEKSI 2: PAKET PANEL PTERODACTYL -->
     <div class="section-title" id="panel-paket">
       <i class="fa-solid fa-gamepad"></i> PANEL PTERODACTYL HOSTING
     </div>
