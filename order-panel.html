@@ -34,7 +34,6 @@
       background-size: 100% 100%, 40px 40px, 40px 40px;
     }
 
-    /* Header / Navbar Navigasi */
     header {
       display: flex;
       justify-content: space-between;
@@ -73,7 +72,6 @@
       text-shadow: 0 0 10px var(--cyan);
     }
 
-    /* Layout Kontainer Order */
     .checkout-container {
       max-width: 1100px;
       margin: 40px auto;
@@ -89,7 +87,6 @@
       }
     }
 
-    /* Section Card */
     .order-box {
       background: var(--card-bg);
       backdrop-filter: blur(15px);
@@ -115,7 +112,6 @@
       color: var(--cyan);
     }
 
-    /* Form Inputs */
     .form-group {
       margin-bottom: 20px;
     }
@@ -145,18 +141,23 @@
       box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
     }
 
-    /* Grid Pilihan Paket RAM */
     .plan-options {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .plan-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .plan-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(0, 242, 254, 0.2);
       border-radius: 10px;
-      padding: 15px 10px;
+      padding: 12px 8px;
       text-align: center;
       cursor: pointer;
       transition: 0.3s;
@@ -170,7 +171,7 @@
 
     .plan-card h4 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #fff;
     }
 
@@ -181,7 +182,6 @@
       margin-top: 4px;
     }
 
-    /* Pilihan Metode Pembayaran */
     .payment-methods {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -210,7 +210,6 @@
       color: var(--cyan);
     }
 
-    /* Ringkasan Pesanan (Summary) */
     .summary-item {
       display: flex;
       justify-content: space-between;
@@ -267,7 +266,6 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <a href="index.html" class="logo">
       <i class="fa-solid fa-bolt"></i> WINGS SERVERS
@@ -277,35 +275,53 @@
     </a>
   </header>
 
-  <!-- Section Order -->
   <div class="checkout-container">
-    
-    <!-- Kolom Kiri: Form Detail Konfigurasi -->
     <div>
-      
-      <!-- 1. Pilih Spesifikasi Panel -->
       <div class="order-box" style="margin-bottom: 25px;">
         <div class="box-title">
-          <i class="fa-solid fa-server"></i> 1. Pilih Paket Panel Pterodactyl
+          <i class="fa-solid fa-server"></i> 1. Pilih RAM Panel Pterodactyl
         </div>
         
         <div class="plan-options">
-          <div class="plan-card active" onclick="selectPlan('Panel 3 GB', 'Rp 25.000', '3 GB', '1.5 vCPU')">
+          <div class="plan-card active" onclick="selectPlan('Panel 2 GB', 'Rp 2.000', '2 GB', '1 vCPU')">
+            <h4>2 GB RAM</h4>
+            <p>Rp 2.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 3 GB', 'Rp 3.000', '3 GB', '1.5 vCPU')">
             <h4>3 GB RAM</h4>
-            <p>Rp 25.000/bln</p>
+            <p>Rp 3.000/bln</p>
           </div>
-          <div class="plan-card" onclick="selectPlan('Panel 6 GB', 'Rp 45.000', '6 GB', '2.5 vCPU')">
+          <div class="plan-card" onclick="selectPlan('Panel 4 GB', 'Rp 4.000', '4 GB', '2 vCPU')">
+            <h4>4 GB RAM</h4>
+            <p>Rp 4.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 5 GB', 'Rp 5.000', '5 GB', '2 vCPU')">
+            <h4>5 GB RAM</h4>
+            <p>Rp 5.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 6 GB', 'Rp 6.000', '6 GB', '2.5 vCPU')">
             <h4>6 GB RAM</h4>
-            <p>Rp 45.000/bln</p>
+            <p>Rp 6.000/bln</p>
           </div>
-          <div class="plan-card" onclick="selectPlan('Panel 12 GB', 'Rp 80.000', '12 GB', '4 vCPU')">
-            <h4>12 GB RAM</h4>
-            <p>Rp 80.000/bln</p>
+          <div class="plan-card" onclick="selectPlan('Panel 7 GB', 'Rp 7.000', '7 GB', '2.5 vCPU')">
+            <h4>7 GB RAM</h4>
+            <p>Rp 7.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 8 GB', 'Rp 8.000', '8 GB', '3 vCPU')">
+            <h4>8 GB RAM</h4>
+            <p>Rp 8.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 9 GB', 'Rp 9.000', '9 GB', '3 vCPU')">
+            <h4>9 GB RAM</h4>
+            <p>Rp 9.000/bln</p>
+          </div>
+          <div class="plan-card" onclick="selectPlan('Panel 10 GB', 'Rp 10.000', '10 GB', '4 vCPU')">
+            <h4>10 GB RAM</h4>
+            <p>Rp 10.000/bln</p>
           </div>
         </div>
       </div>
 
-      <!-- 2. Informasi Server/User -->
       <div class="order-box" style="margin-bottom: 25px;">
         <div class="box-title">
           <i class="fa-solid fa-user-gear"></i> 2. Detail Akun & Server
@@ -322,7 +338,6 @@
         </div>
       </div>
 
-      <!-- 3. Metode Pembayaran -->
       <div class="order-box">
         <div class="box-title">
           <i class="fa-solid fa-wallet"></i> 3. Metode Pembayaran
@@ -349,7 +364,6 @@
 
     </div>
 
-    <!-- Kolom Kanan: Summary / Ringkasan Biaya -->
     <div>
       <div class="order-box" style="position: sticky; top: 30px;">
         <div class="box-title">
@@ -358,15 +372,15 @@
 
         <div class="summary-item">
           <span>Layanan</span>
-          <span id="sumPlan">Panel 3 GB</span>
+          <span id="sumPlan">Panel 2 GB</span>
         </div>
         <div class="summary-item">
           <span>RAM Dedicated</span>
-          <span id="sumRam">3 GB</span>
+          <span id="sumRam">2 GB</span>
         </div>
         <div class="summary-item">
           <span>CPU Cores</span>
-          <span id="sumCpu">1.5 vCPU</span>
+          <span id="sumCpu">1 vCPU</span>
         </div>
         <div class="summary-item">
           <span>Metode Bayar</span>
@@ -376,7 +390,7 @@
         <div class="total-price">
           <div>
             <div style="font-size: 0.85rem; color: #a0aec0;">Total Pembayaran:</div>
-            <h3 id="sumTotal">Rp 25.000</h3>
+            <h3 id="sumTotal">Rp 2.000</h3>
           </div>
         </div>
 
@@ -389,10 +403,10 @@
   </div>
 
   <script>
-    let selectedPlan = 'Panel 3 GB';
-    let selectedPrice = 'Rp 25.000';
-    let selectedRam = '3 GB';
-    let selectedCpu = '1.5 vCPU';
+    let selectedPlan = 'Panel 2 GB';
+    let selectedPrice = 'Rp 2.000';
+    let selectedRam = '2 GB';
+    let selectedCpu = '1 vCPU';
     let selectedPayment = 'QRIS';
 
     function selectPlan(plan, price, ram, cpu) {
@@ -406,7 +420,6 @@
       document.getElementById('sumRam').innerText = ram;
       document.getElementById('sumCpu').innerText = cpu;
 
-      // Update active style
       const cards = document.querySelectorAll('.plan-card');
       cards.forEach(card => card.classList.remove('active'));
       event.currentTarget.classList.add('active');
@@ -425,7 +438,6 @@
       const serverName = document.getElementById('serverName').value || 'Tanpa Nama';
       const userEmail = document.getElementById('userEmail').value || 'Belum Diisi';
 
-      // Pesan WhatsApp Otomatis
       const text = `Halo Wings Servers, saya mau beli Panel Pterodactyl:%0A%0A` +
                    `🔹 *Paket*: ${selectedPlan}%0A` +
                    `🔹 *Harga*: ${selectedPrice}/bln%0A` +
