@@ -27,11 +27,18 @@
       background-color: var(--dark-bg);
       color: #fff;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 50% 15%, rgba(0, 242, 254, 0.15) 0%, transparent 60%),
-        linear-gradient(to right, rgba(0, 242, 254, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
-      background-size: 100% 100%, 40px 40px, 40px 40px;
+      position: relative;
+    }
+
+    /* CANVAS BACKGROUND BERGERAK */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* HEADER */
@@ -70,7 +77,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
-      position: relative;
     }
 
     .logo-text span {
@@ -243,7 +249,6 @@
       color: var(--cyan);
     }
 
-    /* BADGE OS YANG DIDUKUNG */
     .os-support {
       margin-bottom: 25px;
       padding-top: 10px;
@@ -309,7 +314,46 @@
       font-size: 0.95rem;
     }
 
-    /* CUSTOM LIGHTWEIGHT LIVE CHAT WEB */
+    /* PANEL PEMILIH TEMA BACKGROUND (SEBELAH KIRI) */
+    .theme-picker {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      background: rgba(10, 18, 40, 0.9);
+      border: 1px solid var(--border-glow);
+      padding: 10px 15px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-picker span {
+      font-size: 0.8rem;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .theme-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #fff;
+      transition: 0.2s;
+    }
+
+    .theme-btn:hover { transform: scale(1.2); }
+    .theme-cyan { background: #00f2fe; }
+    .theme-purple { background: #b000ff; }
+    .theme-green { background: #00ff66; }
+    .theme-dark { background: #555555; }
+
+    /* CHAT BUTTON */
     .chat-btn-float {
       position: fixed;
       bottom: 25px;
@@ -386,10 +430,6 @@
       font-size: 0.95rem;
     }
 
-    .chat-body input:focus, .chat-body textarea:focus {
-      border-color: var(--cyan);
-    }
-
     .btn-send-chat {
       background: linear-gradient(90deg, var(--cyan), var(--blue));
       color: #000;
@@ -401,13 +441,12 @@
       font-family: 'Orbitron', sans-serif;
       transition: 0.3s;
     }
-
-    .btn-send-chat:hover {
-      box-shadow: 0 0 15px var(--cyan);
-    }
   </style>
 </head>
 <body>
+
+  <!-- BACKGROUND CANVAS BERGERAK -->
+  <canvas id="bgCanvas"></canvas>
 
   <header>
     <a href="index.html" class="logo">
@@ -545,8 +584,7 @@
     </div>
 
     <div class="pricing-grid">
-      
-      <!-- Panel 1 GB -->
+      <!-- Panel 1 GB s/d Unlimited -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-ghost"></i></div>
         <div class="card-title">PANEL 1 GB</div>
@@ -561,7 +599,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%201%20GB%20(Rp%201.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 2 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
         <div class="card-title">PANEL 2 GB</div>
@@ -576,7 +613,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%202%20GB%20(Rp%202.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 3 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
         <div class="card-title">PANEL 3 GB</div>
@@ -591,7 +627,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%203%20GB%20(Rp%203.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 4 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
         <div class="card-title">PANEL 4 GB</div>
@@ -606,7 +641,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%204%20GB%20(Rp%204.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 5 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-dragon"></i></div>
         <div class="card-title">PANEL 5 GB</div>
@@ -621,7 +655,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%205%20GB%20(Rp%205.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 6 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
         <div class="card-title">PANEL 6 GB</div>
@@ -636,7 +669,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%206%20GB%20(Rp%206.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 7 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
         <div class="card-title">PANEL 7 GB</div>
@@ -651,7 +683,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%207%20GB%20(Rp%207.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 8 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
         <div class="card-title">PANEL 8 GB</div>
@@ -666,7 +697,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%208%20GB%20(Rp%208.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel 9 GB -->
       <div class="card">
         <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
         <div class="card-title">PANEL 9 GB</div>
@@ -681,7 +711,6 @@
         <a href="https://wa.me/6281217318511?text=Halo%20Admin%20Wings%20Servers,%20saya%20ingin%20memesan%20PANEL%20PTERODACTYL%209%20GB%20(Rp%209.000/bln)" target="_blank" class="btn-order">Pesan Sekarang</a>
       </div>
 
-      <!-- Panel UNLIMITED -->
       <div class="card popular">
         <div class="badge-popular">PALING LARIS</div>
         <div class="card-icon"><i class="fa-solid fa-fire"></i></div>
@@ -705,12 +734,20 @@
     <p>&copy; 2026 Wings Servers. All Rights Reserved.</p>
   </footer>
 
-  <!-- TOMBOL MELAYANG CHAT WEB RINGAN -->
+  <!-- PANEL PILIH BACKGROUND SENDIRI (POJOK KIRI BAWAH) -->
+  <div class="theme-picker">
+    <span>TEMA:</span>
+    <div class="theme-btn theme-cyan" onclick="setTheme('cyan')" title="Cyber Cyan"></div>
+    <div class="theme-btn theme-purple" onclick="setTheme('purple')" title="Purple Galaxy"></div>
+    <div class="theme-btn theme-green" onclick="setTheme('green')" title="Matrix Green"></div>
+    <div class="theme-btn theme-dark" onclick="setTheme('dark')" title="Dark Minimal"></div>
+  </div>
+
+  <!-- TOMBOL MELAYANG CHAT WEB -->
   <div class="chat-btn-float" onclick="toggleChat()">
     <i class="fa-solid fa-comments"></i>
   </div>
 
-  <!-- KOTAK CHAT POPUP LIGHTWEIGHT -->
   <div class="chat-box" id="customChatBox">
     <div class="chat-header">
       <span><i class="fa-solid fa-headset"></i> Live Support</span>
@@ -727,7 +764,113 @@
     </div>
   </div>
 
+  <!-- SCRIPT BACKGROUND BERGERAK & PEMILIH TEMA -->
   <script>
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let particles = [];
+    let particleColor = '#00f2fe';
+    let lineColor = 'rgba(0, 242, 254, 0.15)';
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+        this.radius = Math.random() * 2 + 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particleColor;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      const particleCount = Math.floor((width * height) / 12000);
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+    initParticles();
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    /* UBAH TEMA BACKGROUND SECARA LIVE */
+    function setTheme(type) {
+      const root = document.documentElement;
+      if (type === 'cyan') {
+        root.style.setProperty('--cyan', '#00f2fe');
+        root.style.setProperty('--blue', '#4facfe');
+        root.style.setProperty('--dark-bg', '#050814');
+        particleColor = '#00f2fe';
+        lineColor = 'rgba(0, 242, 254, 0.15)';
+      } else if (type === 'purple') {
+        root.style.setProperty('--cyan', '#d400ff');
+        root.style.setProperty('--blue', '#7b00ff');
+        root.style.setProperty('--dark-bg', '#10051a');
+        particleColor = '#d400ff';
+        lineColor = 'rgba(212, 0, 255, 0.15)';
+      } else if (type === 'green') {
+        root.style.setProperty('--cyan', '#00ff66');
+        root.style.setProperty('--blue', '#00b33c');
+        root.style.setProperty('--dark-bg', '#041409');
+        particleColor = '#00ff66';
+        lineColor = 'rgba(0, 255, 102, 0.15)';
+      } else if (type === 'dark') {
+        root.style.setProperty('--cyan', '#a0aec0');
+        root.style.setProperty('--blue', '#4a5568');
+        root.style.setProperty('--dark-bg', '#0f1117');
+        particleColor = '#a0aec0';
+        lineColor = 'rgba(160, 174, 192, 0.15)';
+      }
+    }
+
     function toggleChat() {
       const box = document.getElementById('customChatBox');
       box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
