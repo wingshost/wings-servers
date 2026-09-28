@@ -12,49 +12,90 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #050811;
+            background-color: #030712;
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Efek Background 3D Grid Bergerak */
-        .bg-3d {
+        /* Background Gradient & Efek 3D Ruang/Depth yang Kaya */
+        .bg-3d-space {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(0, 255, 255, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 136, 255, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.8) 0%, #030712 100%);
+            z-index: -2;
+        }
+
+        /* Efek 3D Wireframe Grid Bergerak ke Depan */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            perspective: 500px;
-            transform: rotateX(60deg) scale(2);
+                linear-gradient(rgba(0, 255, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 600px;
+            transform: rotateX(65deg) scale(1.5);
             transform-origin: top center;
-            animation: gridMove 20s linear infinite;
+            animation: gridMove 15s linear infinite;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
         @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 80px; }
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 100px;
+            }
         }
 
-        /* Efek Cahaya Orb 3D di Belakang */
-        .glow-orb {
+        /* Efek Cahaya Orb 3D Mengambang */
+        .glow-orb-1 {
             position: fixed;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
+            top: 10%;
+            left: 10%;
+            width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, rgba(0, 136, 255, 0.05) 50%, transparent 80%);
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, transparent 70%);
             z-index: -1;
-            filter: blur(60px);
+            filter: blur(80px);
             pointer-events: none;
+            animation: floatOrb1 8s ease-in-out infinite alternate;
+        }
+
+        .glow-orb-2 {
+            position: fixed;
+            bottom: 10%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 119, 255, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(90px);
+            pointer-events: none;
+            animation: floatOrb2 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatOrb1 {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(40px) translateX(30px); }
+        }
+
+        @keyframes floatOrb2 {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-50px) translateX(-40px); }
         }
 
         /* Navbar */
@@ -63,9 +104,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background-color: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #1f2937;
+            background-color: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
             position: relative;
             z-index: 10;
         }
@@ -74,7 +115,7 @@
             font-weight: bold;
             color: #00ffff;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
         }
         .nav-links a {
             color: #9ca3af;
@@ -85,33 +126,35 @@
         }
         .nav-links a:hover, .nav-links a.active {
             color: #00ffff;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
         }
         .nav-links .register-btn {
             background: linear-gradient(135deg, #00ffff, #0088ff);
-            color: #0b0f19;
-            padding: 8px 16px;
+            color: #030712;
+            padding: 8px 18px;
             border-radius: 6px;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
         }
         .nav-links .register-btn:hover {
-            opacity: 0.9;
-            color: #0b0f19;
+            opacity: 0.95;
+            color: #030712;
+            box-shadow: 0 6px 25px rgba(0, 255, 255, 0.5);
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 50px 20px 30px 20px;
+            padding: 60px 20px 40px 20px;
             position: relative;
             z-index: 5;
         }
         .hero h1 {
-            font-size: 36px;
+            font-size: 38px;
             color: #00ffff;
             margin-bottom: 15px;
             letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
         .hero p {
             color: #9ca3af;
@@ -120,16 +163,16 @@
         }
         .badge-box {
             display: inline-flex;
-            gap: 15px;
-            background-color: rgba(17, 24, 39, 0.85);
+            gap: 20px;
+            background-color: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 255, 255, 0.3);
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 30px;
             font-size: 13px;
             color: #00ffff;
             margin-bottom: 40px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
         }
 
         /* Pricing Grid */
@@ -144,23 +187,24 @@
             z-index: 5;
         }
         .pricing-card {
-            background-color: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid #1f2937;
-            border-radius: 12px;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(31, 41, 55, 0.8);
+            border-radius: 14px;
             padding: 30px 20px;
             text-align: center;
             transition: 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
         .pricing-card:hover {
-            border-color: #00ffff;
+            border-color: rgba(0, 255, 255, 0.6);
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.15);
+            box-shadow: 0 20px 45px rgba(0, 255, 255, 0.2);
+            background-color: rgba(17, 24, 39, 0.9);
         }
         .pricing-card.popular {
             border-color: #00ffff;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
         }
         .pricing-card h3 {
             font-size: 20px;
@@ -178,7 +222,7 @@
             font-weight: bold;
             color: #00ffff;
             margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
         }
         .price span {
             font-size: 13px;
@@ -190,8 +234,8 @@
             font-size: 13px;
             color: #9ca3af;
             margin-bottom: 25px;
-            border-top: 1px solid #1f2937;
-            border-bottom: 1px solid #1f2937;
+            border-top: 1px solid rgba(31, 41, 55, 0.8);
+            border-bottom: 1px solid rgba(31, 41, 55, 0.8);
             padding: 15px 0;
         }
         .features-list li {
@@ -202,25 +246,27 @@
             width: 100%;
             padding: 12px;
             background: linear-gradient(135deg, #00ffff, #0088ff);
-            color: #0b0f19;
+            color: #030712;
             text-decoration: none;
             border-radius: 6px;
             font-weight: bold;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.25);
         }
         .order-btn:hover {
             opacity: 0.9;
-            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
+            box-shadow: 0 6px 22px rgba(0, 255, 255, 0.45);
             transform: scale(1.02);
         }
     </style>
 </head>
 <body>
 
-    <!-- Efek Background 3D & Cahaya -->
-    <div class="bg-3d"></div>
-    <div class="glow-orb"></div>
+    <!-- Background 3D & Efek Cahaya Orb -->
+    <div class="bg-3d-space"></div>
+    <div class="bg-grid"></div>
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
 
     <!-- Navbar -->
     <div class="navbar">
