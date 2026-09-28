@@ -201,8 +201,8 @@
             <p>Daftar sekarang untuk mulai akses & beli panel server.</p>
         </div>
 
-        <!-- Form langsung mengarahkan ke domain utama setelah tombol daftar diklik -->
-        <form action="https://wingshost.wingsserver.my.id" method="GET">
+        <!-- Form Registrasi -->
+        <form id="registerForm">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Masukkan username kamu" required>
@@ -226,6 +226,14 @@
     <div class="footer-text">
         &copy; 2026 WINGS SERVERS. All rights reserved.
     </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah reload halaman
+            alert('Registrasi berhasil! Mengarahkan ke web utama...');
+            window.location.href = 'https://wingshost.wingsserver.my.id';
+        });
+    </script>
 
 </body>
 </html>
