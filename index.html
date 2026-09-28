@@ -3,90 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - WINGS SERVERS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>WINGS SERVERS - Performa Server Tanpa Batas</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         body {
-            font-family: 'Poppins', sans-serif;
             background-color: #0b0f19;
             color: #ffffff;
+            min-height: 100vh;
+        }
+        /* Navbar */
+        .navbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            padding: 20px 50px;
+            background-color: #111827;
+            border-bottom: 1px solid #1f2937;
         }
-        .card {
-            background: #131b2e;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid #1f293d;
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00ffff;
+            letter-spacing: 1px;
         }
-        h2 { text-align: center; color: #00d2ff; margin-bottom: 20px; }
-        .input-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-size: 14px; }
-        input {
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00ffff;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+        }
+        .hero h1 {
+            font-size: 36px;
+            color: #00ffff;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        .hero p {
+            color: #9ca3af;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .badge-box {
+            display: inline-flex;
+            gap: 20px;
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #9ca3af;
+            margin-bottom: 40px;
+        }
+
+        /* Pricing Grid */
+        .pricing-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 0 20px 50px 20px;
+        }
+        .pricing-card {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+        .pricing-card:hover {
+            border-color: #00ffff;
+            transform: translateY(-5px);
+        }
+        .pricing-card.popular {
+            border-color: #00ffff;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00ffff;
+            color: #0b0f19;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .pricing-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .pricing-card p {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 20px;
+            min-height: 35px;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 25px;
+        }
+        .price span {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .features-list {
+            list-style: none;
+            text-align: left;
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 25px;
+        }
+        .features-list li {
+            margin-bottom: 10px;
+        }
+        .order-btn {
+            display: block;
             width: 100%;
             padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #2a3b5c;
-            background: #0b0f19;
-            color: #fff;
-            box-sizing: border-box;
+            background-color: transparent;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
         }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
+        .pricing-card.popular .order-btn, .order-btn:hover {
+            background-color: #00ffff;
+            color: #0b0f19;
         }
-        button:hover { opacity: 0.9; }
-        .link { text-align: center; margin-top: 15px; font-size: 14px; }
-        .link a { color: #00c6ff; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2>Login Akun</h2>
-        <div class="input-group">
-            <label>Username</label>
-            <input type="text" id="logUser" placeholder="Username kamu">
-        </div>
-        <div class="input-group">
-            <label>Password</label>
-            <input type="password" id="logPass" placeholder="Password kamu">
-        </div>
-        <button onclick="login()">Masuk Web</button>
-        <div class="link">
-            Belum punya akun? <a href="register.html">Daftar di sini</a>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">WINGS SERVERS</div>
+        <div class="nav-links">
+            <a href="index.html">VPS</a>
+            <a href="panel.html">Panel</a>
         </div>
     </div>
 
-    <script>
-        function login() {
-            const user = document.getElementById('logUser').value;
-            const pass = document.getElementById('logPass').value;
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>PERFORMA SERVER TANPA BATAS</h1>
+        <p>Layanan VPS Hosting dengan Performa Tinggi, Storage NVMe Cepat, & Uptime 99.9%.</p>
+        
+        <div class="badge-box">
+            <span>🟢 Server Node: Operational</span>
+            <span>🛡️ DDoS Protection: Active</span>
+            <span>⚡ Uptime: 99.9%</span>
+        </div>
+    </div>
 
-            const savedUser = localStorage.getItem('db_user');
-            const savedPass = localStorage.getItem('db_pass');
+    <!-- Pricing Section -->
+    <div class="pricing-container">
+        <!-- VPS 1GB -->
+        <div class="pricing-card">
+            <h3>VPS 1 GB</h3>
+            <p>Cocok untuk Bot & Small Script</p>
+            <div class="price">Rp 30.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 1 Core CPU</li>
+                <li>✓ 1 GB RAM</li>
+                <li>✓ 20 GB SSD Storage</li>
+                <li>✓ Akses Full Root</li>
+            </ul>
+            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+        </div>
 
-            if(user === savedUser && pass === savedPass) {
-                alert('Login Berhasil!');
-                localStorage.setItem('isLoggedIn', 'true');
-                window.location.href = 'panel.html';
-            } else {
-                alert('Username atau password salah!');
-            }
-        }
-    </script>
+        <!-- VPS 4GB -->
+        <div class="pricing-card">
+            <h3>VPS 4 GB</h3>
+            <p>Cocok untuk Website & Multi-Tasking</p>
+            <div class="price">Rp 50.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 2 Core CPU</li>
+                <li>✓ 4 GB RAM</li>
+                <li>✓ 50 GB SSD Storage</li>
+                <li>✓ Akses Full Root</li>
+            </ul>
+            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+        </div>
+
+        <!-- VPS 8GB -->
+        <div class="pricing-card popular">
+            <div class="popular-badge">Populer</div>
+            <h3>VPS 8 GB</h3>
+            <p>Performa Tinggi untuk Panel Game</p>
+            <div class="price">Rp 70.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 4 Core CPU</li>
+                <li>✓ 8 GB RAM</li>
+                <li>✓ 80 GB SSD Storage</li>
+                <li>✓ Akses Full Root</li>
+            </ul>
+            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+        </div>
+
+        <!-- VPS 16GB -->
+        <div class="pricing-card">
+            <h3>VPS 16 GB</h3>
+            <p>Kapasitas Besar untuk Traffic Tinggi</p>
+            <div class="price">Rp 120.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 6 Core CPU</li>
+                <li>✓ 16 GB RAM</li>
+                <li>✓ 150 GB SSD Storage</li>
+                <li>✓ Akses Full Root</li>
+            </ul>
+            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+        </div>
+    </div>
+
 </body>
 </html>
