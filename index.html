@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WINGS SERVERS - Performa Server Tanpa Batas</title>
+    <title>WINGS SERVERS - VPS Hosting & Panel Pterodactyl</title>
     <style>
         * {
             margin: 0;
@@ -12,24 +12,69 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #0b0f19;
+            background-color: #050811;
             color: #ffffff;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
+
+        /* Efek Background 3D Grid Bergerak */
+        .bg-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            perspective: 500px;
+            transform: rotateX(60deg) scale(2);
+            transform-origin: top center;
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 80px; }
+        }
+
+        /* Efek Cahaya Orb 3D di Belakang */
+        .glow-orb {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, rgba(0, 136, 255, 0.05) 50%, transparent 80%);
+            z-index: -1;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
         /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background-color: #111827;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid #1f2937;
+            position: relative;
+            z-index: 10;
         }
         .logo {
             font-size: 22px;
             font-weight: bold;
             color: #00ffff;
             letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         .nav-links a {
             color: #9ca3af;
@@ -38,95 +83,105 @@
             font-weight: 500;
             transition: 0.3s;
         }
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: #00ffff;
+        }
+        .nav-links .register-btn {
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+            color: #0b0f19;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+        }
+        .nav-links .register-btn:hover {
+            opacity: 0.9;
+            color: #0b0f19;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 60px 20px 40px 20px;
+            padding: 50px 20px 30px 20px;
+            position: relative;
+            z-index: 5;
         }
         .hero h1 {
             font-size: 36px;
             color: #00ffff;
             margin-bottom: 15px;
             letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
         }
         .hero p {
             color: #9ca3af;
             font-size: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         .badge-box {
             display: inline-flex;
-            gap: 20px;
-            background-color: #111827;
-            border: 1px solid #1f2937;
+            gap: 15px;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
             padding: 10px 25px;
             border-radius: 30px;
-            font-size: 14px;
-            color: #9ca3af;
+            font-size: 13px;
+            color: #00ffff;
             margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
         }
 
         /* Pricing Grid */
         .pricing-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            padding: 0 20px 50px 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            padding: 0 20px 60px 20px;
+            position: relative;
+            z-index: 5;
         }
         .pricing-card {
-            background-color: #111827;
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
             border: 1px solid #1f2937;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 30px 20px;
             text-align: center;
-            position: relative;
-            transition: 0.3s;
+            transition: 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         .pricing-card:hover {
             border-color: #00ffff;
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.15);
         }
         .pricing-card.popular {
             border-color: #00ffff;
-        }
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #00ffff;
-            color: #0b0f19;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 4px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
         }
         .pricing-card h3 {
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #ffffff;
         }
         .pricing-card p {
-            font-size: 12px;
+            font-size: 13px;
             color: #9ca3af;
             margin-bottom: 20px;
-            min-height: 35px;
+            min-height: 30px;
         }
         .price {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             color: #00ffff;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         }
         .price span {
-            font-size: 12px;
+            font-size: 13px;
             color: #9ca3af;
         }
         .features-list {
@@ -135,6 +190,9 @@
             font-size: 13px;
             color: #9ca3af;
             margin-bottom: 25px;
+            border-top: 1px solid #1f2937;
+            border-bottom: 1px solid #1f2937;
+            padding: 15px 0;
         }
         .features-list li {
             margin-bottom: 10px;
@@ -142,29 +200,35 @@
         .order-btn {
             display: block;
             width: 100%;
-            padding: 10px;
-            background-color: transparent;
-            border: 1px solid #00ffff;
-            color: #00ffff;
+            padding: 12px;
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+            color: #0b0f19;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
         }
-        .pricing-card.popular .order-btn, .order-btn:hover {
-            background-color: #00ffff;
-            color: #0b0f19;
+        .order-btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
 
+    <!-- Efek Background 3D & Cahaya -->
+    <div class="bg-3d"></div>
+    <div class="glow-orb"></div>
+
     <!-- Navbar -->
     <div class="navbar">
         <div class="logo">WINGS SERVERS</div>
         <div class="nav-links">
-            <a href="index.html">VPS</a>
-            <a href="panel.html">Panel</a>
+            <a href="https://wingshost.wingsserver.my.id" class="active">VPS</a>
+            <a href="https://wingshost.wingsserver.my.id/panel.html">Panel</a>
+            <a href="https://wingshost.wingsserver.my.id/register.html" class="register-btn">Daftar Akun</a>
         </div>
     </div>
 
@@ -182,7 +246,7 @@
 
     <!-- Pricing Section -->
     <div class="pricing-container">
-        <!-- VPS 1GB -->
+        <!-- VPS 1 GB -->
         <div class="pricing-card">
             <h3>VPS 1 GB</h3>
             <p>Cocok untuk Bot & Small Script</p>
@@ -193,10 +257,10 @@
                 <li>✓ 20 GB SSD Storage</li>
                 <li>✓ Akses Full Root</li>
             </ul>
-            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+            <a href="https://wingshost.wingsserver.my.id/register.html" class="order-btn">Pesan Sekarang</a>
         </div>
 
-        <!-- VPS 4GB -->
+        <!-- VPS 4 GB -->
         <div class="pricing-card">
             <h3>VPS 4 GB</h3>
             <p>Cocok untuk Website & Multi-Tasking</p>
@@ -207,12 +271,11 @@
                 <li>✓ 50 GB SSD Storage</li>
                 <li>✓ Akses Full Root</li>
             </ul>
-            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+            <a href="https://wingshost.wingsserver.my.id/register.html" class="order-btn">Pesan Sekarang</a>
         </div>
 
-        <!-- VPS 8GB -->
+        <!-- VPS 8 GB -->
         <div class="pricing-card popular">
-            <div class="popular-badge">Populer</div>
             <h3>VPS 8 GB</h3>
             <p>Performa Tinggi untuk Panel Game</p>
             <div class="price">Rp 70.000<span>/bln</span></div>
@@ -222,10 +285,10 @@
                 <li>✓ 80 GB SSD Storage</li>
                 <li>✓ Akses Full Root</li>
             </ul>
-            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+            <a href="https://wingshost.wingsserver.my.id/register.html" class="order-btn">Pesan Sekarang</a>
         </div>
 
-        <!-- VPS 16GB -->
+        <!-- VPS 16 GB -->
         <div class="pricing-card">
             <h3>VPS 16 GB</h3>
             <p>Kapasitas Besar untuk Traffic Tinggi</p>
@@ -236,7 +299,7 @@
                 <li>✓ 150 GB SSD Storage</li>
                 <li>✓ Akses Full Root</li>
             </ul>
-            <a href="register.html" class="order-btn">Pesan Sekarang</a>
+            <a href="https://wingshost.wingsserver.my.id/register.html" class="order-btn">Pesan Sekarang</a>
         </div>
     </div>
 
