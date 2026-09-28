@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Panel - WINGS SERVERS</title>
+    <title>Panel Pterodactyl - WINGS SERVERS</title>
     <style>
         * {
             margin: 0;
@@ -14,242 +14,289 @@
         body {
             background-color: #0b0f19;
             color: #ffffff;
-            display: flex;
             min-height: 100vh;
         }
-        /* Sidebar */
-        .sidebar {
-            width: 260px;
-            background-color: #111827;
-            border-right: 1px solid #1f2937;
-            display: flex;
-            flex-direction: column;
-        }
-        .sidebar-brand {
-            padding: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #00ffff;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #1f2937;
-        }
-        .sidebar-menu {
-            list-style: none;
-            padding: 20px 0;
-            flex-grow: 1;
-        }
-        .sidebar-menu li a {
-            display: block;
-            padding: 12px 20px;
-            color: #9ca3af;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .sidebar-menu li.active a, .sidebar-menu li a:hover {
-            background-color: #1f2937;
-            color: #00ffff;
-            border-left: 4px solid #00ffff;
-        }
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid #1f2937;
-        }
-        .logout-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .logout-btn:hover {
-            background-color: #dc2626;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            padding: 20px 30px;
-            background-color: #111827;
-            border-bottom: 1px solid #1f2937;
+        /* Navbar */
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .header h1 {
-            font-size: 22px;
-            color: #f3f4f6;
-        }
-        .user-info {
-            color: #9ca3af;
-            font-size: 14px;
-        }
-        .dashboard-body {
-            padding: 30px;
-            overflow-y: auto;
-        }
-        
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .stat-card {
+            padding: 20px 50px;
             background-color: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 8px;
-            padding: 20px;
+            border-bottom: 1px solid #1f2937;
         }
-        .stat-card h3 {
-            font-size: 14px;
-            color: #9ca3af;
-            margin-bottom: 10px;
-        }
-        .stat-card .value {
-            font-size: 24px;
+        .logo {
+            font-size: 22px;
             font-weight: bold;
+            color: #00ffff;
+            letter-spacing: 1px;
+        }
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
             color: #00ffff;
         }
 
-        /* Server List */
-        .section-title {
-            font-size: 18px;
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px 30px 20px;
+        }
+        .hero h1 {
+            font-size: 32px;
+            color: #00ffff;
             margin-bottom: 15px;
-            color: #e5e7eb;
+            letter-spacing: 2px;
         }
-        .server-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #111827;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #1f2937;
-        }
-        .server-table th, .server-table td {
-            padding: 15px 20px;
-            text-align: left;
-        }
-        .server-table th {
-            background-color: #1f2937;
+        .hero p {
             color: #9ca3af;
-            font-size: 13px;
-            text-transform: uppercase;
+            font-size: 15px;
+            margin-bottom: 20px;
         }
-        .server-table tr {
-            border-bottom: 1px solid #1f2937;
-        }
-        .server-table tr:last-child {
-            border-bottom: none;
-        }
-        .status-badge {
+        .badge-box {
             display: inline-block;
-            padding: 4px 10px;
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            padding: 8px 20px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            background-color: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-        }
-        .action-btn {
-            padding: 6px 12px;
-            background-color: #00ffff;
-            color: #0b0f19;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
             font-size: 13px;
+            color: #00ffff;
+            margin-bottom: 30px;
         }
-        .action-btn:hover {
-            opacity: 0.8;
+
+        /* Pricing Grid */
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            padding: 0 20px 50px 20px;
+        }
+        .pricing-card {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .pricing-card:hover {
+            border-color: #00ffff;
+            transform: translateY(-5px);
+        }
+        .pricing-card.popular {
+            border-color: #00ffff;
+            position: relative;
+        }
+        .pricing-card h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+        .pricing-card p {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 15px;
+            min-height: 25px;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+        .price span {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .features-list {
+            list-style: none;
+            text-align: left;
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 20px;
+            border-top: 1px solid #1f2937;
+            border-bottom: 1px solid #1f2937;
+            padding: 12px 0;
+        }
+        .features-list li {
+            margin-bottom: 8px;
+        }
+        .order-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+            color: #0b0f19;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .order-btn:hover {
+            opacity: 0.85;
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-brand">WINGS SERVERS</div>
-        <ul class="sidebar-menu">
-            <li class="active"><a href="#">Dashboard</a></li>
-            <li><a href="#">Server Saya</a></li>
-            <li><a href="#">Pengaturan Akun</a></li>
-        </ul>
-        <div class="sidebar-footer">
-            <button class="logout-btn" onclick="logout()">Logout</button>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">WINGS SERVERS</div>
+        <div class="nav-links">
+            <a href="index.html">VPS</a>
+            <a href="panel.html" class="active">Panel</a>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="header">
-            <h1>Dashboard Server</h1>
-            <div class="user-info">Halo, Pengguna Aktif</div>
-        </div>
-
-        <div class="dashboard-body">
-            <!-- Statistik -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Server Aktif</h3>
-                    <div class="value">1 Unit</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Penggunaan RAM</h3>
-                    <div class="value">512 MB / 4 GB</div>
-                </div>
-                <div class="stat-card">
-                    <h3>CPU Usage</h3>
-                    <div class="value">2.4%</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Status Jaringan</h3>
-                    <div class="value" style="color: #10b981;">Online (99.9%)</div>
-                </div>
-            </div>
-
-            <!-- Daftar Server -->
-            <h2 class="section-title">Daftar VPS Anda</h2>
-            <table class="server-table">
-                <thead>
-                    <tr>
-                        <th>Nama Server</th>
-                        <th>IP Address</th>
-                        <th>Spesifikasi</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Wings-Node-01</strong></td>
-                        <td>194.31.54.12</td>
-                        <td>2 Core / 4GB RAM</td>
-                        <td><span class="status-badge">Running</span></td>
-                        <td><a href="#" class="action-btn" onclick="alert('Membuka panel kontrol server...')">Kelola</a></td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>PANEL PTERODACTYL HOSTING</h1>
+        <p>Hosting Panel Game & Bot WhatsApp Terstabil dengan NVMe Storage Cepat & Aktif 24 Jam.</p>
+        
+        <div class="badge-box">
+            🎮 PILIHAN LENGKAP PANEL PTERODACTYL
         </div>
     </div>
 
-    <script>
-        function logout() {
-            if(confirm('Apakah kamu yakin ingin keluar?')) {
-                window.location.href = 'index.html';
-            }
-        }
-    </script>
+    <!-- Pricing Section -->
+    <div class="pricing-container">
+        <!-- Panel 1GB -->
+        <div class="pricing-card">
+            <h3>PANEL 1 GB</h3>
+            <p>Bot WhatsApp & Script Ringan</p>
+            <div class="price">Rp 1.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 1 GB RAM Dedicated</li>
+                <li>✓ 1 vCPU Core</li>
+                <li>✓ 5 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 1GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 2GB -->
+        <div class="pricing-card">
+            <h3>PANEL 2 GB</h3>
+            <p>Multi-Bot & Small Server</p>
+            <div class="price">Rp 2.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 2 GB RAM Dedicated</li>
+                <li>✓ 1 vCPU Core</li>
+                <li>✓ 10 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 2GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 3GB -->
+        <div class="pricing-card">
+            <h3>PANEL 3 GB</h3>
+            <p>Bot Aktif & Game Ringan</p>
+            <div class="price">Rp 3.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 3 GB RAM Dedicated</li>
+                <li>✓ 1 vCPU Core</li>
+                <li>✓ 15 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 3GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 4GB -->
+        <div class="pricing-card">
+            <h3>PANEL 4 GB</h3>
+            <p>Bot & Game Menengah</p>
+            <div class="price">Rp 4.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 4 GB RAM Dedicated</li>
+                <li>✓ 2 vCPU Core</li>
+                <li>✓ 20 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 4GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 5GB -->
+        <div class="pricing-card">
+            <h3>PANEL 5 GB</h3>
+            <p>Performa Tinggi Stabil</p>
+            <div class="price">Rp 5.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 5 GB RAM Dedicated</li>
+                <li>✓ 2 vCPU Core</li>
+                <li>✓ 25 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 5GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 6GB -->
+        <div class="pricing-card">
+            <h3>PANEL 6 GB</h3>
+            <p>Multi-Game & Bot Heavy</p>
+            <div class="price">Rp 6.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 6 GB RAM Dedicated</li>
+                <li>✓ 3 vCPU Core</li>
+                <li>✓ 30 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 6GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 7GB -->
+        <div class="pricing-card">
+            <h3>PANEL 7 GB</h3>
+            <p>Kapasitas Extra Luas</p>
+            <div class="price">Rp 7.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 7 GB RAM Dedicated</li>
+                <li>✓ 3 vCPU Core</li>
+                <li>✓ 35 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 7GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 8GB -->
+        <div class="pricing-card popular">
+            <h3>PANEL 8 GB</h3>
+            <p>Sangat Optimal & Cepat</p>
+            <div class="price">Rp 8.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 8 GB RAM Dedicated</li>
+                <li>✓ 4 vCPU Core</li>
+                <li>✓ 40 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 8GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel 9GB -->
+        <div class="pricing-card">
+            <h3>PANEL 9 GB</h3>
+            <p>Performa Maksimal Server</p>
+            <div class="price">Rp 9.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ 9 GB RAM Dedicated</li>
+                <li>✓ 4 vCPU Core</li>
+                <li>✓ 45 GB NVMe Storage</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel 9GB')">Pesan Sekarang</a>
+        </div>
+
+        <!-- Panel Unlimited -->
+        <div class="pricing-card popular">
+            <h3>PANEL UNLIMITED</h3>
+            <p>Tanpa Batas Semua Fitur</p>
+            <div class="price">Rp 10.000<span>/bln</span></div>
+            <ul class="features-list">
+                <li>✓ RAM Unlimited</li>
+                <li>✓ CPU Core Unlimited</li>
+                <li>✓ Storage NVMe Unlimited</li>
+            </ul>
+            <a href="#" class="order-btn" onclick="alert('Pesan Panel Unlimited')">Pesan Sekarang</a>
+        </div>
+    </div>
 
 </body>
 </html>
