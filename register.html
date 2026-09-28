@@ -12,7 +12,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #050811;
+            background-color: #030712;
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
@@ -21,54 +21,39 @@
             flex-direction: column;
             justify-content: space-between;
         }
-
-        /* Efek Background 3D Grid Bergerak */
-        .bg-3d {
+        .bg-3d-space {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            perspective: 500px;
-            transform: rotateX(60deg) scale(2);
-            transform-origin: top center;
-            animation: gridMove 20s linear infinite;
-            z-index: -1;
-            opacity: 0.6;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 255, 255, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(0, 136, 255, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.8) 0%, #030712 100%);
+            z-index: -2;
         }
-
+        .bg-grid {
+            position: fixed;
+            top: 0; left: -50%; width: 200%; height: 200%;
+            background-image: linear-gradient(rgba(0, 255, 255, 0.07) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 600px;
+            transform: rotateX(65deg) scale(1.5);
+            transform-origin: top center;
+            animation: gridMove 15s linear infinite;
+            z-index: -1;
+            opacity: 0.7;
+        }
         @keyframes gridMove {
             0% { background-position: 0 0; }
-            100% { background-position: 0 80px; }
+            100% { background-position: 0 100px; }
         }
-
-        /* Efek Cahaya Orb 3D di Belakang */
-        .glow-orb {
-            position: fixed;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, rgba(0, 136, 255, 0.05) 50%, transparent 80%);
-            z-index: -1;
-            filter: blur(60px);
-            pointer-events: none;
-        }
-
-        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background-color: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #1f2937;
+            background-color: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
             position: relative;
             z-index: 10;
         }
@@ -77,7 +62,7 @@
             font-weight: bold;
             color: #00ffff;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
         }
         .nav-links a {
             color: #9ca3af;
@@ -86,27 +71,19 @@
             font-weight: 500;
             transition: 0.3s;
         }
-        .nav-links a:hover {
-            color: #00ffff;
-        }
-
-        /* Register Container */
+        .nav-links a:hover { color: #00ffff; }
         .register-container {
             max-width: 420px;
             width: 90%;
             margin: 40px auto;
-            background-color: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid #1f2937;
-            border-radius: 12px;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(31, 41, 55, 0.8);
+            border-radius: 14px;
             padding: 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
             position: relative;
             z-index: 5;
-        }
-        .register-container:hover {
-            border-color: rgba(0, 255, 255, 0.4);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.15);
         }
         .register-header {
             text-align: center;
@@ -122,11 +99,7 @@
             font-size: 13px;
             color: #9ca3af;
         }
-
-        /* Form Group */
-        .form-group {
-            margin-bottom: 18px;
-        }
+        .form-group { margin-bottom: 18px; }
         .form-group label {
             display: block;
             font-size: 13px;
@@ -136,7 +109,7 @@
         .form-group input {
             width: 100%;
             padding: 11px 14px;
-            background-color: rgba(11, 15, 25, 0.8);
+            background-color: rgba(3, 7, 18, 0.8);
             border: 1px solid #374151;
             border-radius: 6px;
             color: #ffffff;
@@ -148,29 +121,36 @@
             border-color: #00ffff;
             box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
         }
-
-        /* Submit Button */
         .submit-btn {
             display: block;
             width: 100%;
             padding: 12px;
             background: linear-gradient(135deg, #00ffff, #0088ff);
-            color: #0b0f19;
+            color: #030712;
             border: none;
             border-radius: 6px;
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
-            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.25);
+            margin-top: 20px;
         }
         .submit-btn:hover {
             opacity: 0.9;
-            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
-            transform: scale(1.01);
+            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.45);
         }
-
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+        .auth-footer a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+        .auth-footer a:hover { text-decoration: underline; }
         .footer-text {
             text-align: center;
             font-size: 12px;
@@ -180,60 +160,52 @@
     </style>
 </head>
 <body>
+    <div class="bg-3d-space"></div>
+    <div class="bg-grid"></div>
 
-    <!-- Efek Background 3D & Cahaya -->
-    <div class="bg-3d"></div>
-    <div class="glow-orb"></div>
-
-    <!-- Navbar -->
     <div class="navbar">
         <div class="logo">WINGS SERVERS</div>
         <div class="nav-links">
             <a href="https://wingshost.wingsserver.my.id">Utama</a>
-            <a href="https://wingshost.wingsserver.my.id/panel.html">Panel</a>
+            <a href="https://wingshost.wingsserver.my.id/login.html">Login</a>
         </div>
     </div>
 
-    <!-- Register Form Container -->
     <div class="register-container">
         <div class="register-header">
             <h2>Buat Akun Baru</h2>
             <p>Daftar sekarang untuk mulai akses & beli panel server.</p>
         </div>
 
-        <!-- Form Registrasi -->
         <form id="registerForm">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Masukkan username kamu" required>
+                <input type="text" id="username" placeholder="Masukkan username" required>
             </div>
-
             <div class="form-group">
                 <label for="email">Email Aktif</label>
-                <input type="email" id="email" name="email" placeholder="contoh@gmail.com" required>
+                <input type="email" id="email" placeholder="contoh@gmail.com" required>
             </div>
-
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Minimal 6 karakter" required>
+                <input type="password" id="password" placeholder="Minimal 6 karakter" required>
             </div>
-
-            <button type="submit" class="submit-btn">Daftar & Masuk</button>
+            <button type="submit" class="submit-btn">Daftar Akun</button>
         </form>
+
+        <div class="auth-footer">
+            Sudah punya akun? <a href="https://wingshost.wingsserver.my.id/login.html">Login di sini</a>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer-text">
-        &copy; 2026 WINGS SERVERS. All rights reserved.
-    </div>
+    <div class="footer-text">&copy; 2026 WINGS SERVERS. All rights reserved.</div>
 
     <script>
         document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Mencegah reload halaman
-            alert('Registrasi berhasil! Mengarahkan ke web utama...');
-            window.location.href = 'https://wingshost.wingsserver.my.id';
+            e.preventDefault();
+            alert('Registrasi Berhasil! Silakan masuk menggunakan akun baru.');
+            window.location.href = 'https://wingshost.wingsserver.my.id/login.html';
         });
     </script>
-
 </body>
 </html>
