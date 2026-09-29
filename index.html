@@ -116,9 +116,9 @@
         .status-item { display: flex; align-items: center; gap: 6px; }
         .dot { width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; }
 
-        /* Pricing Section (Banyak Pilihan VPS) */
+        /* Pricing Section */
         .pricing-section {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px 60px 20px;
         }
@@ -131,20 +131,21 @@
         }
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 20px;
         }
         .card {
             background: rgba(11, 15, 25, 0.95);
             border: 1px solid rgba(0, 255, 255, 0.15);
             border-radius: 14px;
-            padding: 25px 20px;
+            padding: 25px 18px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: 0.3s;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
         .card:hover {
             border-color: rgba(0, 255, 255, 0.4);
@@ -153,11 +154,25 @@
         }
         .card.featured {
             border-color: #00ffff;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+            background: rgba(15, 23, 42, 0.98);
         }
-        .card h3 { font-size: 20px; color: #ffffff; margin-bottom: 5px; }
+        .badge-terlaris {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+            color: #030712;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .card h3 { font-size: 19px; color: #ffffff; margin-bottom: 5px; }
         .card .desc { font-size: 12px; color: #9ca3af; margin-bottom: 15px; }
-        .price { font-size: 22px; font-weight: bold; color: #00ffff; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0, 255, 255, 0.25); }
+        .price { font-size: 21px; font-weight: bold; color: #00ffff; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0, 255, 255, 0.25); }
         .features { text-align: left; font-size: 13px; color: #d1d5db; margin-bottom: 25px; list-style: none; }
         .features li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .features li::before { content: "✓"; color: #00ffff; font-weight: bold; }
@@ -203,7 +218,7 @@
 
     <div class="hero">
         <h1>PERFORMA SERVER TANPA BATAS</h1>
-        <p>Layanan VPS Hosting dengan Performa Tinggi, Storage NVMe Cepat, & Uptime 99.9%.</p>
+        <p>Layanan Panel Pterodactyl dengan Performa Tinggi, Stabil, & Uptime 99.9%.</p>
         
         <div class="server-status">
             <div class="status-item"><span class="dot"></span> Server Node: Operational</div>
@@ -213,63 +228,79 @@
     </div>
 
     <div class="pricing-section">
-        <div class="section-title">Pilihan Paket VPS Kami</div>
+        <div class="section-title">Pilihan Paket Panel Pterodactyl Kami</div>
         <div class="pricing-grid">
-            <!-- Paket 1 -->
+            <!-- Paket 2GB -->
             <div class="card">
                 <div>
-                    <h3>VPS 1 GB</h3>
-                    <p class="desc">Cocok untuk Bot & Small Script</p>
-                    <div class="price">Rp 30.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
+                    <h3>Panel 2 GB</h3>
+                    <p class="desc">Cocok untuk Bot WhatsApp</p>
+                    <div class="price">Rp 2.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
                     <ul class="features">
-                        <li>1 Core CPU</li>
-                        <li>1 GB RAM</li>
-                        <li>10 GB NVMe Storage</li>
+                        <li>RAM 2 GB</li>
+                        <li>CPU & Storage Stabil</li>
+                        <li>Full Akses Panel</li>
                     </ul>
                 </div>
                 <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
-            <!-- Paket 2 -->
+            <!-- Paket 3GB -->
             <div class="card">
                 <div>
-                    <h3>VPS 2 GB</h3>
-                    <p class="desc">Cocok untuk Web & Bot Sedang</p>
-                    <div class="price">Rp 55.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
+                    <h3>Panel 3 GB</h3>
+                    <p class="desc">Cocok untuk Bot & Script Ringan</p>
+                    <div class="price">Rp 3.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
                     <ul class="features">
-                        <li>1 Core CPU</li>
-                        <li>2 GB RAM</li>
-                        <li>20 GB NVMe Storage</li>
+                        <li>RAM 3 GB</li>
+                        <li>CPU & Storage Stabil</li>
+                        <li>Full Akses Panel</li>
                     </ul>
                 </div>
                 <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
-            <!-- Paket 3 (Featured) -->
+            <!-- Paket 5GB -->
+            <div class="card">
+                <div>
+                    <h3>Panel 5 GB</h3>
+                    <p class="desc">Cocok untuk Multi Bot</p>
+                    <div class="price">Rp 5.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
+                    <ul class="features">
+                        <li>RAM 5 GB</li>
+                        <li>High Performance CPU</li>
+                        <li>Full Akses Panel</li>
+                    </ul>
+                </div>
+                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+            </div>
+
+            <!-- Paket 8GB -->
+            <div class="card">
+                <div>
+                    <h3>Panel 8 GB</h3>
+                    <p class="desc">Performa Tinggi & Game Server</p>
+                    <div class="price">Rp 8.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
+                    <ul class="features">
+                        <li>RAM 8 GB</li>
+                        <li>High Performance CPU</li>
+                        <li>Full Akses Panel</li>
+                    </ul>
+                </div>
+                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+            </div>
+
+            <!-- Paket Unlimited (TERLARIS) -->
             <div class="card featured">
+                <div class="badge-terlaris">PALING LARIS</div>
                 <div>
-                    <h3>VPS 4 GB</h3>
-                    <p class="desc">Paling Laris untuk Panel & Game</p>
-                    <div class="price">Rp 100.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
+                    <h3>Panel Unlimited</h3>
+                    <p class="desc">Bebas Pakai Tanpa Batas</p>
+                    <div class="price">Rp 12.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
                     <ul class="features">
-                        <li>2 Core CPU</li>
-                        <li>4 GB RAM</li>
-                        <li>40 GB NVMe Storage</li>
-                    </ul>
-                </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
-            </div>
-
-            <!-- Paket 4 -->
-            <div class="card">
-                <div>
-                    <h3>VPS 8 GB</h3>
-                    <p class="desc">Performa Maksimal & Multi-Aplikasi</p>
-                    <div class="price">Rp 190.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>4 Core CPU</li>
-                        <li>8 GB RAM</li>
-                        <li>80 GB NVMe Storage</li>
+                        <li>RAM Unlimited</li>
+                        <li>CPU & Storage Unlimited</li>
+                        <li>Full Akses Panel + Prioritas</li>
                     </ul>
                 </div>
                 <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
