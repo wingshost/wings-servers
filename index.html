@@ -69,7 +69,7 @@
         .nav-links a:hover { color: #00ffff; }
         .btn-daftar {
             background: linear-gradient(135deg, #00ffff, #0088ff);
-            color: #030712;
+            color: #030712 !important;
             padding: 7px 16px;
             border-radius: 6px;
             font-weight: bold;
@@ -215,9 +215,9 @@
 
     <div class="navbar">
         <div class="logo">WINGS SERVERS</div>
-        <div class="nav-links">
-            <a href="https://wingshost.wingsserver.my.id/login.html">Login</a>
-            <a href="https://wingshost.wingsserver.my.id/register.html" class="btn-daftar">Daftar Akun</a>
+        <div class="nav-links" id="navAuth">
+            <a href="https://wingshost.wingsserver.my.id/login.html" id="loginLink">Login</a>
+            <a href="https://wingshost.wingsserver.my.id/register.html" id="registerLink" class="btn-daftar">Daftar Akun</a>
         </div>
     </div>
 
@@ -374,5 +374,16 @@
     </div>
 
     <div class="footer-text">&copy; 2026 WINGS SERVERS. All rights reserved.</div>
+
+    <script>
+        // Cek status login sederhana di localStorage (jika user menyimpan status login)
+        // Kalau kamu pakai sistem login lain, bagian ini bisa disesuaikan.
+        const isLogged = localStorage.getItem('isLoggedIn');
+        if (isLogged === 'true') {
+            document.getElementById('navAuth').innerHTML = `
+                <a href="https://wingshost.wingsserver.my.id/dashboard.html" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">Dashboard Panel</a>
+            `;
+        }
+    </script>
 </body>
 </html>
