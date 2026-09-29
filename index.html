@@ -216,8 +216,8 @@
     <div class="navbar">
         <div class="logo">WINGS SERVERS</div>
         <div class="nav-links" id="navAuth">
-            <a href="https://wingshost.wingsserver.my.id/login.html" id="loginLink">Login</a>
-            <a href="https://wingshost.wingsserver.my.id/register.html" id="registerLink" class="btn-daftar">Daftar Akun</a>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="register.html" id="registerLink" class="btn-daftar">Daftar Akun</a>
         </div>
     </div>
 
@@ -247,7 +247,7 @@
                         <li>Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
             <div class="card">
@@ -261,7 +261,7 @@
                         <li>Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
             <div class="card">
@@ -275,7 +275,7 @@
                         <li>Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
             <div class="card">
@@ -289,7 +289,7 @@
                         <li>Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
             <div class="card featured">
@@ -304,7 +304,7 @@
                         <li>Full Akses Panel + Prioritas</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
         </div>
     </div>
@@ -324,7 +324,7 @@
                         <li>Full Akses Pterodactyl Panel</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
             <div class="card">
@@ -338,7 +338,7 @@
                         <li>Support Plugins & Mods</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
             <div class="card featured">
@@ -353,7 +353,7 @@
                         <li>Support Plugin & Modpack</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
             <div class="card">
@@ -367,7 +367,7 @@
                         <li>Full Backup & Database</li>
                     </ul>
                 </div>
-                <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
         </div>
     </div>
@@ -375,14 +375,14 @@
     <div class="footer-text">&copy; 2026 WINGS SERVERS. All rights reserved.</div>
 
     <script>
-        // Cek data user yang tersimpan di localStorage browser
-        const userName = localStorage.getItem('username'); // contoh: 'Fendy'
+        // Cek apakah user sudah login berdasarkan localStorage
+        const userName = localStorage.getItem('username');
         const isLogged = localStorage.getItem('isLoggedIn');
 
         if (isLogged === 'true' && userName) {
-            // Jika sudah login, ubah tombol kanan atas jadi nama user (misal: Fendy)
+            // Jika sudah login, ubah pojok kanan atas jadi nama user dengan warna hijau
             document.getElementById('navAuth').innerHTML = `
-                <a href="https://wingshost.wingsserver.my.id/dashboard.html" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">👤 ${userName}</a>
+                <a href="#" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">👤 ${userName}</a>
             `;
         }
     </script>
