@@ -380,9 +380,9 @@
         const isLogged = localStorage.getItem('isLoggedIn');
 
         if (isLogged === 'true' && userName) {
-            // Jika sudah login, ubah pojok kanan atas jadi nama user dengan warna hijau
+            // Jika sudah login, ubah pojok kanan atas jadi sapaan nama user dengan warna hijau
             document.getElementById('navAuth').innerHTML = `
-                <a href="#" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">👤 ${userName}</a>
+                <a href="#" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">👤 Hai, ${userName}</a>
             `;
         }
     </script>
