@@ -341,7 +341,6 @@
                 <a href="https://wingshost.wingsserver.my.id/register.html" class="buy-btn">Pesan Sekarang</a>
             </div>
 
-            <!-- TERLARIS (8K) -->
             <div class="card featured">
                 <div class="badge-terlaris">TERLARIS GAME</div>
                 <div>
@@ -376,12 +375,14 @@
     <div class="footer-text">&copy; 2026 WINGS SERVERS. All rights reserved.</div>
 
     <script>
-        // Cek status login sederhana di localStorage (jika user menyimpan status login)
-        // Kalau kamu pakai sistem login lain, bagian ini bisa disesuaikan.
+        // Cek data user yang tersimpan di localStorage browser
+        const userName = localStorage.getItem('username'); // contoh: 'Fendy'
         const isLogged = localStorage.getItem('isLoggedIn');
-        if (isLogged === 'true') {
+
+        if (isLogged === 'true' && userName) {
+            // Jika sudah login, ubah tombol kanan atas jadi nama user (misal: Fendy)
             document.getElementById('navAuth').innerHTML = `
-                <a href="https://wingshost.wingsserver.my.id/dashboard.html" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">Dashboard Panel</a>
+                <a href="https://wingshost.wingsserver.my.id/dashboard.html" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">👤 ${userName}</a>
             `;
         }
     </script>
