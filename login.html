@@ -65,12 +65,11 @@
         function handleLogin(event) {
             event.preventDefault(); // Mencegah form reload halaman secara default
             
-            // Di sini Kakak bisa tambahkan validasi jika ada backend. 
-            // Untuk sementara, kita simpan status login ke memori browser:
+            // Simpan status login ke memori browser
             localStorage.setItem('isLoggedIn', 'true');
 
-            // Arahkan ke halaman dashboard setelah sukses login
-            window.location.href = 'dashboard.html';
+            // Diarahkan langsung ke halaman pembelian/order panel (order.html)
+            window.location.href = 'order.html';
         }
     </script>
 </body>
