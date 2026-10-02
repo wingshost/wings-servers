@@ -3,56 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran QRISLY</title>
-</head>
-<body style="font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9;">
-
-    <div style="max-width: 500px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
-        <h3>Buat Pembayaran QRISLY</h3>
-        
-        <label>Nominal Pembayaran (Rp):</label><br>
-        <input type="number" id="amount" value="10000" style="margin-bottom: 10px; width: 100%; padding: 8px;"><br>
-        
-        <label>Keterangan / Nama Produk:</label><br>
-        <input type="text" id="note" value="Pembayaran Server Wings" style="margin-bottom: 10px; width: 100%; padding: 8px;"><br>
-        
-        <button onclick="buatQris()" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px; width: 100%;">Buat QRIS Sekarang</button>
-
-        <h4>Hasil Respon API:</h4>
-        <pre id="hasilQris" style="background: #f4f4f4; padding: 10px; max-height: 250px; overflow: auto;">Silakan buat pembayaran...</pre>
-    </div>
-
-    <script>
-        function buatQris() {
-            const apiKey = "QSVqsfcj0e9b3de3f00448abUiB6RQ0e";
-            const amount = document.getElementById("amount").value;
-            const note = document.getElementById("note").value;
-
-            document.getElementById("hasilQris").innerText = "Memproses pembuatan QRIS...";
-
-            // Endpoint uji coba QRISLY Komerce/Collaborator
-            fetch("https://api-sandbox.collaborator.komerce.id/qrisly/api/v1/create", {
-                method: "POST",
-                headers: {
-                    "x-api-key": apiKey,
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    amount: parseInt(amount),
-                    note: note
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("hasilQris").innerText = JSON.stringify(data, null, 2);
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                document.getElementById("hasilQris").innerText = "Gagal terhubung ke server pembayaran.";
-            });
+    <title>WINGS SERVERS - Utama</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b132b;
+            color: white;
         }
-    </script>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            color: #00ffff;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #00ffff;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .btn-order {
+            display: inline-block;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.4);
+        }
+        .btn-order:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">WINGS SERVERS</div>
+        <nav>
+            <a href="index.html">Utama</a>
+            <a href="order.html">Order</a>
+            <a href="register.html">Login / Register</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Selamat Datang di Wings Servers</h1>
+        <p>Platform penyedia server game dan panel berkualitas tinggi dengan pembayaran instan.</p>
+        <a href="order.html" class="btn-order">Mulai Order Sekarang</a>
+    </div>
 
 </body>
 </html>
