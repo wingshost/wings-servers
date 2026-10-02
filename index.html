@@ -3,386 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WINGS SERVERS - Performa Server Tanpa Batas</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #030712;
-            color: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-        .bg-space {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-color: #030712;
-            z-index: -2;
-        }
-        .bg-glow {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 10%, rgba(0, 255, 255, 0.07) 0%, transparent 65%);
-            z-index: -1;
-            pointer-events: none;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 5%;
-            background-color: rgba(3, 7, 18, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 255, 255, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: #00ffff;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .nav-links a {
-            color: #9ca3af;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: #00ffff; }
-        .btn-daftar {
-            background: linear-gradient(135deg, #00ffff, #0088ff);
-            color: #030712 !important;
-            padding: 7px 16px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 13px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.25);
-        }
-        
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 50px 20px 30px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .hero h1 {
-            font-size: clamp(26px, 5vw, 42px);
-            color: #00ffff;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            line-height: 1.3;
-        }
-        .hero p {
-            font-size: clamp(13px, 2vw, 15px);
-            color: #9ca3af;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        /* Server Stats Badge */
-        .server-status {
-            display: inline-flex;
-            gap: 15px;
-            background: rgba(11, 15, 25, 0.9);
-            border: 1px solid rgba(0, 255, 255, 0.15);
-            padding: 10px 22px;
-            border-radius: 30px;
-            font-size: 12px;
-            color: #9ca3af;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-        .status-item { display: flex; align-items: center; gap: 6px; }
-        .dot { width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; }
-
-        /* Pricing Section */
-        .pricing-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 50px 20px;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 22px;
-            color: #00ffff;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: rgba(11, 15, 25, 0.95);
-            border: 1px solid rgba(0, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 25px 18px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-        }
-        .card:hover {
-            border-color: rgba(0, 255, 255, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.1);
-        }
-        .card.featured {
-            border-color: #00ffff;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-            background: rgba(15, 23, 42, 0.98);
-        }
-        .badge-terlaris {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #00ffff, #0088ff);
-            color: #030712;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 3px 10px;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-        .card h3 { font-size: 19px; color: #ffffff; margin-bottom: 5px; }
-        .card .desc { font-size: 12px; color: #9ca3af; margin-bottom: 15px; }
-        .price { font-size: 21px; font-weight: bold; color: #00ffff; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0, 255, 255, 0.25); }
-        .features { text-align: left; font-size: 13px; color: #d1d5db; margin-bottom: 25px; list-style: none; }
-        .features li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .features li::before { content: "✓"; color: #00ffff; font-weight: bold; }
-        
-        .buy-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid #00ffff;
-            color: #00ffff;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: 0.3s;
-            font-size: 13px;
-        }
-        .card.featured .buy-btn, .buy-btn:hover {
-            background: linear-gradient(135deg, #00ffff, #0088ff);
-            color: #030712;
-        }
-
-        .footer-text {
-            text-align: center;
-            font-size: 12px;
-            color: #6b7280;
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            margin-top: 20px;
-        }
-    </style>
+    <title>WINGS SERVERS - Performa Server Terbaik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="bg-space"></div>
-    <div class="bg-glow"></div>
-
-    <div class="navbar">
-        <div class="logo">WINGS SERVERS</div>
-        <div class="nav-links" id="navAuth">
-            <a href="login.html" id="loginLink">Login</a>
-            <a href="register.html" id="registerLink" class="btn-daftar">Daftar Akun</a>
+<body class="bg-[#0b132b] text-white min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-8 py-4 bg-[#0b132b]/80 border-b border-gray-800">
+        <div class="text-cyan-400 font-bold text-xl tracking-wider">WINGS SERVERS</div>
+        <div class="space-x-6 text-sm">
+            <a href="index.html" class="text-cyan-400 font-semibold">Utama</a>
+            <a href="order.html" class="hover:text-cyan-400">Order</a>
+            <a href="#" class="hover:text-cyan-400">Login</a>
+            <a href="#" class="bg-cyan-400 text-slate-900 px-4 py-2 rounded-lg font-bold hover:bg-cyan-300">Daftar Akun</a>
         </div>
-    </div>
+    </nav>
 
-    <div class="hero">
-        <h1>PERFORMA SERVER TANPA BATAS</h1>
-        <p>Layanan Node.js & Minecraft Hosting dengan Performa Tinggi, Stabil, & Uptime 99.9%.</p>
-        
-        <div class="server-status">
-            <div class="status-item"><span class="dot"></span> Server Node: Operational</div>
-            <div class="status-item">🛡️ DDoS Protection: Active</div>
-            <div class="status-item">⚡ Uptime: 99.9%</div>
-        </div>
-    </div>
+    <!-- Main Content -->
+    <main class="flex-grow px-4 py-12 max-w-7xl mx-auto w-full">
+        <h1 class="text-3xl font-bold text-center mb-10 text-cyan-400">Pilih Paket Server Kakak</h1>
 
-    <!-- Kategori 1: Node.js Hosting -->
-    <div class="pricing-section">
-        <div class="section-title">⚡ Node.js Hosting (Bot & Web Apps)</div>
-        <div class="pricing-grid">
-            <div class="card">
+        <!-- Node.js Hosting -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+            <!-- Node.js 2 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                 <div>
-                    <h3>Node.js 2 GB</h3>
-                    <p class="desc">Cocok untuk Bot WhatsApp</p>
-                    <div class="price">Rp 2.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 2 GB</li>
-                        <li>CPU & Storage Stabil</li>
-                        <li>Full Akses Panel</li>
+                    <h3 class="font-bold text-lg text-white">Node.js 2 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Bot WhatsApp</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 2.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                        <li>✓ RAM 2 GB[cite: 10]</li>
+                        <li>✓ CPU & Storage Stabil[cite: 10]</li>
+                        <li>✓ Full Akses Panel[cite: 10]</li>
                     </ul>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%202%20GB&nominal=2000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
             </div>
 
-            <div class="card">
+            <!-- Node.js 3 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                 <div>
-                    <h3>Node.js 3 GB</h3>
-                    <p class="desc">Cocok untuk Bot & Script Ringan</p>
-                    <div class="price">Rp 3.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 3 GB</li>
-                        <li>CPU & Storage Stabil</li>
-                        <li>Full Akses Panel</li>
+                    <h3 class="font-bold text-lg text-white">Node.js 3 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Bot & Script Ringan</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 3.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                        <li>✓ RAM 3 GB[cite: 10]</li>
+                        <li>✓ CPU & Storage Stabil[cite: 10]</li>
+                        <li>✓ Full Akses Panel[cite: 10]</li>
                     </ul>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%203%20GB&nominal=3000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
             </div>
 
-            <div class="card">
+            <!-- Node.js 5 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                 <div>
-                    <h3>Node.js 5 GB</h3>
-                    <p class="desc">Cocok untuk Multi Bot</p>
-                    <div class="price">Rp 5.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 5 GB</li>
-                        <li>High Performance CPU</li>
-                        <li>Full Akses Panel</li>
+                    <h3 class="font-bold text-lg text-white">Node.js 5 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Multi Bot</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 5.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                        <li>✓ RAM 5 GB[cite: 10]</li>
+                        <li>✓ High Performance CPU[cite: 10]</li>
+                        <li>✓ Full Akses Panel[cite: 10]</li>
                     </ul>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%205%20GB&nominal=5000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
             </div>
 
-            <div class="card">
+            <!-- Node.js 8 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                 <div>
-                    <h3>Node.js 8 GB</h3>
-                    <p class="desc">Performa Tinggi & Multi-App</p>
-                    <div class="price">Rp 8.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 8 GB</li>
-                        <li>High Performance CPU</li>
-                        <li>Full Akses Panel</li>
+                    <h3 class="font-bold text-lg text-white">Node.js 8 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Performa Tinggi & Multi-App</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 8.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                        <li>✓ RAM 8 GB[cite: 10]</li>
+                        <li>✓ High Performance CPU[cite: 10]</li>
+                        <li>✓ Full Akses Panel[cite: 10]</li>
                     </ul>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%208%20GB&nominal=8000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
             </div>
 
-            <div class="card featured">
-                <div class="badge-terlaris">PALING LARIS</div>
+            <!-- Node.js Unlimited -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border-2 border-cyan-400 flex flex-col justify-between relative">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase">Paling Laris</span>
                 <div>
-                    <h3>Node.js Unlimited</h3>
-                    <p class="desc">Bebas Pakai Tanpa Batas</p>
-                    <div class="price">Rp 12.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM Unlimited</li>
-                        <li>CPU & Storage Unlimited</li>
-                        <li>Full Akses Panel + Prioritas</li>
+                    <h3 class="font-bold text-lg text-white">Node.js Unlimited</h3>
+                    <p class="text-xs text-gray-400 mb-4">Bebas Pakai Tanpa Batas</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 12.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-6">
+                        <li>✓ RAM Unlimited[cite: 10]</li>
+                        <li>✓ CPU & Storage Unlimited[cite: 10]</li>
+                        <li>✓ Full Akses Panel + Prioritas[cite: 10]</li>
                     </ul>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%20Unlimited&nominal=12000" class="block text-center bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition shadow-lg">Pesan Sekarang</a>
             </div>
         </div>
-    </div>
 
-    <!-- Kategori 2: Minecraft Hosting (Khusus Game) -->
-    <div class="pricing-section" style="padding-top: 10px;">
-        <div class="section-title">⛏️ Minecraft Hosting (Game Server)</div>
-        <div class="pricing-grid">
-            <div class="card">
+        <h2 class="text-2xl font-bold text-center mb-8 text-cyan-400">Minecraft Hosting (Game Server)</h2>
+
+        <!-- Minecraft Hosting -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Minecraft 2 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                 <div>
-                    <h3>Minecraft 2 GB</h3>
-                    <p class="desc">Cocok untuk Server Mabar Kecil</p>
-                    <div class="price">Rp 3.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 2 GB DDR4</li>
-                        <li>Anti-Lag / Low Latency</li>
-                        <li>Full Akses Pterodactyl Panel</li>
-                    </ul>
+                    <h3 class="font-bold text-lg text-white">Minecraft 2 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Server Mabar Kecil</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 3.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%202%20GB&nominal=3000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
             </div>
 
-            <div class="card">
+            <!-- Minecraft 4 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                 <div>
-                    <h3>Minecraft 4 GB</h3>
-                    <p class="desc">Cocok untuk Server & Plugin Standar</p>
-                    <div class="price">Rp 5.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 4 GB DDR4</li>
-                        <li>Anti-Lag / Low Latency</li>
-                        <li>Support Plugins & Mods</li>
-                    </ul>
+                    <h3 class="font-bold text-lg text-white">Minecraft 4 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Server & Plugin Standar</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 5.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%204%20GB&nominal=5000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
             </div>
 
-            <div class="card featured">
-                <div class="badge-terlaris">TERLARIS GAME</div>
+            <!-- Minecraft 8 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border-2 border-cyan-400 flex flex-col justify-between relative">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase">Terlaris Game</span>
                 <div>
-                    <h3>Minecraft 8 GB</h3>
-                    <p class="desc">Performa Optimal & Banyak Player</p>
-                    <div class="price">Rp 8.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 8 GB DDR4</li>
-                        <li>Dedicated CPU Core</li>
-                        <li>Support Plugin & Modpack</li>
-                    </ul>
+                    <h3 class="font-bold text-lg text-white">Minecraft 8 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Performa Optimal & Banyak Player</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 8.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%208%20GB&nominal=8000" class="block text-center bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition shadow-lg">Pesan Sekarang</a>
             </div>
 
-            <div class="card">
+            <!-- Minecraft 10 GB -->
+            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
                 <div>
-                    <h3>Minecraft 10 GB</h3>
-                    <p class="desc">Bebas Lag untuk Komunitas Besar</p>
-                    <div class="price">Rp 10.000<span style="font-size: 11px; color: #9ca3af;">/bln</span></div>
-                    <ul class="features">
-                        <li>RAM 10 GB DDR4</li>
-                        <li>Max Performance & Speed</li>
-                        <li>Full Backup & Database</li>
-                    </ul>
+                    <h3 class="font-bold text-lg text-white">Minecraft 10 GB</h3>
+                    <p class="text-xs text-gray-400 mb-4">Bebas Lag untuk Komunitas Besar</p>
+                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 10.000<span class="text-xs text-gray-400">/bln</span>[cite: 10]</p>
                 </div>
-                <a href="order.html" class="buy-btn">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%2010%20GB&nominal=10000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
             </div>
         </div>
-    </div>
-
-    <div class="footer-text">&copy; 2026 WINGS SERVERS. All rights reserved.</div>
-
-    <script>
-        const userName = localStorage.getItem('username');
-        const isLogged = localStorage.getItem('isLoggedIn');
-
-        if (isLogged === 'true' && userName) {
-            document.getElementById('navAuth').innerHTML = `
-                <a href="#" class="btn-daftar" style="background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important;">👤 ${userName}</a>
-            `;
-        }
-    </script>
+    </main>
 </body>
 </html>
