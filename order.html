@@ -3,88 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Pembayaran - Wings Servers</title>
+    <title>Checkout Pembayaran - WINGS SERVERS</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #060a17;
+            background-image: 
+                linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .card-hd {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
-<body class="bg-[#0b132b] text-white min-h-screen flex flex-col items-center justify-center p-4">
+<body class="text-white min-h-screen flex flex-col justify-between">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
+        <a href="index.html" class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</a>
+        <a href="dashboard.html" class="text-gray-400 hover:text-cyan-400 text-sm font-semibold">← Ke Dashboard</a>
+    </nav>
 
-    <div class="max-w-md w-full bg-[#1c2541] p-6 rounded-2xl shadow-2xl border border-gray-800">
-        <h1 class="text-2xl font-bold text-center mb-6 text-cyan-400">Checkout Pembayaran</h1>
-        
-        <form onsubmit="generateQris(event)" class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium mb-1 text-gray-300">Paket Server:</label>
-                <input type="text" id="keterangan" readonly class="w-full px-4 py-2.5 rounded-lg bg-[#0b132b] border border-gray-700 text-gray-300 cursor-not-allowed">
+    <!-- Main Content Checkout -->
+    <main class="flex-grow flex items-center justify-center px-4 py-10">
+        <div class="card-hd p-8 rounded-2xl w-full max-w-lg">
+            <div class="text-center mb-6">
+                <h1 class="text-2xl font-bold text-cyan-400 mb-2">Checkout Pembayaran QRIS</h1>
+                <p class="text-gray-400 text-xs">Scan QRIS di bawah ini untuk memproses pembuatan server secara otomatis.</p>
             </div>
 
-            <div>
-                <label class="block text-sm font-medium mb-1 text-gray-300">Nominal Pembayaran (Rp):</label>
-                <input type="number" id="nominal" readonly class="w-full px-4 py-2.5 rounded-lg bg-[#0b132b] border border-gray-700 text-gray-300 cursor-not-allowed">
+            <!-- Gambar QRIS -->
+            <div class="bg-white p-4 rounded-xl max-w-[220px] mx-auto mb-6 flex justify-center items-center shadow-lg">
+                <!-- Pastikan file qris.jpeg sudah ada di repository GitHub Kakak -->
+                <img src="qris.jpeg" alt="QRIS Pembayaran" class="w-48 h-48 object-contain">
             </div>
 
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-lg">
-                Tampilkan QRIS Pembayaran
+            <div class="space-y-4 mb-6 bg-slate-950/40 p-4 rounded-xl border border-cyan-950">
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-400">Paket Server:</span>
+                    <span class="text-white font-semibold" id="selectedPackage">Node.js / Minecraft 2GB</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-400">Total Pembayaran:</span>
+                    <span class="text-cyan-400 font-bold" id="selectedPrice">Rp 15.000</span>
+                </div>
+            </div>
+
+            <!-- Tombol Konfirmasi Pembayaran / Simulasi Sistem Otomatis -->
+            <button onclick="simulateAutoCreateServer()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(16,185,129,0.4)] text-sm">
+                Saya Sudah Bayar (Proses Server Otomatis)
             </button>
-        </form>
-
-        <!-- Area Tampil QRIS Hasil -->
-        <div id="qrisContainer" class="hidden flex flex-col items-center justify-center bg-white p-4 rounded-lg mt-6 text-black shadow-inner">
-            <p class="text-xs font-bold text-gray-700 mb-1">SUPRIYANTI, Digital & Kreatif</p>
-            <p class="text-[10px] text-gray-500 mb-1">NMID: ID1026539699615</p>
             
-            <!-- Menampilkan rincian paket dan tagihan pas sesuai panel -->
-            <div class="bg-gray-100 p-2 rounded-md mb-3 text-center border border-gray-200 w-full">
-                <p class="text-xs text-gray-600 font-medium" id="displayPaket">-</p>
-                <p class="text-lg font-bold text-emerald-600">Rp <span id="displayNominal">0</span></p>
-            </div>
-
-            <!-- Gambar QRIS Utama -->
-            <img id="qrisImage" src="qris.jpeg" alt="QRIS Supriyanti" class="w-48 h-48 object-contain mb-2 border border-gray-200 rounded">
-
-            <p class="text-xs text-gray-500 font-medium text-center">Scan pakai GoPay, OVO, Dana, BCA, dll</p>
+            <p class="text-center text-[11px] text-gray-500 mt-4">
+                Sistem akan memvalidasi pembayaran dan mengirimkan data panel secara otomatis ke akun Kakak.
+            </p>
         </div>
-    </div>
+    </main>
 
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-gray-500 border-t border-cyan-950/30">
+        &copy; 2026 WINGS SERVERS. All rights reserved.
+    </footer>
+
+    <!-- Script Simulasi Otomatisasi Pembuatan Server -->
     <script>
-        // Otomatis membaca paket dan nominal dari URL saat halaman dibuka
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const nominalParam = urlParams.get('nominal');
-            const paketParam = urlParams.get('paket');
-
-            if (nominalParam) {
-                document.getElementById('nominal').value = nominalParam;
-            }
-            if (paketParam) {
-                document.getElementById('keterangan').value = paketParam;
-            }
-        });
-
-        function generateQris(event) {
-            event.preventDefault();
+        function simulateAutoCreateServer() {
+            // Memberikan efek loading atau informasi proses
+            alert("Pembayaran terkonfirmasi! Sistem sedang membuat server otomatis di Pterodactyl Panel...");
             
-            const nominalInput = document.getElementById('nominal').value;
-            const keteranganInput = document.getElementById('keterangan').value;
-            const nominal = Number(nominalInput);
-
-            if(!nominal || nominal <= 0) {
-                alert('Silakan pilih paket server terlebih dahulu dari halaman utama!');
-                window.location.href = 'index.html';
-                return;
-            }
-
-            // Masukkan data ke kotak tampilan QRIS
-            document.getElementById('displayNominal').innerText = nominal.toLocaleString('id-ID');
-            document.getElementById('displayPaket').innerText = keteranganInput;
-
-            // Tampilkan kotak QRIS container
-            const container = document.getElementById('qrisContainer');
-            container.classList.remove('hidden');
-
-            // Scroll otomatis ke bawah
-            container.scrollIntoView({ behavior: 'smooth' });
+            // Tandai user sudah login dan arahkan ke dashboard detail server
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'dashboard.html';
         }
     </script>
-
 </body>
 </html>
