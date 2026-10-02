@@ -32,12 +32,11 @@
         <div class="card-hd p-8 rounded-2xl w-full max-w-lg">
             <div class="text-center mb-6">
                 <h1 class="text-2xl font-bold text-cyan-400 mb-2">Checkout Pembayaran QRIS</h1>
-                <p class="text-gray-400 text-xs">Scan QRIS di bawah ini untuk memproses pembuatan server secara otomatis.</p>
+                <p class="text-gray-400 text-xs">Scan QRIS di bawah ini, lalu klik tombol cek pembayaran setelah transfer.</p>
             </div>
 
             <!-- Gambar QRIS -->
             <div class="bg-white p-4 rounded-xl max-w-[220px] mx-auto mb-6 flex justify-center items-center shadow-lg">
-                <!-- Pastikan file qris.jpeg sudah diunggah ke repository GitHub Kakak -->
                 <img src="qris.jpeg" alt="QRIS Pembayaran" class="w-48 h-48 object-contain">
             </div>
 
@@ -52,13 +51,13 @@
                 </div>
             </div>
 
-            <!-- Tombol Konfirmasi Pembayaran -->
-            <button onclick="simulateAutoCreateServer()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(16,185,129,0.4)] text-sm">
-                Saya Sudah Bayar (Proses Server Otomatis)
+            <!-- Tombol Cek Pembayaran -->
+            <button id="btnCheck" onclick="checkPayment()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(34,211,238,0.4)] text-sm">
+                Saya Sudah Bayar (Cek Mutasi)
             </button>
             
-            <p class="text-center text-[11px] text-gray-500 mt-4">
-                Sistem akan memvalidasi pembayaran dan mengirimkan data panel secara otomatis ke dashboard Kakak.
+            <p class="text-center text-[11px] text-gray-500 mt-4" id="statusText">
+                Sistem akan memvalidasi mutasi QRIS secara real-time.
             </p>
         </div>
     </main>
@@ -68,9 +67,8 @@
         &copy; 2026 WINGS SERVERS. All rights reserved.
     </footer>
 
-    <!-- Script Menangkap URL & Simulasi Pembuatan Server -->
+    <!-- Script Pengecekan Pembayaran -->
     <script>
-        // Tangkap parameter paket dan nominal dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const paket = urlParams.get('paket') || 'Server Hosting Custom';
         const nominal = urlParams.get('nominal') || '15000';
@@ -78,23 +76,46 @@
         document.getElementById('displayPaket').innerText = paket;
         document.getElementById('displayNominal').innerText = 'Rp ' + parseInt(nominal).toLocaleString('id-ID');
 
-        function simulateAutoCreateServer() {
-            // Buat data dummy panel otomatis untuk buyer ini
-            const randomId = Math.floor(Math.random() * 900) + 100;
-            const autoData = {
-                username: "buyer_wings" + randomId,
-                password: "pass" + Math.random().toString(36).substring(2, 8),
-                panelUrl: "serv.wingsserver.my.id",
-                status: "Online & Stabil"
-            };
+        function checkPayment() {
+            const btn = document.getElementById('btnCheck');
+            const statusText = document.getElementById('statusText');
 
-            // Simpan ke localStorage agar bisa dibaca di dashboard.html
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('panelData', JSON.stringify(autoData));
+            // Ubah tombol jadi loading
+            btn.disabled = true;
+            btn.innerText = "Menghubungkan ke Gateway QRIS...";
+            statusText.innerText = "Mengecek mutasi pembayaran masuk...";
 
-            alert("Pembayaran terkonfirmasi! Server berhasil dibuat otomatis di panel.");
-            window.location.href = 'dashboard.html';
+            setTimeout(() => {
+                // Skenario simulasi: 
+                // Karena ini uji coba dan Kakak belum transfer sungguhan, 
+                // sistem kita buat mendeteksi "Belum Bayar" agar sesuai kenyataan.
+                
+                let sudahBayar = false; // Ubah jadi true kalau nanti sudah dites bayar asli
+
+                if (!sudahBayar) {
+                    // Jika belum bayar, tampilkan peringatan dan kembalikan tombol
+                    alert("❌ Peringatan: Pembayaran belum ditemukan!\n\nSilakan lakukan scan & transfer QRIS terlebih dahulu sebelum menekan tombol konfirmasi.");
+                    btn.disabled = false;
+                    btn.innerText = "Saya Sudah Bayar (Cek Mutasi)";
+                    statusText.innerText = "Pembayaran belum terdeteksi. Silakan coba lagi setelah transfer.";
+                } else {
+                    // Jika sudah bayar, buat server otomatis dan masuk dashboard
+                    const randomId = Math.floor(Math.random() * 900) + 100;
+                    const autoData = {
+                        username: "buyer_wings" + randomId,
+                        password: "pass" + Math.random().toString(36).substring(2, 8),
+                        panelUrl: "serv.wingsserver.my.id",
+                        status: "Online & Stabil"
+                    };
+
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('panelData', JSON.stringify(autoData));
+
+                    alert("✅ Pembayaran Berhasil Terkonfirmasi! Server otomatis dibuat di panel.");
+                    window.location.href = 'dashboard.html';
+                }
+            }, 2500); // Simulasi jeda loading 2,5 detik seolah-olah sedang ngecek sistem bank
         }
     </script>
 </body>
-</html>
+</html>s
