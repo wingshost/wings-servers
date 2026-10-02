@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINGS SERVERS - Panel Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #060a17;
+            background-image: 
+                linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .panel-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+        }
+        .btn-action {
+            display: inline-block;
+            background: #22d3ee;
+            color: #020617;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .btn-action:hover {
+            background: #67e8f9;
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
+        <div class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</div>
+        <div>
+            <button onclick="logout()" class="text-gray-400 hover:text-red-400 font-medium text-sm">Keluar</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow px-6 py-12 max-w-4xl mx-auto w-full">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-cyan-400 mb-2">Selamat Datang di Panel Kakak</h1>
+            <p class="text-gray-400 text-sm">Kelola server dan layanan hosting Kakak dengan mudah di sini.</p>
+        </div>
+
+        <div class="mb-8 text-center">
+            <a href="order.html" class="btn-action" style="font-size: 16px; padding: 12px 30px;">+ Buat / Order Server Baru</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="panel-card p-6 rounded-2xl">
+                <h3 class="font-bold text-lg text-white mb-2">Status Node</h3>
+                <p class="text-gray-400 text-sm mb-4">Semua server berjalan normal dan stabil 24/7.</p>
+                <span style="color: #4CAF50; font-weight: bold;">● Online</span>
+            </div>
+            <div class="panel-card p-6 rounded-2xl">
+                <h3 class="font-bold text-lg data-card text-white mb-2">Quick Order</h3>
+                <p class="text-gray-400 text-sm mb-4">Butuh tambahan resource atau server baru? Langsung buat melalui menu pembayaran.</p>
+                <a href="order.html" class="text-cyan-400 hover:underline text-sm font-semibold">Buka Menu Order &rarr;</a>
+            </div>
+            <div class="panel-card p-6 rounded-2xl">
+                <h3 class="font-bold text-lg text-white mb-2">Akses Panel</h3>
+                <p class="text-gray-400 text-sm mb-4">Masuk ke akun panel Anda untuk konfigurasi penuh server.</p>
+                <a href="login.html" class="text-cyan-400 hover:underline text-sm font-semibold">Panel Utama &rarr;</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Fungsi Logout
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
