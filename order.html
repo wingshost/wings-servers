@@ -1,83 +1,19 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Pembayaran - WINGS SERVERS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-color: #060a17;
-            background-image: 
-                linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
-            background-size: 32px 32px;
-        }
-        .card-hd {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
-            border: 1px solid rgba(34, 211, 238, 0.25);
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-        }
-    </style>
-</head>
-<body class="text-white min-h-screen flex flex-col justify-between">
-    <!-- Navbar -->
-    <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
-        <a href="index.html" class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</a>
-        <a href="dashboard.html" class="text-gray-400 hover:text-cyan-400 text-sm font-semibold">← Ke Dashboard</a>
-    </nav>
+<script>
+    function simulateAutoCreateServer() {
+        // Simulasi data akun panel yang otomatis digenerate sistem untuk buyer ini
+        const randomId = Math.floor(Math.random() * 900) + 100;
+        const autoData = {
+            username: "buyer_wings" + randomId,
+            password: "pass" + Math.random().toString(36.substring(2, 8)),
+            panelUrl: "serv.wingsserver.my.id",
+            status: "Online & Stabil"
+        };
 
-    <!-- Main Content Checkout -->
-    <main class="flex-grow flex items-center justify-center px-4 py-10">
-        <div class="card-hd p-8 rounded-2xl w-full max-w-lg">
-            <div class="text-center mb-6">
-                <h1 class="text-2xl font-bold text-cyan-400 mb-2">Checkout Pembayaran QRIS</h1>
-                <p class="text-gray-400 text-xs">Scan QRIS di bawah ini untuk memproses pembuatan server secara otomatis.</p>
-            </div>
+        // Simpan data otomatis ke localStorage agar bisa dibaca di dashboard.html
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('panelData', JSON.stringify(autoData));
 
-            <!-- Gambar QRIS -->
-            <div class="bg-white p-4 rounded-xl max-w-[220px] mx-auto mb-6 flex justify-center items-center shadow-lg">
-                <!-- Pastikan file qris.jpeg sudah ada di repository GitHub Kakak -->
-                <img src="qris.jpeg" alt="QRIS Pembayaran" class="w-48 h-48 object-contain">
-            </div>
-
-            <div class="space-y-4 mb-6 bg-slate-950/40 p-4 rounded-xl border border-cyan-950">
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-400">Paket Server:</span>
-                    <span class="text-white font-semibold" id="selectedPackage">Node.js / Minecraft 2GB</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-400">Total Pembayaran:</span>
-                    <span class="text-cyan-400 font-bold" id="selectedPrice">Rp 15.000</span>
-                </div>
-            </div>
-
-            <!-- Tombol Konfirmasi Pembayaran / Simulasi Sistem Otomatis -->
-            <button onclick="simulateAutoCreateServer()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(16,185,129,0.4)] text-sm">
-                Saya Sudah Bayar (Proses Server Otomatis)
-            </button>
-            
-            <p class="text-center text-[11px] text-gray-500 mt-4">
-                Sistem akan memvalidasi pembayaran dan mengirimkan data panel secara otomatis ke akun Kakak.
-            </p>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="text-center py-6 text-xs text-gray-500 border-t border-cyan-950/30">
-        &copy; 2026 WINGS SERVERS. All rights reserved.
-    </footer>
-
-    <!-- Script Simulasi Otomatisasi Pembuatan Server -->
-    <script>
-        function simulateAutoCreateServer() {
-            // Memberikan efek loading atau informasi proses
-            alert("Pembayaran terkonfirmasi! Sistem sedang membuat server otomatis di Pterodactyl Panel...");
-            
-            // Tandai user sudah login dan arahkan ke dashboard detail server
-            localStorage.setItem('isLoggedIn', 'true');
-            window.location.href = 'dashboard.html';
-        }
-    </script>
-</body>
-</html>
+        alert("Pembayaran terkonfirmasi! Server berhasil dibuat otomatis di panel.");
+        window.location.href = 'dashboard.html';
+    }
+</script>
