@@ -3,128 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Pembayaran - WINGS SERVERS</title>
+    <title>Konfirmasi Pembayaran - Wings Server</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-color: #060a17;
-            background-image: 
-                linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
-            background-size: 32px 32px;
-        }
-        .card-hd {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
-            border: 1px solid rgba(34, 211, 238, 0.25);
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-        }
-    </style>
 </head>
-<body class="text-white min-h-screen flex flex-col justify-between">
-    <!-- Navbar -->
-    <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
-        <a href="index.html" class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</a>
-        <a href="index.html" class="text-gray-400 hover:text-cyan-400 text-sm font-semibold">← Kembali ke Beranda</a>
-    </nav>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
 
-    <!-- Main Content Checkout -->
-    <main class="flex-grow flex items-center justify-center px-4 py-10">
-        <div class="card-hd p-8 rounded-2xl w-full max-w-lg">
-            <div class="text-center mb-6">
-                <h1 class="text-2xl font-bold text-cyan-400 mb-2">Konfigurasi & Checkout QRIS</h1>
-                <p class="text-gray-400 text-xs">Scan QRIS di bawah ini, lalu klik tombol cek status setelah transfer.</p>
-            </div>
+    <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-center">
+        <h1 class="text-2xl font-bold mb-2 text-blue-400">Konfirmasi Pembayaran QRIS</h1>
+        <p class="text-gray-400 text-sm mb-6">Selesaikan pembayaran untuk membuat server secara instan.</p>
 
-            <!-- Gambar QRIS -->
-            <div class="bg-white p-4 rounded-xl max-w-[200px] mx-auto mb-6 flex justify-center items-center shadow-lg">
-                <img src="qris.jpeg" alt="QRIS Pembayaran" class="w-40 h-40 object-contain">
-            </div>
-
-            <div class="space-y-4 mb-6 bg-slate-950/40 p-4 rounded-xl border border-cyan-950">
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-400">Paket Pilihan:</span>
-                    <span class="text-white font-semibold" id="displayPaket">Memuat...</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-400">Total Harga:</span>
-                    <span class="text-cyan-400 font-bold" id="displayNominal">Memuat...</span>
-                </div>
-
-                <!-- Kolom Request Egg / Tipe Server -->
-                <div class="pt-2 border-t border-cyan-950">
-                    <label class="block text-gray-300 text-xs font-semibold mb-2" for="selectEgg">Request Tipe / Egg Server:</label>
-                    <select id="selectEgg" class="w-full bg-slate-900 border border-cyan-900 text-cyan-300 text-sm rounded-lg p-2.5 focus:outline-none focus:border-cyan-400">
-                        <option value="nodejs20">Node.js 20 (Khusus Bot / Aplikasi)</option>
-                        <option value="python">Python / Telegram Bot</option>
-                        <option value="minecraft">Minecraft Java / Bedrock (Game)</option>
-                        <option value="samp">SA-MP (San Andreas Multiplayer Game)</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Tombol Pengecekan Asli -->
-            <button id="btnCheck" onclick="checkPayment()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(34,211,238,0.4)] text-sm mb-3">
-                Cek Status Pembayaran QRIS
-            </button>
-
-            <!-- Tombol Khusus Tes (Hanya untuk memudahkan Kakak uji coba tampilan dashboard) -->
-            <button onclick="simulasiSuksesTest()" class="w-full bg-slate-800 hover:bg-slate-700 text-gray-300 text-xs font-semibold py-2 rounded-lg transition border border-cyan-900/50">
-                [Mode Tes] Lewati & Masuk Dashboard
-            </button>
-            
-            <p class="text-center text-[11px] text-gray-500 mt-4" id="statusText">
-                Sistem akan memvalidasi mutasi secara real-time.
-            </p>
+        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 mb-6 text-left">
+            <p class="text-sm text-gray-300">Paket Pilihan: <span id="txtPaket" class="font-bold text-blue-300">Node.js Hosting</span></p>
+            <p class="text-sm text-gray-300 mt-1">Status: <span class="text-yellow-400 font-bold">Menunggu Konfirmasi</span></p>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 text-xs text-gray-500 border-t border-cyan-950/30">
-        &copy; 2026 WINGS SERVERS. All rights reserved.
-    </footer>
+        <!-- Tombol Eksekusi Pembuatan Server Otomatis -->
+        <button onclick="prosesPembuatanServerOtomatis()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition mb-3">
+            [Mode Tes] Saya Sudah Bayar & Buat Server
+        </button>
 
-    <!-- Script Logika -->
+        <a href="index.html" class="text-sm text-gray-400 hover:underline">Kembali ke Beranda</a>
+    </div>
+
+    <!-- Script Penghubung Backend Lokal (Port 3000) -->
     <script>
+        // Ambil nama paket dari parameter URL jika ada
         const urlParams = new URLSearchParams(window.location.search);
-        const paket = urlParams.get('paket') || 'Server Hosting Custom';
-        const nominal = urlParams.get('nominal') || '15000';
+        const namaPaket = urlParams.get('paket') || 'Node.js 2GB';
+        document.getElementById('txtPaket').innerText = namaPaket;
 
-        document.getElementById('displayPaket').innerText = paket;
-        document.getElementById('displayNominal').innerText = 'Rp ' + parseInt(nominal).toLocaleString('id-ID');
+        async function prosesPembuatanServerOtomatis() {
+            let username = prompt("Masukkan Username Panel Pterodactyl yang diinginkan:");
+            let email = prompt("Masukkan Email Aktif Kakak:");
 
-        function checkPayment() {
-            const btn = document.getElementById('btnCheck');
-            const statusText = document.getElementById('statusText');
+            if (!username || !email) {
+                alert("Username dan Email wajib diisi!");
+                return;
+            }
 
-            btn.disabled = true;
-            btn.innerText = "Menghubungkan ke Gateway QRIS...";
-            statusText.innerText = "Mengecek mutasi pembayaran masuk...";
+            alert("Menghubungkan ke backend & membuat akun Pterodactyl... Mohon tunggu sebentar.");
 
-            setTimeout(() => {
-                // Mode pengecekan asli (menolak jika belum ada webhook/mutasi asli)
-                alert("❌ Pembayaran belum ditemukan!\n\nKarena belum ada transfer masuk yang terdeteksi oleh sistem, server belum dapat dibuat.");
-                btn.disabled = false;
-                btn.innerText = "Cek Status Pembayaran QRIS";
-                statusText.innerText = "Pembayaran belum terdeteksi. Silakan transfer terlebih dahulu.";
-            }, 2000);
-        }
+            try {
+                // Memanggil backend Node.js Kakak di port 3000
+                const response = await fetch('http://localhost:3000/api/create-server', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        email: email,
+                        eggType: 'nodejs20',
+                        paket: namaPaket
+                    })
+                });
 
-        function simulasiSuksesTest() {
-            const chosenEgg = document.getElementById('selectEgg').value;
-            const randomId = Math.floor(Math.random() * 900) + 100;
-            const autoData = {
-                username: "buyer_wings" + randomId,
-                password: "pass" + Math.random().toString(36).substring(2, 8),
-                panelUrl: "serv.wingsserver.my.id",
-                eggType: chosenEgg,
-                status: "Online & Stabil"
-            };
+                const result = await response.json();
 
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('panelData', JSON.stringify(autoData));
-
-            alert("✅ [Mode Tes] Dianggap sudah bayar! Masuk ke dashboard...");
-            window.location.href = 'dashboard.html';
+                if (result.success) {
+                    // Simpan data kredensial asli ke localStorage untuk dashboard.html
+                    localStorage.setItem('pterodactyl_creds', JSON.stringify(result.credentials));
+                    
+                    alert("Berhasil! Server Pterodactyl Anda telah aktif.");
+                    
+                    // Alihkan ke halaman dashboard
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert("Gagal membuat server: " + result.message);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Gagal terhubung ke backend server! Pastikan 'node server.js' sedang menyala di terminal komputer Kakak.");
+            }
         }
     </script>
 </body>
