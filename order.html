@@ -32,7 +32,7 @@
         <div class="card-hd p-8 rounded-2xl w-full max-w-lg">
             <div class="text-center mb-6">
                 <h1 class="text-2xl font-bold text-cyan-400 mb-2">Konfigurasi & Checkout QRIS</h1>
-                <p class="text-gray-400 text-xs">Pilih tipe server atau egg yang diinginkan sebelum melakukan pembayaran.</p>
+                <p class="text-gray-400 text-xs">Pilih tipe server atau egg, lalu klik konfirmasi untuk simulasi sukses.</p>
             </div>
 
             <!-- Gambar QRIS -->
@@ -50,7 +50,7 @@
                     <span class="text-cyan-400 font-bold" id="displayNominal">Memuat...</span>
                 </div>
 
-                <!-- Kolom Request Egg / Tipe Server (Sesuai Permintaan Kakak) -->
+                <!-- Kolom Request Egg / Tipe Server -->
                 <div class="pt-2 border-t border-cyan-950">
                     <label class="block text-gray-300 text-xs font-semibold mb-2" for="selectEgg">Request Tipe / Egg Server:</label>
                     <select id="selectEgg" class="w-full bg-slate-900 border border-cyan-900 text-cyan-300 text-sm rounded-lg p-2.5 focus:outline-none focus:border-cyan-400">
@@ -62,13 +62,13 @@
                 </div>
             </div>
 
-            <!-- Tombol Cek Pembayaran -->
-            <button id="btnCheck" onclick="checkPayment()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(34,211,238,0.4)] text-sm">
-                Saya Sudah Bayar (Cek Mutasi)
+            <!-- Tombol Konfirmasi -->
+            <button id="btnCheck" onclick="checkPayment()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(16,185,129,0.4)] text-sm">
+                Saya Sudah Bayar (Proses Server Otomatis)
             </button>
             
             <p class="text-center text-[11px] text-gray-500 mt-4" id="statusText">
-                Sistem akan memproses otomatis sesuai pilihan Egg & Node yang ditentukan.
+                Sistem akan memproses pembuatan server sesuai pilihan Egg.
             </p>
         </div>
     </main>
@@ -78,7 +78,7 @@
         &copy; 2026 WINGS SERVERS. All rights reserved.
     </footer>
 
-    <!-- Script Logika Pilihan Egg & Cek Pembayaran -->
+    <!-- Script Simulasi Sukses -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const paket = urlParams.get('paket') || 'Server Hosting Custom';
@@ -93,34 +93,26 @@
             const chosenEgg = document.getElementById('selectEgg').value;
 
             btn.disabled = true;
-            btn.innerText = "Menghubungkan ke Gateway QRIS...";
-            statusText.innerText = "Mengecek mutasi dan menyiapkan Node server...";
+            btn.innerText = "Memproses Pembayaran & Pembuatan Server...";
+            statusText.innerText = "Menghubungkan ke API Pterodactyl...";
 
             setTimeout(() => {
-                let sudahBayar = false; // Ubah ke true jika sudah melakukan pembayaran asli
+                // Diatur sukses secara otomatis untuk pengujian tampilan dashboard
+                const randomId = Math.floor(Math.random() * 900) + 100;
+                const autoData = {
+                    username: "buyer_wings" + randomId,
+                    password: "pass" + Math.random().toString(36).substring(2, 8),
+                    panelUrl: "serv.wingsserver.my.id",
+                    eggType: chosenEgg,
+                    status: "Online & Stabil"
+                };
 
-                if (!sudahBayar) {
-                    alert("❌ Peringatan: Pembayaran belum ditemukan!\n\nSilakan transfer QRIS terlebih dahulu untuk melanjutkan pembuatan server otomatis.");
-                    btn.disabled = false;
-                    btn.innerText = "Saya Sudah Bayar (Cek Mutasi)";
-                    statusText.innerText = "Pembayaran belum terdeteksi. Silakan coba lagi setelah transfer.";
-                } else {
-                    const randomId = Math.floor(Math.random() * 900) + 100;
-                    const autoData = {
-                        username: "buyer_wings" + randomId,
-                        password: "pass" + Math.random().toString(36).substring(2, 8),
-                        panelUrl: "serv.wingsserver.my.id",
-                        eggType: chosenEgg,
-                        status: "Online & Stabil"
-                    };
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('panelData', JSON.stringify(autoData));
 
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('panelData', JSON.stringify(autoData));
-
-                    alert("✅ Pembayaran Berhasil! Server dengan Egg [" + chosenEgg + "] otomatis dibuat.");
-                    window.location.href = 'dashboard.html';
-                }
-            }, 2500);
+                alert("✅ Pembayaran Berhasil Dikonfirmasi! Server dengan Egg [" + chosenEgg + "] berhasil dibuat otomatis.");
+                window.location.href = 'dashboard.html';
+            }, 2000);
         }
     </script>
 </body>
