@@ -5,145 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WINGS SERVERS - Performa Server Terbaik</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Efek grid background tipis ala server hosting */
+        body {
+            background-color: #070d1b;
+            background-image: 
+                linear-gradient(to right, rgba(20, 30, 60, 0.2) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(20, 30, 60, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
 </head>
-<body class="bg-[#0b132b] text-white min-h-screen flex flex-col">
+<body class="text-white min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="flex justify-between items-center px-8 py-4 bg-[#0b132b]/80 border-b border-gray-800">
-        <div class="text-cyan-400 font-bold text-xl tracking-wider">WINGS SERVERS</div>
-        <div class="space-x-6 text-sm">
-            <a href="index.html" class="text-cyan-400 font-semibold">Utama</a>
-            <a href="order.html" class="hover:text-cyan-400">Order</a>
-            <a href="#" class="hover:text-cyan-400">Login</a>
-            <a href="#" class="bg-cyan-400 text-slate-900 px-4 py-2 rounded-lg font-bold hover:bg-cyan-300">Daftar Akun</a>
+    <nav class="flex justify-between items-center px-10 py-6">
+        <div class="text-cyan-400 font-extrabold text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</div>
+        <div class="flex items-center space-x-6 text-sm">
+            <a href="#" class="text-gray-300 hover:text-cyan-400 font-medium">Login</a>
+            <a href="#" class="bg-cyan-400 text-slate-950 px-5 py-2.5 rounded-xl font-bold hover:bg-cyan-300 transition shadow-[0_0_15px_rgba(34,211,238,0.4)]">Daftar Akun</a>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow px-4 py-12 max-w-7xl mx-auto w-full">
-        <h1 class="text-3xl font-bold text-center mb-10 text-cyan-400">Pilih Paket Server Kakak</h1>
-
+    <main class="flex-grow px-6 py-8 max-w-7xl mx-auto w-full">
         <!-- Node.js Hosting -->
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
             <!-- Node.js 2 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
                 <div>
-                    <h3 class="font-bold text-lg text-white">Node.js 2 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Bot WhatsApp</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 2.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Node.js 2 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Bot WhatsApp</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-4">Rp 2.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                     <ul class="text-xs text-gray-300 space-y-2 mb-6">
                         <li>✓ RAM 2 GB</li>
                         <li>✓ CPU & Storage Stabil</li>
                         <li>✓ Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="order.html?paket=Node.js%202%20GB&nominal=2000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%202%20GB&nominal=2000" class="block text-center bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 font-bold py-2 rounded-xl transition">Pesan Sekarang</a>
             </div>
 
             <!-- Node.js 3 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
                 <div>
-                    <h3 class="font-bold text-lg text-white">Node.js 3 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Bot & Script Ringan</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 3.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Node.js 3 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Bot & Script Ringan</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-4">Rp 3.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                     <ul class="text-xs text-gray-300 space-y-2 mb-6">
                         <li>✓ RAM 3 GB</li>
                         <li>✓ CPU & Storage Stabil</li>
                         <li>✓ Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="order.html?paket=Node.js%203%20GB&nominal=3000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%203%20GB&nominal=3000" class="block text-center bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 font-bold py-2 rounded-xl transition">Pesan Sekarang</a>
             </div>
 
             <!-- Node.js 5 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
                 <div>
-                    <h3 class="font-bold text-lg text-white">Node.js 5 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Multi Bot</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 5.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Node.js 5 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Multi Bot</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-4">Rp 5.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                     <ul class="text-xs text-gray-300 space-y-2 mb-6">
                         <li>✓ RAM 5 GB</li>
                         <li>✓ High Performance CPU</li>
                         <li>✓ Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="order.html?paket=Node.js%205%20GB&nominal=5000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%205%20GB&nominal=5000" class="block text-center bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 font-bold py-2 rounded-xl transition">Pesan Sekarang</a>
             </div>
 
             <!-- Node.js 8 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
                 <div>
-                    <h3 class="font-bold text-lg text-white">Node.js 8 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Performa Tinggi & Multi-App</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 8.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Node.js 8 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Performa Tinggi & Multi-App</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-4">Rp 8.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                     <ul class="text-xs text-gray-300 space-y-2 mb-6">
                         <li>✓ RAM 8 GB</li>
                         <li>✓ High Performance CPU</li>
                         <li>✓ Full Akses Panel</li>
                     </ul>
                 </div>
-                <a href="order.html?paket=Node.js%208%20GB&nominal=8000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%208%20GB&nominal=8000" class="block text-center bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 font-bold py-2 rounded-xl transition">Pesan Sekarang</a>
             </div>
 
-            <!-- Node.js Unlimited -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border-2 border-cyan-400 flex flex-col justify-between relative">
-                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase">Paling Laris</span>
+            <!-- Node.js Unlimited (Paling Laris) -->
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border-2 border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.3)] flex flex-col justify-between relative">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider">Paling Laris</span>
                 <div>
-                    <h3 class="font-bold text-lg text-white">Node.js Unlimited</h3>
-                    <p class="text-xs text-gray-400 mb-4">Bebas Pakai Tanpa Batas</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 12.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Node.js Unlimited</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Bebas Pakai Tanpa Batas</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-4">Rp 12.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                     <ul class="text-xs text-gray-300 space-y-2 mb-6">
                         <li>✓ RAM Unlimited</li>
                         <li>✓ CPU & Storage Unlimited</li>
                         <li>✓ Full Akses Panel + Prioritas</li>
                     </ul>
                 </div>
-                <a href="order.html?paket=Node.js%20Unlimited&nominal=12000" class="block text-center bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition shadow-lg">Pesan Sekarang</a>
+                <a href="order.html?paket=Node.js%20Unlimited&nominal=12000" class="block text-center bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2.5 rounded-xl transition shadow-[0_0_15px_rgba(6,182,212,0.5)]">Pesan Sekarang</a>
             </div>
         </div>
 
-        <h2 class="text-2xl font-bold text-center mb-8 text-cyan-400">Minecraft Hosting (Game Server)</h2>
+        <!-- Judul Minecraft Hosting -->
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-cyan-400 inline-flex items-center gap-2 drop-shadow-[0_0_10px_rgba(34,211,238,0.4)]">
+                <span>⛏</span> Minecraft Hosting (Game Server)
+            </h2>
+        </div>
 
         <!-- Minecraft Hosting -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Minecraft 2 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between">
                 <div>
-                    <h3 class="font-bold text-lg text-white">Minecraft 2 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Server Mabar Kecil</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 3.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Minecraft 2 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Server Mabar Kecil</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-6">Rp 3.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                 </div>
-                <a href="order.html?paket=Minecraft%202%20GB&nominal=3000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%202%20GB&nominal=3000" class="block text-center bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 font-bold py-2 rounded-xl transition">Pesan Sekarang</a>
             </div>
 
             <!-- Minecraft 4 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between">
                 <div>
-                    <h3 class="font-bold text-lg text-white">Minecraft 4 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Cocok untuk Server & Plugin Standar</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 5.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Minecraft 4 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Server & Plugin Standar</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-6">Rp 5.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                 </div>
-                <a href="order.html?paket=Minecraft%204%20GB&nominal=5000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%204%20GB&nominal=5000" class="block text-center bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 font-bold py-2 rounded-xl transition">Pesan Sekarang</a>
             </div>
 
-            <!-- Minecraft 8 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border-2 border-cyan-400 flex flex-col justify-between relative">
-                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase">Terlaris Game</span>
+            <!-- Minecraft 8 GB (Terlaris Game) -->
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border-2 border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.3)] flex flex-col justify-between relative">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider">Terlaris Game</span>
                 <div>
-                    <h3 class="font-bold text-lg text-white">Minecraft 8 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Performa Optimal & Banyak Player</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 8.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Minecraft 8 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Performa Optimal & Banyak Player</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-6">Rp 8.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                 </div>
-                <a href="order.html?paket=Minecraft%208%20GB&nominal=8000" class="block text-center bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2 rounded-lg transition shadow-lg">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%208%20GB&nominal=8000" class="block text-center bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-2.5 rounded-xl transition shadow-[0_0_15px_rgba(6,182,212,0.5)]">Pesan Sekarang</a>
             </div>
 
             <!-- Minecraft 10 GB -->
-            <div class="bg-[#1c2541] p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between">
                 <div>
-                    <h3 class="font-bold text-lg text-white">Minecraft 10 GB</h3>
-                    <p class="text-xs text-gray-400 mb-4">Bebas Lag untuk Komunitas Besar</p>
-                    <p class="text-xl font-bold text-cyan-400 mb-4">Rp 10.000<span class="text-xs text-gray-400">/bln</span></p>
+                    <h3 class="font-bold text-lg text-white mb-1">Minecraft 10 GB</h3>
+                    <p class="text-[11px] text-gray-400 mb-4">Bebas Lag untuk Komunitas Besar</p>
+                    <p class="text-xl font-extrabold text-cyan-400 mb-6">Rp 10.000<span class="text-xs text-gray-400 font-normal">/bln</span></p>
                 </div>
-                <a href="order.html?paket=Minecraft%2010%20GB&nominal=10000" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2 rounded-lg transition">Pesan Sekarang</a>
+                <a href="order.html?paket=Minecraft%2010%20GB&nominal=10000" class="block text-center bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 font-bold py-2 rounded-xl transition">Pesan Sekarang</a>
             </div>
         </div>
     </main>
