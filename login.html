@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WINGS SERVERS - Panel Dashboard</title>
+    <title>Login - WINGS SERVERS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -13,70 +13,65 @@
                 linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
         }
-        .panel-card {
+        .card-hd {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
             border: 1px solid rgba(34, 211, 238, 0.25);
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
         }
-        .btn-action {
-            display: inline-block;
-            background: #22d3ee;
-            color: #020617;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.2s;
-        }
-        .btn-action:hover {
-            background: #67e8f9;
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
-        }
     </style>
 </head>
-<body class="text-white min-h-screen flex flex-col">
-    <!-- Script Rekam Status Login Otomatis -->
-    <script>
-        // Begitu halaman ini dibuka, sistem otomatis mencatat bahwa user sudah login
-        localStorage.setItem('isLoggedIn', 'true');
-    </script>
-
+<body class="text-white min-h-screen flex flex-col justify-between">
     <!-- Navbar -->
     <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
-        <div class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</div>
-        <div>
-            <a href="index.html" onclick="localStorage.removeItem('isLoggedIn')" class="text-gray-400 hover:text-red-400 font-medium text-sm">Keluar</a>
-        </div>
+        <a href="index.html" class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</a>
+        <a href="index.html" class="text-gray-400 hover:text-cyan-400 text-sm">← Kembali ke Beranda</a>
     </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow px-6 py-12 max-w-4xl mx-auto w-full">
-        <div class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-cyan-400 mb-2">Selamat Datang di Panel Kakak</h1>
-            <p class="text-gray-400 text-sm">Kelola server dan layanan hosting Kakak dengan mudah di sini.</p>
-        </div>
+    <!-- Form Login Container -->
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="card-hd p-8 rounded-2xl w-full max-w-md">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-bold text-cyan-400 mb-2">Masuk ke Akun</h1>
+                <p class="text-gray-400 text-xs">Silakan masukkan email dan password Kakak</p>
+            </div>
 
-        <div class="mb-8 text-center">
-            <a href="order.html" class="btn-action" style="font-size: 16px; padding: 12px 30px;">+ Buat / Order Server Baru</a>
-        </div>
+            <form onsubmit="handleLogin(event)" class="space-y-5">
+                <div>
+                    <label class="block text-xs text-gray-300 mb-2 font-medium">Email / Username</label>
+                    <input type="text" id="email" required placeholder="nama@email.com" class="w-full bg-slate-900/80 border border-cyan-900/50 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 transition">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-300 mb-2 font-medium">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••" class="w-full bg-slate-900/80 border border-cyan-900/50 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 transition">
+                </div>
+                <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3 rounded-xl transition shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+                    Masuk Sekarang
+                </button>
+            </form>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="panel-card p-6 rounded-2xl">
-                <h3 class="font-bold text-lg text-white mb-2">Status Node</h3>
-                <p class="text-gray-400 text-sm mb-4">Semua server berjalan normal dan stabil 24/7.</p>
-                <span style="color: #4CAF50; font-weight: bold;">● Online</span>
-            </div>
-            <div class="panel-card p-6 rounded-2xl">
-                <h3 class="font-bold text-lg text-white mb-2">Quick Order</h3>
-                <p class="text-gray-400 text-sm mb-4">Butuh tambahan resource atau server baru? Langsung buat melalui menu pembayaran.</p>
-                <a href="order.html" class="text-cyan-400 hover:underline text-sm font-semibold">Buka Menu Order &rarr;</a>
-            </div>
-            <div class="panel-card p-6 rounded-2xl">
-                <h3 class="font-bold text-lg text-white mb-2">Akses Panel</h3>
-                <p class="text-gray-400 text-sm mb-4">Masuk ke akun panel Anda untuk konfigurasi penuh server.</p>
-                <a href="login.html" class="text-cyan-400 hover:underline text-sm font-semibold">Panel Utama &rarr;</a>
-            </div>
+            <p class="text-center text-xs text-gray-400 mt-6">
+                Belum punya akun? <a href="register.html" class="text-cyan-400 hover:underline font-semibold">Daftar Akun</a>
+            </p>
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-gray-500 border-t border-cyan-950/30">
+        &copy; 2026 WINGS SERVERS. All rights reserved.
+    </footer>
+
+    <!-- Script Proses Login -->
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Mencegah form reload halaman secara default
+            
+            // Di sini Kakak bisa tambahkan validasi jika ada backend. 
+            // Untuk sementara, kita simpan status login ke memori browser:
+            localStorage.setItem('isLoggedIn', 'true');
+
+            // Arahkan ke halaman dashboard setelah sukses login
+            window.location.href = 'dashboard.html';
+        }
+    </script>
 </body>
 </html>
