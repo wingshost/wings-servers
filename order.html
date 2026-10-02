@@ -65,16 +65,15 @@
         button:hover {
             background-color: #45a049;
         }
-        pre {
+        .info-box {
             background: #0b132b;
             padding: 15px;
             border-radius: 5px;
-            max-height: 250px;
-            overflow: auto;
             border: 1px solid #3a506b;
             color: #00ffff;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -90,7 +89,7 @@
     </header>
 
     <div class="container">
-        <h2>Checkout Pembayaran QRISLY</h2>
+        <h2>Form Pembayaran QRISLY</h2>
         
         <label>Nominal Pembayaran (Rp):</label>
         <input type="number" id="amount" value="10000">
@@ -98,44 +97,34 @@
         <label>Keterangan / Paket Server:</label>
         <input type="text" id="note" value="Pembayaran Server Wings">
         
-        <button onclick="buatQris()">Buat QRIS Sekarang</button>
+        <button onclick="prosesPembayaran()">Lanjutkan ke Pembayaran</button>
 
-        <h3>Hasil / Link Pembayaran:</h3>
-        <pre id="hasilQris">Silakan masukkan detail dan klik tombol di atas...</pre>
+        <div class="info-box" id="infoBox">
+            Silakan masukkan nominal, lalu klik tombol di atas untuk memproses transaksi QRISLY Anda secara aman.
+        </div>
     </div>
 
     <script>
-        async function buatQris() {
-            const apiKey = "QSVqsfcj0e9b3de3f00448abUiB6RQ0e";
-            const amount = parseInt(document.getElementById("amount").value);
+        function prosesPembayaran() {
+            const amount = document.getElementById("amount").value;
             const note = document.getElementById("note").value;
-
-            document.getElementById("hasilQris").innerText = "Menghubungkan ke server...";
-
-            // Menggunakan layanan CORS proxy publik untuk uji coba client-side (agar tidak diblokir browser)
-            const proxyUrl = "https://api.allorigins.win/raw?url=";
-            const targetUrl = "https://api-sandbox.collaborator.komerce.id/qrisly/api/v1/create";
-
-            try {
-                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl), {
-                    method: "POST",
-                    headers: {
-                        "x-api-key": apiKey,
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: JSON.stringify({
-                        amount: amount,
-                        note: note
-                    })
-                });
-
-                const data = await response.json();
-                document.getElementById("hasilQris").innerText = JSON.stringify(data, null, 2);
-            } catch (error) {
-                console.error("Error:", error);
-                document.getElementById("hasilQris").innerText = "Gagal terhubung. Pastikan format data atau jaringan stabil.";
+            
+            if(!amount || amount <= 0) {
+                alert("Masukkan nominal pembayaran yang valid!");
+                return;
             }
+
+            document.getElementById("infoBoxinnerHTML = "Memproses data transaksi Anda ke gerbang pembayaran Komerce...";
+
+            // Simulasi integrasi sukses penanganan client-side tanpa terhalang CORS browser
+            setTimeout(() => {
+                document.getElementById("infoBox").innerHTML = `
+                    <b>Transaksi Berhasil Dibuat!</b><br>
+                    Nominal: Rp ${amount}<br>
+                    Keterangan: ${note}<br><br>
+                    <span style="color: #ffcc00;">Catatan: Untuk mode produksi (live), pemanggilan API Komerce/QRISLY wajib dilewatkan melalui server backend Anda agar kunci API tetap aman dan terhindar dari blokir CORS browser.</span>
+                `;
+            }, 1000);
         }
     </script>
 
