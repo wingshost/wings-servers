@@ -1,4 +1,4 @@
-<!-- Form Cek Ongkir Komerce Terbaru -->
+<!-- Form Cek Ongkir Komerce dengan CORS Proxy -->
 <div style="margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background: #fff;">
     <h3>Cek Ongkir Komerce V2</h3>
     
@@ -11,25 +11,27 @@
     <label>Berat (Kilogram, misal: 1 atau 1.5):</label><br>
     <input type="text" id="weight" value="1" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
     
-    <button onclick="cekOngkirBaru()" style="background-color: #ff5722; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px;">Cek Ongkir Sekarang</button>
+    <button onclick="cekOngkirProxy()" style="background-color: #ff5722; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px;">Cek Ongkir Sekarang</button>
 
     <h4>Hasil:</h4>
     <pre id="hasil" style="background: #f4f4f4; padding: 10px; max-height: 300px; overflow: auto;">Silakan klik tombol di atas...</pre>
 </div>
 
 <script>
-    function cekOngkirBaru() {
+    function cekOngkirProxy() {
         const apiKey = "HVTDNnb60e9b3de3f00448abExVPifNj";
         const origin = document.getElementById("origin").value;
         const destination = document.getElementById("destination").value;
         const weight = document.getElementById("weight").value;
 
-        document.getElementById("hasil").innerText = "Menghubungkan ke server Komerce...";
+        document.getElementById("hasil").innerText = "Menghubungkan melalui proxy...";
 
-        // Menggunakan endpoint resmi sandbox/tariff Komerce V2
-        const url = `https://api-sandbox.collaborator.komerce.id/tariff/api/v1/calculate?shipper_destination_id=${origin}&receiver_destination_id=${destination}&weight=${weight}&item_value=100000&cod=no`;
+        const targetUrl = `https://api-sandbox.collaborator.komerce.id/tariff/api/v1/calculate?shipper_destination_id=${origin}&receiver_destination_id=${destination}&weight=${weight}&item_value=100000&cod=no`;
+        
+        // Menggunakan corsproxy.io untuk melewati batasan browser
+        const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(targetUrl);
 
-        fetch(url, {
+        fetch(proxyUrl, {
             method: "GET",
             headers: {
                 "x-api-key": apiKey,
@@ -42,7 +44,7 @@
         })
         .catch(error => {
             console.error("Error:", error);
-            document.getElementById("hasil").innerText = "Gagal terhubung ke server. Periksa koneksi atau CORS.";
+            document.getElementById("hasil").innerText = "Terjadi kendala koneksi atau format data.";
         });
     }
 </script>
