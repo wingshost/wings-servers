@@ -3,23 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran QRISLY - Wings Server</title>
+    <title>Order & Pembayaran - Wings Servers</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b132b;
+            color: white;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            color: #00ffff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #00ffff;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #1c2541;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            background: #0b132b;
+            border: 1px solid #3a506b;
+            color: white;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        pre {
+            background: #0b132b;
+            padding: 15px;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow: auto;
+            border: 1px solid #3a506b;
+            color: #00ffff;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9;">
+<body>
 
-    <div style="max-width: 500px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h3 style="color: #333; margin-top: 0;">Pembayaran QRISLY</h3>
-        
-        <label style="font-weight: bold;">Nominal Pembayaran (Rp):</label><br>
-        <input type="number" id="amount" value="10000" style="margin-top: 5px; margin-bottom: 15px; width: 100%; padding: 8px; box-sizing: border-box;"><br>
-        
-        <label style="font-weight: bold;">Keterangan / Nama Produk:</label><br>
-        <input type="text" id="note" value="Pembayaran Server Wings" style="margin-top: 5px; margin-bottom: 15px; width: 100%; padding: 8px; box-sizing: border-box;"><br>
-        
-        <button onclick="buatQris()" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px; width: 100%; font-weight: bold;">Buat QRIS Sekarang</button>
+    <header>
+        <div class="logo">WINGS SERVERS</div>
+        <nav>
+            <a href="index.html">Utama</a>
+            <a href="order.html">Order</a>
+            <a href="register.html">Login / Register</a>
+        </nav>
+    </header>
 
-        <h4 style="margin-top: 20px;">Hasil Respon API:</h4>
-        <pre id="hasilQris" style="background: #f4f4f4; padding: 10px; max-height: 250px; overflow: auto; border: 1px solid #ddd; border-radius: 4px;">Silakan buat pembayaran...</pre>
+    <div class="container">
+        <h2>Form Pembayaran QRISLY</h2>
+        
+        <label>Nominal Pembayaran (Rp):</label>
+        <input type="number" id="amount" value="10000">
+        
+        <label>Keterangan / Paket Server:</label>
+        <input type="text" id="note" value="Pembayaran Server Wings">
+        
+        <button onclick="buatQris()">Buat QRIS Sekarang</button>
+
+        <h3>Respon Sistem:</h3>
+        <pre id="hasilQris">Silakan buat pembayaran...</pre>
     </div>
 
     <script>
@@ -28,12 +108,11 @@
             const amount = document.getElementById("amount").value;
             const note = document.getElementById("note").value;
 
-            document.getElementById("hasilQris").innerText = "Memproses pembuatan QRIS ke server...";
+            document.getElementById("hasilQris").innerText = "Menghubungkan ke gateway pembayaran...";
 
-            // Menggunakan proxy atau langsung endpoint QRISLY sandbox Komerce
-            const targetUrl = "https://api-sandbox.collaborator.komerce.id/qrisly/api/v1/create";
-
-            fetch(targetUrl, {
+            // Catatan: Pemanggilan langsung client-side ke sandbox diblokir CORS browser.
+            // Solusi ideal menggunakan backend proxy/serverless, atau direct redirect link payment.
+            fetch("https://api-sandbox.collaborator.komerce.id/qrisly/api/v1/create", {
                 method: "POST",
                 headers: {
                     "x-api-key": apiKey,
@@ -51,7 +130,7 @@
             })
             .catch(error => {
                 console.error("Error:", error);
-                document.getElementById("hasilQris").innerText = "Gagal terhubung ke server pembayaran (CORS/Network error).";
+                document.getElementById("hasilQris").innerText = "Catatan CORS Browser: Browser memblokir fetch langsung ke API Sandbox. Diperlukan backend/serverless atau redirect resmi untuk eksekusi produksi.";
             });
         }
     </script>
