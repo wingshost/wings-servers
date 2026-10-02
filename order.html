@@ -69,10 +69,12 @@
             background: #0b132b;
             padding: 15px;
             border-radius: 5px;
-            max-height: 200px;
+            max-height: 250px;
             overflow: auto;
             border: 1px solid #3a506b;
             color: #00ffff;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
     </style>
 </head>
@@ -88,7 +90,7 @@
     </header>
 
     <div class="container">
-        <h2>Form Pembayaran QRISLY</h2>
+        <h2>Checkout Pembayaran QRISLY</h2>
         
         <label>Nominal Pembayaran (Rp):</label>
         <input type="number" id="amount" value="10000">
@@ -98,40 +100,42 @@
         
         <button onclick="buatQris()">Buat QRIS Sekarang</button>
 
-        <h3>Respon Sistem:</h3>
-        <pre id="hasilQris">Silakan buat pembayaran...</pre>
+        <h3>Hasil / Link Pembayaran:</h3>
+        <pre id="hasilQris">Silakan masukkan detail dan klik tombol di atas...</pre>
     </div>
 
     <script>
-        function buatQris() {
+        async function buatQris() {
             const apiKey = "QSVqsfcj0e9b3de3f00448abUiB6RQ0e";
-            const amount = document.getElementById("amount").value;
+            const amount = parseInt(document.getElementById("amount").value);
             const note = document.getElementById("note").value;
 
-            document.getElementById("hasilQris").innerText = "Menghubungkan ke gateway pembayaran...";
+            document.getElementById("hasilQris").innerText = "Menghubungkan ke server...";
 
-            // Catatan: Pemanggilan langsung client-side ke sandbox diblokir CORS browser.
-            // Solusi ideal menggunakan backend proxy/serverless, atau direct redirect link payment.
-            fetch("https://api-sandbox.collaborator.komerce.id/qrisly/api/v1/create", {
-                method: "POST",
-                headers: {
-                    "x-api-key": apiKey,
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    amount: parseInt(amount),
-                    note: note
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
+            // Menggunakan layanan CORS proxy publik untuk uji coba client-side (agar tidak diblokir browser)
+            const proxyUrl = "https://api.allorigins.win/raw?url=";
+            const targetUrl = "https://api-sandbox.collaborator.komerce.id/qrisly/api/v1/create";
+
+            try {
+                const response = await fetch(proxyUrl + encodeURIComponent(targetUrl), {
+                    method: "POST",
+                    headers: {
+                        "x-api-key": apiKey,
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        amount: amount,
+                        note: note
+                    })
+                });
+
+                const data = await response.json();
                 document.getElementById("hasilQris").innerText = JSON.stringify(data, null, 2);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error("Error:", error);
-                document.getElementById("hasilQris").innerText = "Catatan CORS Browser: Browser memblokir fetch langsung ke API Sandbox. Diperlukan backend/serverless atau redirect resmi untuk eksekusi produksi.";
-            });
+                document.getElementById("hasilQris").innerText = "Gagal terhubung. Pastikan format data atau jaringan stabil.";
+            }
         }
     </script>
 
