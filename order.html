@@ -20,7 +20,7 @@
     <!-- Main Content -->
     <main class="flex-grow flex items-center justify-center px-4 py-12">
         <div class="bg-[#1c2541] p-8 rounded-2xl shadow-2xl w-full max-w-lg border border-gray-800">
-            <h1 class="text-2xl font-bold mb-6 text-white">Checkout Pembayaran QRISLY</h1>
+            <h1 class="text-2xl font-bold mb-6 text-white">Checkout Pembayaran QRIS</h1>
             
             <form id="qrisForm" onsubmit="generateQris(event)" class="space-y-4">
                 <div>
@@ -43,16 +43,19 @@
 
             <!-- Status Box -->
             <div id="statusBox" class="mt-6 p-4 bg-[#0b132b] border border-cyan-500/30 rounded-xl text-sm hidden">
-                <p class="text-cyan-400 font-semibold mb-1">Status: Berhasil Terhubung!</p>
+                <p class="text-cyan-400 font-semibold mb-1">Status: Silakan Lakukan Pembayaran</p>
                 <p class="text-gray-300">Nominal: Rp <span id="resNominal"></span></p>
                 <p class="text-gray-300 mb-3">Keterangan: <span id="resKeterangan"></span></p>
                 
-                <!-- Area Tampil QRIS -->
+                <!-- Area Tampil QRIS Asli -->
                 <div id="qrisContainer" class="flex flex-col items-center justify-center bg-white p-4 rounded-lg mt-4 text-black">
-                    <p class="text-xs font-bold text-gray-600 mb-2">SCAN QRIS DI BAWAH INI</p>
-                    <!-- Contoh menggunakan API QR Code Generator publik berdasarkan nominal/teks -->
-                    <img id="qrisImage" src="" alt="QRIS Code" class="w-48 h-48 object-contain mb-2">
-                    <p class="text-xs text-gray-500">Bayar pakai GoPay, OVO, Dana, BCA, QRIS All Payment</p>
+                    <p class="text-xs font-bold text-gray-700 mb-1">SUPRIYANTI, Digital & Kreatif[cite: 11]</p>
+                    <p class="text-[10px] text-gray-500 mb-2">NMID: ID1026539699615[cite: 11]</p>
+                    
+                    <!-- Mengambil file qris.png yang di-upload ke repository -->
+                    <img id="qrisImage" src="qris.png" alt="QRIS Supriyanti" class="w-48 h-48 object-contain mb-2 border border-gray-200 rounded">
+                    
+                    <p class="text-xs text-gray-500 font-medium">Scan pakai GoPay, OVO, Dana, BCA, dll</p>
                 </div>
             </div>
         </div>
@@ -66,14 +69,8 @@
             const keterangan = document.getElementById('keterangan').value;
 
             // Masukkan data ke teks status
-            document.getElementById('resNominal').innerText = nominal;
+            document.getElementById('resNominal').innerText = Number(nominal).toLocaleString('id-ID');
             document.getElementById('resKeterangan').innerText = keterangan;
-
-            // Generate link QR code dinamis berdasarkan data pembayaran (bisa disesuaikan dengan endpoint QRISLY asli Kakak)
-            const qrTextData = `WINGS-SERVERS-${nominal}-${keterangan}`;
-            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrTextData)}`;
-            
-            document.getElementById('qrisImage').src = qrImageUrl;
 
             // Tampilkan kotak status dan QRIS
             document.getElementById('statusBox').classList.remove('hidden');
