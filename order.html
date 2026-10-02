@@ -1,81 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konfirmasi Pembayaran - Wings Server</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
-
-    <div class="max-w-md w-full bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-700 text-center">
-        <h1 class="text-2xl font-bold mb-2 text-blue-400">Konfirmasi Pembayaran QRIS</h1>
-        <p class="text-gray-400 text-sm mb-6">Selesaikan pembayaran untuk membuat server secara instan.</p>
-
-        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 mb-6 text-left">
-            <p class="text-sm text-gray-300">Paket Pilihan: <span id="txtPaket" class="font-bold text-blue-300">Node.js Hosting</span></p>
-            <p class="text-sm text-gray-300 mt-1">Status: <span class="text-yellow-400 font-bold">Menunggu Konfirmasi</span></p>
-        </div>
-
-        <!-- Tombol Eksekusi Pembuatan Server Otomatis -->
-        <button onclick="prosesPembuatanServerOtomatis()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition mb-3">
-            [Mode Tes] Saya Sudah Bayar & Buat Server
-        </button>
-
-        <a href="index.html" class="text-sm text-gray-400 hover:underline">Kembali ke Beranda</a>
-    </div>
-
-    <!-- Script Penghubung Backend Lokal (Port 3000) -->
-    <script>
-        // Ambil nama paket dari parameter URL jika ada
-        const urlParams = new URLSearchParams(window.location.search);
-        const namaPaket = urlParams.get('paket') || 'Node.js 2GB';
-        document.getElementById('txtPaket').innerText = namaPaket;
-
-        async function prosesPembuatanServerOtomatis() {
-            let username = prompt("Masukkan Username Panel Pterodactyl yang diinginkan:");
-            let email = prompt("Masukkan Email Aktif Kakak:");
-
-            if (!username || !email) {
-                alert("Username dan Email wajib diisi!");
-                return;
-            }
-
-            alert("Menghubungkan ke backend & membuat akun Pterodactyl... Mohon tunggu sebentar.");
-
-            try {
-                // Memanggil backend Node.js Kakak di port 3000
-                const response = await fetch('http://localhost:3000/api/create-server', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        email: email,
-                        eggType: 'nodejs20',
-                        paket: namaPaket
-                    })
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    // Simpan data kredensial asli ke localStorage untuk dashboard.html
-                    localStorage.setItem('pterodactyl_creds', JSON.stringify(result.credentials));
-                    
-                    alert("Berhasil! Server Pterodactyl Anda telah aktif.");
-                    
-                    // Alihkan ke halaman dashboard
-                    window.location.href = 'dashboard.html';
-                } else {
-                    alert("Gagal membuat server: " + result.message);
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Gagal terhubung ke backend server! Pastikan 'node server.js' sedang menyala di terminal komputer Kakak.");
-            }
-        }
-    </script>
-</body>
-</html>
+// Di dalam file order.html (bagian sukses fetch)
+if (result.success) {
+    // Ambil data list server yang sudah ada sebelumnya (kalau ada)
+    let daftarServer = JSON.parse(localStorage.getItem('daftar_server_pterodactyl')) || [];
+    
+    // Tambahkan server baru ke dalam daftar
+    daftarServer.push(result.credentials);
+    
+    // Simpan kembali ke localStorage
+    localStorage.setItem('daftar_server_pterodactyl', JSON.stringify(daftarServer));
+    
+    alert("Berhasil! Server baru Anda telah ditambahkan.");
+    window.location.href = 'dashboard.html';
+}
