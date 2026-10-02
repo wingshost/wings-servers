@@ -1,39 +1,40 @@
-<!-- Bagian Form Cek Ongkir di dalam order.html -->
-<div style="margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
-    <h3>Cek Ongkir Komerce</h3>
-    <label>ID Kota Asal:</label><br>
-    <input type="text" id="origin" value="501" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
+<!-- Form Cek Ongkir Komerce Terbaru -->
+<div style="margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background: #fff;">
+    <h3>Cek Ongkir Komerce V2</h3>
     
-    <label>ID Kota Tujuan:</label><br>
-    <input type="text" id="destination" value="114" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
+    <label>ID Asal (Shipper Destination ID):</label><br>
+    <input type="text" id="origin" value="31597" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
     
-    <label>Berat (gram):</label><br>
-    <input type="text" id="weight" value="1000" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
+    <label>ID Tujuan (Receiver Destination ID):</label><br>
+    <input type="text" id="destination" value="46116" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
     
-    <label>Kurir (jne, jnt, pos):</label><br>
-    <input type="text" id="courier" value="jne" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
+    <label>Berat (Kilogram, misal: 1 atau 1.5):</label><br>
+    <input type="text" id="weight" value="1" style="margin-bottom: 10px; width: 100%; padding: 5px;"><br>
     
-    <button onclick="cekOngkir()" style="background-color: #ff5722; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px;">Cek Ongkir</button>
+    <button onclick="cekOngkirBaru()" style="background-color: #ff5722; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px;">Cek Ongkir Sekarang</button>
 
     <h4>Hasil:</h4>
-    <pre id="hasil" style="background: #f4f4f4; padding: 10px;">Silakan klik tombol di atas...</pre>
+    <pre id="hasil" style="background: #f4f4f4; padding: 10px; max-height: 300px; overflow: auto;">Silakan klik tombol di atas...</pre>
 </div>
 
 <script>
-    function cekOngkir() {
+    function cekOngkirBaru() {
         const apiKey = "HVTDNnb60e9b3de3f00448abExVPifNj";
         const origin = document.getElementById("origin").value;
         const destination = document.getElementById("destination").value;
         const weight = document.getElementById("weight").value;
-        const courier = document.getElementById("courier").value;
 
-        fetch("https://api.rajaongkir.com/v2/cost", {
-            method: "POST",
+        document.getElementById("hasil").innerText = "Menghubungkan ke server Komerce...";
+
+        // Menggunakan endpoint resmi sandbox/tariff Komerce V2
+        const url = `https://api-sandbox.collaborator.komerce.id/tariff/api/v1/calculate?shipper_destination_id=${origin}&receiver_destination_id=${destination}&weight=${weight}&item_value=100000&cod=no`;
+
+        fetch(url, {
+            method: "GET",
             headers: {
-                "key": apiKey,
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `origin=${origin}&destination=${destination}&weight=${weight}&courier=${courier}`
+                "x-api-key": apiKey,
+                "Accept": "application/json"
+            }
         })
         .then(response => response.json())
         .then(data => {
@@ -41,7 +42,7 @@
         })
         .catch(error => {
             console.error("Error:", error);
-            document.getElementById("hasil").innerText = "Terjadi kesalahan koneksi.";
+            document.getElementById("hasil").innerText = "Gagal terhubung ke server. Periksa koneksi atau CORS.";
         });
     }
 </script>
