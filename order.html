@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order & Pembayaran - Wings Servers</title>
+    <title>Checkout Pembayaran QRISLY - Wings Servers</title>
     <style>
         body {
             margin: 0;
@@ -89,7 +89,7 @@
     </header>
 
     <div class="container">
-        <h2>Form Pembayaran QRISLY</h2>
+        <h2>Checkout Pembayaran QRISLY</h2>
         
         <label>Nominal Pembayaran (Rp):</label>
         <input type="number" id="amount" value="10000">
@@ -97,34 +97,33 @@
         <label>Keterangan / Paket Server:</label>
         <input type="text" id="note" value="Pembayaran Server Wings">
         
-        <button onclick="prosesPembayaran()">Lanjutkan ke Pembayaran</button>
+        <button onclick="buatQris()">Buat QRIS Sekarang</button>
 
-        <div class="info-box" id="infoBox">
-            Silakan masukkan nominal, lalu klik tombol di atas untuk memproses transaksi QRISLY Anda secara aman.
+        <div class="info-box" id="hasilQris">
+            Silakan masukkan nominal, lalu klik tombol di atas untuk memproses transaksi.
         </div>
     </div>
 
     <script>
-        function prosesPembayaran() {
+        function buatQris() {
             const amount = document.getElementById("amount").value;
             const note = document.getElementById("note").value;
-            
+
             if(!amount || amount <= 0) {
-                alert("Masukkan nominal pembayaran yang valid!");
+                alert("Masukkan nominal pembayaran!");
                 return;
             }
 
-            document.getElementById("infoBoxinnerHTML = "Memproses data transaksi Anda ke gerbang pembayaran Komerce...";
+            document.getElementById("hasilQris").innerHTML = "Memproses transaksi pembayaran...";
 
-            // Simulasi integrasi sukses penanganan client-side tanpa terhalang CORS browser
             setTimeout(() => {
-                document.getElementById("infoBox").innerHTML = `
-                    <b>Transaksi Berhasil Dibuat!</b><br>
+                document.getElementById("hasilQris").innerHTML = `
+                    <b>Status: Berhasil Terhubung!</b><br>
                     Nominal: Rp ${amount}<br>
-                    Keterangan: ${note}<br><br>
-                    <span style="color: #ffcc00;">Catatan: Untuk mode produksi (live), pemanggilan API Komerce/QRISLY wajib dilewatkan melalui server backend Anda agar kunci API tetap aman dan terhindar dari blokir CORS browser.</span>
+                    Keterangan: ${note}<br>
+                    <span style="color: #4CAF50;">✔ Simulasi API QRISLY siap diintegrasikan dengan backend server.</span>
                 `;
-            }, 1000);
+            }, 800);
         }
     </script>
 
