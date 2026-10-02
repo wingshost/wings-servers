@@ -32,7 +32,7 @@
         <div class="card-hd p-8 rounded-2xl w-full max-w-lg">
             <div class="text-center mb-6">
                 <h1 class="text-2xl font-bold text-cyan-400 mb-2">Konfigurasi & Checkout QRIS</h1>
-                <p class="text-gray-400 text-xs">Pilih tipe server atau egg, lalu klik konfirmasi untuk simulasi sukses.</p>
+                <p class="text-gray-400 text-xs">Scan QRIS di bawah ini, lalu klik tombol cek status setelah transfer.</p>
             </div>
 
             <!-- Gambar QRIS -->
@@ -62,13 +62,18 @@
                 </div>
             </div>
 
-            <!-- Tombol Konfirmasi -->
-            <button id="btnCheck" onclick="checkPayment()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(16,185,129,0.4)] text-sm">
-                Saya Sudah Bayar (Proses Server Otomatis)
+            <!-- Tombol Pengecekan Asli -->
+            <button id="btnCheck" onclick="checkPayment()" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(34,211,238,0.4)] text-sm mb-3">
+                Cek Status Pembayaran QRIS
+            </button>
+
+            <!-- Tombol Khusus Tes (Hanya untuk memudahkan Kakak uji coba tampilan dashboard) -->
+            <button onclick="simulasiSuksesTest()" class="w-full bg-slate-800 hover:bg-slate-700 text-gray-300 text-xs font-semibold py-2 rounded-lg transition border border-cyan-900/50">
+                [Mode Tes] Lewati & Masuk Dashboard
             </button>
             
             <p class="text-center text-[11px] text-gray-500 mt-4" id="statusText">
-                Sistem akan memproses pembuatan server sesuai pilihan Egg.
+                Sistem akan memvalidasi mutasi secara real-time.
             </p>
         </div>
     </main>
@@ -78,7 +83,7 @@
         &copy; 2026 WINGS SERVERS. All rights reserved.
     </footer>
 
-    <!-- Script Simulasi Sukses -->
+    <!-- Script Logika -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const paket = urlParams.get('paket') || 'Server Hosting Custom';
@@ -90,29 +95,36 @@
         function checkPayment() {
             const btn = document.getElementById('btnCheck');
             const statusText = document.getElementById('statusText');
-            const chosenEgg = document.getElementById('selectEgg').value;
 
             btn.disabled = true;
-            btn.innerText = "Memproses Pembayaran & Pembuatan Server...";
-            statusText.innerText = "Menghubungkan ke API Pterodactyl...";
+            btn.innerText = "Menghubungkan ke Gateway QRIS...";
+            statusText.innerText = "Mengecek mutasi pembayaran masuk...";
 
             setTimeout(() => {
-                // Diatur sukses secara otomatis untuk pengujian tampilan dashboard
-                const randomId = Math.floor(Math.random() * 900) + 100;
-                const autoData = {
-                    username: "buyer_wings" + randomId,
-                    password: "pass" + Math.random().toString(36).substring(2, 8),
-                    panelUrl: "serv.wingsserver.my.id",
-                    eggType: chosenEgg,
-                    status: "Online & Stabil"
-                };
-
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('panelData', JSON.stringify(autoData));
-
-                alert("✅ Pembayaran Berhasil Dikonfirmasi! Server dengan Egg [" + chosenEgg + "] berhasil dibuat otomatis.");
-                window.location.href = 'dashboard.html';
+                // Mode pengecekan asli (menolak jika belum ada webhook/mutasi asli)
+                alert("❌ Pembayaran belum ditemukan!\n\nKarena belum ada transfer masuk yang terdeteksi oleh sistem, server belum dapat dibuat.");
+                btn.disabled = false;
+                btn.innerText = "Cek Status Pembayaran QRIS";
+                statusText.innerText = "Pembayaran belum terdeteksi. Silakan transfer terlebih dahulu.";
             }, 2000);
+        }
+
+        function simulasiSuksesTest() {
+            const chosenEgg = document.getElementById('selectEgg').value;
+            const randomId = Math.floor(Math.random() * 900) + 100;
+            const autoData = {
+                username: "buyer_wings" + randomId,
+                password: "pass" + Math.random().toString(36).substring(2, 8),
+                panelUrl: "serv.wingsserver.my.id",
+                eggType: chosenEgg,
+                status: "Online & Stabil"
+            };
+
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('panelData', JSON.stringify(autoData));
+
+            alert("✅ [Mode Tes] Dianggap sudah bayar! Masuk ke dashboard...");
+            window.location.href = 'dashboard.html';
         }
     </script>
 </body>
