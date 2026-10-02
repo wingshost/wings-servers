@@ -6,33 +6,58 @@
     <title>WINGS SERVERS - Performa Server Terbaik</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Background grid 3D tipis & ringan untuk semua HP */
+        /* Background grid 3D tajam, standar, dan ringan */
         body {
-            background-color: #070d1b;
+            background-color: #060a17;
             background-image: 
-                linear-gradient(to right, rgba(20, 30, 60, 0.25) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(20, 30, 60, 0.25) 1px, transparent 1px);
-            background-size: 35px 35px;
+                linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
 
-        /* Efek 3D / Elevasi & Smooth Transition untuk tombol Pesan Sekarang */
+        /* Efek HD / Glow tipis dan tajam pada card paket */
+        .card-hd {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .card-hd:hover {
+            border-color: rgba(34, 211, 238, 0.6);
+            box-shadow: 0 8px 30px -4px rgba(34, 211, 238, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Card khusus Paling Laris / Terlaris */
+        .card-hd-featured {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
+            border: 2px solid #22d3ee;
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .card-hd-featured:hover {
+            box-shadow: 0 0 35px rgba(34, 211, 238, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Efek 3D pada tombol Pesan Sekarang */
         .btn-3d {
-            transition: all 0.2s ease-in-out;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             transform: perspective(500px) translateZ(0px);
         }
         .btn-3d:hover {
-            transform: perspective(500px) translateY(-3px) translateZ(10px);
-            box-shadow: 0 10px 20px -5px rgba(6, 182, 212, 0.5);
+            transform: perspective(500px) translateY(-2px) translateZ(8px);
+            box-shadow: 0 6px 20px rgba(34, 211, 238, 0.4);
         }
         .btn-3d:active {
             transform: perspective(500px) translateY(0px) translateZ(0px);
-            box-shadow: 0 2px 5px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 2px 5px rgba(34, 211, 238, 0.2);
         }
     </style>
 </head>
 <body class="text-white min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="flex justify-between items-center px-6 md:px-10 py-6">
+    <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
         <div class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</div>
         <div class="flex items-center space-x-4 md:space-x-6 text-sm">
             <a href="#" class="text-gray-300 hover:text-cyan-400 font-medium">Login</a>
@@ -41,11 +66,11 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow px-4 md:px-6 py-8 max-w-7xl mx-auto w-full">
+    <main class="flex-grow px-4 md:px-6 py-10 max-w-7xl mx-auto w-full">
         <!-- Node.js Hosting -->
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
             <!-- Node.js 2 GB -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
+            <div class="card-hd p-6 rounded-2xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Node.js 2 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Bot WhatsApp</p>
@@ -60,7 +85,7 @@
             </div>
 
             <!-- Node.js 3 GB -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
+            <div class="card-hd p-6 rounded-2xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Node.js 3 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Bot & Script Ringan</p>
@@ -75,7 +100,7 @@
             </div>
 
             <!-- Node.js 5 GB -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
+            <div class="card-hd p-6 rounded-2xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Node.js 5 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Multi Bot</p>
@@ -90,7 +115,7 @@
             </div>
 
             <!-- Node.js 8 GB -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between hover:border-cyan-400 transition">
+            <div class="card-hd p-6 rounded-2xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Node.js 8 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Performa Tinggi & Multi-App</p>
@@ -105,8 +130,8 @@
             </div>
 
             <!-- Node.js Unlimited (Paling Laris) -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border-2 border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.3)] flex flex-col justify-between relative">
-                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider">Paling Laris</span>
+            <div class="card-hd-featured p-6 rounded-2xl flex flex-col justify-between relative">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-md">Paling Laris</span>
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Node.js Unlimited</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Bebas Pakai Tanpa Batas</p>
@@ -131,7 +156,7 @@
         <!-- Minecraft Hosting -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Minecraft 2 GB -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between">
+            <div class="card-hd p-6 rounded-2xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Minecraft 2 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Server Mabar Kecil</p>
@@ -141,7 +166,7 @@
             </div>
 
             <!-- Minecraft 4 GB -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between">
+            <div class="card-hd p-6 rounded-2xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Minecraft 4 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Cocok untuk Server & Plugin Standar</p>
@@ -151,8 +176,8 @@
             </div>
 
             <!-- Minecraft 8 GB (Terlaris Game) -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border-2 border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.3)] flex flex-col justify-between relative">
-                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider">Terlaris Game</span>
+            <div class="card-hd-featured p-6 rounded-2xl flex flex-col justify-between relative">
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-md">Terlaris Game</span>
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Minecraft 8 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Performa Optimal & Banyak Player</p>
@@ -162,7 +187,7 @@
             </div>
 
             <!-- Minecraft 10 GB -->
-            <div class="bg-[#0b132b]/90 p-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col justify-between">
+            <div class="card-hd p-6 rounded-2xl flex flex-col justify-between">
                 <div>
                     <h3 class="font-bold text-lg text-white mb-1">Minecraft 10 GB</h3>
                     <p class="text-[11px] text-gray-400 mb-4">Bebas Lag untuk Komunitas Besar</p>
