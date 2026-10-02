@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WINGS SERVERS - Panel Dashboard</title>
+    <title>Dashboard Pembeli - WINGS SERVERS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -13,69 +13,93 @@
                 linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
         }
-        .panel-card {
+        .card-hd {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
             border: 1px solid rgba(34, 211, 238, 0.25);
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
         }
-        .btn-action {
-            display: inline-block;
-            background: #22d3ee;
-            color: #020617;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.2s;
-        }
-        .btn-action:hover {
-            background: #67e8f9;
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
-        }
     </style>
 </head>
-<body class="text-white min-h-screen flex flex-col">
+<body class="text-white min-h-screen flex flex-col justify-between">
     <!-- Navbar -->
     <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
-        <div class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</div>
+        <a href="index.html" class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</a>
         <div>
-            <button onclick="logout()" class="text-gray-400 hover:text-red-400 font-medium text-sm">Keluar</button>
+            <span class="text-xs text-gray-400 mr-4 hidden md:inline">Status: <span class="text-emerald-400 font-semibold">Aktif</span></span>
+            <button onclick="handleLogout()" class="text-rose-400 hover:text-rose-300 text-sm font-semibold border border-rose-900/50 px-3 py-1.5 rounded-lg transition">Keluar</button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow px-6 py-12 max-w-4xl mx-auto w-full">
-        <div class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-cyan-400 mb-2">Selamat Datang di Panel Kakak</h1>
-            <p class="text-gray-400 text-sm">Kelola server dan layanan hosting Kakak dengan mudah di sini.</p>
+    <!-- Content Dashboard -->
+    <main class="flex-grow px-6 md:px-10 py-10 max-w-6xl mx-auto w-full">
+        <div class="mb-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-cyan-400 mb-2">Dashboard Server Anda</h1>
+            <p class="text-gray-400 text-sm">Berikut adalah informasi detail akun panel server yang berhasil dibuat secara otomatis setelah pembayaran.</p>
         </div>
 
-        <div class="mb-8 text-center">
-            <a href="order.html" class="btn-action" style="font-size: 16px; padding: 12px 30px;">+ Buat / Order Server Baru</a>
+        <!-- Grid Informasi -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Status Node -->
+            <div class="card-hd p-6 rounded-2xl">
+                <h3 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Status Node</h3>
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <span class="text-emerald-400 font-bold">Online & Stabil</span>
+                </div>
+                <p class="text-gray-500 text-xs mt-3">Server berjalan normal 24/7.</p>
+            </div>
+
+            <!-- Quick Order -->
+            <div class="card-hd p-6 rounded-2xl">
+                <h3 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Tambah Resource</h3>
+                <p class="text-gray-300 text-sm mb-4">Butuh tambahan RAM atau server baru?</p>
+                <a href="index.html" class="inline-block bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-400 border border-cyan-800/50 text-xs font-bold px-4 py-2 rounded-xl transition">
+                    + Beli Server Baru
+                </a>
+            </div>
+
+            <!-- Akses Panel Utama -->
+            <div class="card-hd p-6 rounded-2xl border-cyan-500/40 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+                <h3 class="text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">Pusat Kontrol</h3>
+                <p class="text-gray-300 text-sm mb-4">Masuk ke panel utama untuk kelola file & konsol.</p>
+                <!-- Ganti '#' dengan link URL Panel Asli Kakak (misal: https://panel.wingsserver.my.id) -->
+                <a href="https://panel.wingsserver.my.id" target="_blank" class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition shadow-[0_0_10px_rgba(34,211,238,0.4)]">
+                    Buka Panel Utama &rarr;
+                </a>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="panel-card p-6 rounded-2xl">
-                <h3 class="font-bold text-lg text-white mb-2">Status Node</h3>
-                <p class="text-gray-400 text-sm mb-4">Semua server berjalan normal dan stabil 24/7.</p>
-                <span style="color: #4CAF50; font-weight: bold;">● Online</span>
+        <!-- Detail Kredensial Server Buyer (Hasil Otomatisasi) -->
+        <div class="card-hd p-6 md:p-8 rounded-2xl">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center">
+                <span class="bg-cyan-500/20 text-cyan-400 p-2 rounded-lg mr-3 text-sm">🔑</span> Detail Akses Panel Anda
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-950/50 p-6 rounded-xl border border-cyan-950">
+                <div>
+                    <span class="text-gray-400 text-xs block mb-1">Username / Email Panel:</span>
+                    <span class="text-cyan-300 font-mono text-sm font-bold" id="panelUser">buyer_wings01</span>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs block mb-1">Password Sementara:</span>
+                    <span class="text-cyan-300 font-mono text-sm font-bold" id="panelPass">wingspass2026</span>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs block mb-1">Link URL Panel:</span>
+                    <a href="https://panel.wingsserver.my.id" target="_blank" class="text-cyan-400 hover:underline font-mono text-sm font-bold block truncate">panel.wingsserver.my.id</a>
+                </div>
             </div>
-            <div class="panel-card p-6 rounded-2xl">
-                <h3 class="font-bold text-lg data-card text-white mb-2">Quick Order</h3>
-                <p class="text-gray-400 text-sm mb-4">Butuh tambahan resource atau server baru? Langsung buat melalui menu pembayaran.</p>
-                <a href="order.html" class="text-cyan-400 hover:underline text-sm font-semibold">Buka Menu Order &rarr;</a>
-            </div>
-            <div class="panel-card p-6 rounded-2xl">
-                <h3 class="font-bold text-lg text-white mb-2">Akses Panel</h3>
-                <p class="text-gray-400 text-sm mb-4">Masuk ke akun panel Anda untuk konfigurasi penuh server.</p>
-                <a href="login.html" class="text-cyan-400 hover:underline text-sm font-semibold">Panel Utama &rarr;</a>
-            </div>
+            <p class="text-gray-500 text-xs mt-4">* Simpan data login di atas atau segera ubah password Kakak setelah masuk ke dalam panel utama.</p>
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-gray-500 border-t border-cyan-950/30">
+        &copy; 2026 WINGS SERVERS. All rights reserved.
+    </footer>
+
+    <!-- Script Logout -->
     <script>
-        // Fungsi Logout
-        function logout() {
+        function handleLogout() {
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'index.html';
         }
