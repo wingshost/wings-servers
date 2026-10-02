@@ -59,9 +59,20 @@
     <!-- Navbar -->
     <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
         <div class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</div>
-        <div class="flex items-center space-x-4 md:space-x-6 text-sm">
-            <a href="#" class="text-gray-300 hover:text-cyan-400 font-medium">Login</a>
-            <a href="#" class="bg-cyan-400 text-slate-950 px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-bold hover:bg-cyan-300 transition shadow-[0_0_15px_rgba(34,211,238,0.4)]">Daftar Akun</a>
+        
+        <!-- Bagian Kanan Navbar (Otomatis Berubah Sesuai Status Login) -->
+        <div id="auth-menu" class="flex items-center space-x-4 md:space-x-6 text-sm">
+            <!-- Tampilan Saat Belum Login -->
+            <div id="guest-links" class="flex items-center space-x-4 md:space-x-6">
+                <a href="login.html" class="text-gray-300 hover:text-cyan-400 font-medium">Login</a>
+                <a href="register.html" class="bg-cyan-400 text-slate-950 px-4 md:px-5 py-2 md:py-2.5 rounded-xl font-bold hover:bg-cyan-300 transition shadow-[0_0_15px_rgba(34,211,238,0.4)]">Daftar Akun</a>
+            </div>
+
+            <!-- Tampilan Saat Sudah Login (Disembunyikan otomatis lewat JS jika belum login) -->
+            <div id="user-links" class="hidden items-center space-x-3 md:space-x-4">
+                <a href="dashboard.html" class="bg-cyan-500/20 border border-cyan-400 text-cyan-400 px-4 py-2 rounded-xl font-bold hover:bg-cyan-400 hover:text-slate-950 transition">Dashboard</a>
+                <button onclick="logout()" class="text-gray-400 hover:text-red-400 font-medium text-xs md:text-sm">Keluar</button>
+            </div>
         </div>
     </nav>
 
@@ -197,5 +208,33 @@
             </div>
         </div>
     </main>
+
+    <!-- Script Pengecekan Status Login Otomatis -->
+    <script>
+        // Cek status login dari memori browser (localStorage)
+        // Saat halaman login sukses, pastikan Anda menambahkan: localStorage.setItem('isLoggedIn', 'true');
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+        const guestLinks = document.getElementById('guest-links');
+        const userLinks = document.getElementById('user-links');
+
+        if (isLoggedIn === 'true') {
+            // Jika sudah login: sembunyikan login/daftar, tampilkan dashboard/logout
+            guestLinks.classList.add('hidden');
+            userLinks.classList.remove('hidden');
+            userLinks.classList.add('flex');
+        } else {
+            // Jika belum login: tampilkan login/daftar, sembunyikan dashboard/logout
+            guestLinks.classList.remove('hidden');
+            guestLinks.classList.add('flex');
+            userLinks.classList.add('hidden');
+        }
+
+        // Fungsi Logout
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            location.reload(); // Muat ulang halaman setelah keluar
+        }
+    </script>
 </body>
 </html>
