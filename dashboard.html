@@ -44,7 +44,7 @@
                 <h3 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Status Node</h3>
                 <div class="flex items-center space-x-2">
                     <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-                    <span class="text-emerald-400 font-bold">Online & Stabil</span>
+                    <span class="text-emerald-400 font-bold" id="nodeStatus">Online & Stabil</span>
                 </div>
                 <p class="text-gray-500 text-xs mt-3">Server berjalan normal 24/7.</p>
             </div>
@@ -62,14 +62,13 @@
             <div class="card-hd p-6 rounded-2xl border-cyan-500/40 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
                 <h3 class="text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">Pusat Kontrol</h3>
                 <p class="text-gray-300 text-sm mb-4">Masuk ke panel utama untuk kelola file & konsol.</p>
-                <!-- Ganti '#' dengan link URL Panel Asli Kakak (misal: https://panel.wingsserver.my.id) -->
-                <a href="https://panel.wingsserver.my.id" target="_blank" class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition shadow-[0_0_10px_rgba(34,211,238,0.4)]">
+                <a href="https://serv.wingsserver.my.id" target="_blank" class="inline-block bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition shadow-[0_0_10px_rgba(34,211,238,0.4)]">
                     Buka Panel Utama &rarr;
                 </a>
             </div>
         </div>
 
-        <!-- Detail Kredensial Server Buyer (Hasil Otomatisasi) -->
+        <!-- Detail Kredensial Server Buyer (Otomatis Muncul dari Sistem) -->
         <div class="card-hd p-6 md:p-8 rounded-2xl">
             <h2 class="text-lg font-bold text-white mb-4 flex items-center">
                 <span class="bg-cyan-500/20 text-cyan-400 p-2 rounded-lg mr-3 text-sm">🔑</span> Detail Akses Panel Anda
@@ -77,18 +76,18 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-950/50 p-6 rounded-xl border border-cyan-950">
                 <div>
                     <span class="text-gray-400 text-xs block mb-1">Username / Email Panel:</span>
-                    <span class="text-cyan-300 font-mono text-sm font-bold" id="panelUser">buyer_wings01</span>
+                    <span class="text-cyan-300 font-mono text-sm font-bold" id="panelUser">Memuat data...</span>
                 </div>
                 <div>
                     <span class="text-gray-400 text-xs block mb-1">Password Sementara:</span>
-                    <span class="text-cyan-300 font-mono text-sm font-bold" id="panelPass">wingspass2026</span>
+                    <span class="text-cyan-300 font-mono text-sm font-bold" id="panelPass">Memuat data...</span>
                 </div>
                 <div>
                     <span class="text-gray-400 text-xs block mb-1">Link URL Panel:</span>
-                    <a href="https://panel.wingsserver.my.id" target="_blank" class="text-cyan-400 hover:underline font-mono text-sm font-bold block truncate">panel.wingsserver.my.id</a>
+                    <a href="https://serv.wingsserver.my.id" target="_blank" class="text-cyan-400 hover:underline font-mono text-sm font-bold block truncate" id="panelLink">serv.wingsserver.my.id</a>
                 </div>
             </div>
-            <p class="text-gray-500 text-xs mt-4">* Simpan data login di atas atau segera ubah password Kakak setelah masuk ke dalam panel utama.</p>
+            <p class="text-gray-500 text-xs mt-4">* Simpan data login di atas atau segera ubah password Kakak setelah masuk ke dalam panel utama (`serv.wingsserver.my.id`).</p>
         </div>
     </main>
 
@@ -97,10 +96,26 @@
         &copy; 2026 WINGS SERVERS. All rights reserved.
     </footer>
 
-    <!-- Script Logout -->
+    <!-- Script Otomatis Menampilkan Data Panel -->
     <script>
+        // Ambil data otomatis dari localStorage saat halaman dibuka
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedData = localStorage.getItem('panelData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('panelUser').innerText = data.username;
+                document.getElementById('panelPass').innerText = data.password;
+                document.getElementById('panelLink').innerText = data.panelUrl;
+            } else {
+                // Jika belum ada data transaksi, tampilkan data dummy default
+                document.getElementById('panelUser').innerText = "buyer_wings01";
+                document.getElementById('panelPass').innerText = "wingspass2026";
+            }
+        });
+
         function handleLogout() {
             localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('panelData');
             window.location.href = 'index.html';
         }
     </script>
