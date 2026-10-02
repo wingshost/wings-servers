@@ -3,128 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Pembayaran QRISLY - Wings Servers</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0b132b;
-            color: white;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .logo {
-            color: #00ffff;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #00ffff;
-        }
-        .container {
-            max-width: 500px;
-            margin: 40px auto;
-            background: #1c2541;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 20px;
-            background: #0b132b;
-            border: 1px solid #3a506b;
-            color: white;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .info-box {
-            background: #0b132b;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #3a506b;
-            color: #00ffff;
-            margin-top: 15px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-    </style>
+    <title>Checkout Pembayaran - Wings Servers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-    <header>
-        <div class="logo">WINGS SERVERS</div>
-        <nav>
-            <a href="index.html">Utama</a>
-            <a href="order.html">Order</a>
-            <a href="register.html">Login / Register</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h2>Checkout Pembayaran QRISLY</h2>
-        
-        <label>Nominal Pembayaran (Rp):</label>
-        <input type="number" id="amount" value="10000">
-        
-        <label>Keterangan / Paket Server:</label>
-        <input type="text" id="note" value="Pembayaran Server Wings">
-        
-        <button type="button" onclick="buatQris()">Buat QRIS Sekarang</button>
-
-        <div class="info-box" id="hasilQris">
-            Silakan masukkan nominal, lalu klik tombol di atas untuk memproses transaksi.
+<body class="bg-[#0b132b] text-white min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-8 py-4 bg-[#0b132b]/80 border-b border-gray-800">
+        <div class="text-cyan-400 font-bold text-xl tracking-wider">WINGS SERVERS</div>
+        <div class="space-x-6 text-sm">
+            <a href="index.html" class="hover:text-cyan-400">Utama</a>
+            <a href="order.html" class="text-cyan-400 font-semibold">Order</a>
+            <a href="#" class="hover:text-cyan-400">Login / Register</a>
         </div>
-    </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="bg-[#1c2541] p-8 rounded-2xl shadow-2xl w-full max-w-lg border border-gray-800">
+            <h1 class="text-2xl font-bold mb-6 text-white">Checkout Pembayaran QRISLY</h1>
+            
+            <form id="qrisForm" onsubmit="generateQris(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-300 mb-1">Nominal Pembayaran (Rp):</label>
+                    <input type="number" id="nominal" value="5000" required
+                        class="w-full bg-[#0b132b] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-cyan-400">
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-300 mb-1">Keterangan / Paket Server:</label>
+                    <input type="text" id="keterangan" value="Pembayaran Server Wings" required
+                        class="w-full bg-[#0b132b] border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-cyan-400">
+                </div>
+
+                <button type="submit" 
+                    class="w-full bg-green-600 hover:bg-green-500 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-lg">
+                    Buat QRIS Sekarang
+                </button>
+            </form>
+
+            <!-- Status Box -->
+            <div id="statusBox" class="mt-6 p-4 bg-[#0b132b] border border-cyan-500/30 rounded-xl text-sm hidden">
+                <p class="text-cyan-400 font-semibold mb-1">Status: Berhasil Terhubung!</p>
+                <p class="text-gray-300">Nominal: Rp <span id="resNominal"></span></p>
+                <p class="text-gray-300 mb-3">Keterangan: <span id="resKeterangan"></span></p>
+                
+                <!-- Area Tampil QRIS -->
+                <div id="qrisContainer" class="flex flex-col items-center justify-center bg-white p-4 rounded-lg mt-4 text-black">
+                    <p class="text-xs font-bold text-gray-600 mb-2">SCAN QRIS DI BAWAH INI</p>
+                    <!-- Contoh menggunakan API QR Code Generator publik berdasarkan nominal/teks -->
+                    <img id="qrisImage" src="" alt="QRIS Code" class="w-48 h-48 object-contain mb-2">
+                    <p class="text-xs text-gray-500">Bayar pakai GoPay, OVO, Dana, BCA, QRIS All Payment</p>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script>
-        function buatQris() {
-            const amount = document.getElementById("amount").value;
-            const note = document.getElementById("note").value;
+        function generateQris(event) {
+            event.preventDefault();
+            
+            const nominal = document.getElementById('nominal').value;
+            const keterangan = document.getElementById('keterangan').value;
 
-            if (!amount || amount <= 0) {
-                alert("Masukkan nominal pembayaran!");
-                return;
-            }
+            // Masukkan data ke teks status
+            document.getElementById('resNominal').innerText = nominal;
+            document.getElementById('resKeterangan').innerText = keterangan;
 
-            document.getElementById("hasilQris").innerHTML = "Memproses transaksi pembayaran...";
+            // Generate link QR code dinamis berdasarkan data pembayaran (bisa disesuaikan dengan endpoint QRISLY asli Kakak)
+            const qrTextData = `WINGS-SERVERS-${nominal}-${keterangan}`;
+            const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrTextData)}`;
+            
+            document.getElementById('qrisImage').src = qrImageUrl;
 
-            setTimeout(function() {
-                document.getElementById("hasilQris").innerHTML = 
-                    "<b>Status: Berhasil Terhubung!</b><br>" +
-                    "Nominal: Rp " + amount + "<br>" +
-                    "Keterangan: " + note + "<br>" +
-                    "<span style='color: #4CAF50;'>✔ Simulasi API QRISLY aktif dan berjalan normal.</span>";
-            }, 800);
+            // Tampilkan kotak status dan QRIS
+            document.getElementById('statusBox').classList.remove('hidden');
         }
     </script>
-
 </body>
 </html>
