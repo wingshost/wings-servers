@@ -3,123 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wings Servers - Web Panel</title>
+    <title>WINGS SERVERS - Panel Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0b132b;
-            color: white;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid #1c2541;
-        }
-        .logo {
-            color: #00ffff;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #00ffff;
-        }
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-        }
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-            color: #e0fbfc;
-        }
-        .hero p {
-            color: #8d99ae;
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-        .panel-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto 50px auto;
-            flex-wrap: wrap;
-            padding: 0 20px;
+            background-color: #060a17;
+            background-image: 
+                linear-gradient(to right, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
         .panel-card {
-            background: #1c2541;
-            border: 1px solid #3a506b;
-            padding: 25px;
-            border-radius: 10px;
-            width: 260px;
-            text-align: left;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .panel-card h3 {
-            margin-top: 0;
-            color: #00ffff;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 19, 43, 0.95) 100%);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
         }
         .btn-action {
             display: inline-block;
-            background: linear-gradient(135deg, #00b4d8, #0077b6);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
+            background: #22d3ee;
+            color: #020617;
             font-weight: bold;
-            margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.2s;
         }
         .btn-action:hover {
-            opacity: 0.9;
+            background: #67e8f9;
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
         }
     </style>
 </head>
-<body>
+<body class="text-white min-h-screen flex flex-col">
+    <!-- Script Rekam Status Login Otomatis -->
+    <script>
+        // Begitu halaman ini dibuka, sistem otomatis mencatat bahwa user sudah login
+        localStorage.setItem('isLoggedIn', 'true');
+    </script>
 
-    <header>
-        <div class="logo">WINGS SERVERS PANEL</div>
-        <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="order.html">Order Server</a>
-            <a href="login.html">Login</a>
-        </nav>
-    </header>
-
-    <div class="hero">
-        <h1>Kelola Server Game & Hosting Anda</h1>
-        <p>Panel kontrol handal dengan sistem manajemen instan dan pembayaran otomatis.</p>
-        <a href="order.html" class="btn-action" style="font-size: 16px; padding: 12px 30px;">+ Buat / Order Server Baru</a>
-    </div>
-
-    <div class="panel-grid">
-        <div class="panel-card">
-            <h3>Status Node</h3>
-            <p>Semua server berjalan normal dan stabil 24/7.</p>
-            <span style="color: #4CAF50; font-weight: bold;">● Online</span>
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-6 md:px-10 py-6 border-b border-cyan-950/50 bg-[#060a17]/80 backdrop-blur-md">
+        <div class="text-cyan-400 font-extrabold text-xl md:text-2xl tracking-wider drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">WINGS SERVERS</div>
+        <div>
+            <a href="index.html" onclick="localStorage.removeItem('isLoggedIn')" class="text-gray-400 hover:text-red-400 font-medium text-sm">Keluar</a>
         </div>
-        <div class="panel-card">
-            <h3>Quick Order</h3>
-            <p>Butuh tambahan resource atau server baru? Langsung buat melalui menu pembayaran QRIS.</p>
-            <a href="order.html" class="btn-action">Buka Menu Order</a>
-        </div>
-        <div class="panel-card">
-            <h3>Akses Panel</h3>
-            <p>Masuk ke akun panel Anda untuk konfigurasi penuh server.</p>
-            <a href="login.html" class="btn-action">Login Panel</a>
-        </div>
-    </div>
+    </nav>
 
+    <!-- Main Content -->
+    <main class="flex-grow px-6 py-12 max-w-4xl mx-auto w-full">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-cyan-400 mb-2">Selamat Datang di Panel Kakak</h1>
+            <p class="text-gray-400 text-sm">Kelola server dan layanan hosting Kakak dengan mudah di sini.</p>
+        </div>
+
+        <div class="mb-8 text-center">
+            <a href="order.html" class="btn-action" style="font-size: 16px; padding: 12px 30px;">+ Buat / Order Server Baru</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="panel-card p-6 rounded-2xl">
+                <h3 class="font-bold text-lg text-white mb-2">Status Node</h3>
+                <p class="text-gray-400 text-sm mb-4">Semua server berjalan normal dan stabil 24/7.</p>
+                <span style="color: #4CAF50; font-weight: bold;">● Online</span>
+            </div>
+            <div class="panel-card p-6 rounded-2xl">
+                <h3 class="font-bold text-lg text-white mb-2">Quick Order</h3>
+                <p class="text-gray-400 text-sm mb-4">Butuh tambahan resource atau server baru? Langsung buat melalui menu pembayaran.</p>
+                <a href="order.html" class="text-cyan-400 hover:underline text-sm font-semibold">Buka Menu Order &rarr;</a>
+            </div>
+            <div class="panel-card p-6 rounded-2xl">
+                <h3 class="font-bold text-lg text-white mb-2">Akses Panel</h3>
+                <p class="text-gray-400 text-sm mb-4">Masuk ke akun panel Anda untuk konfigurasi penuh server.</p>
+                <a href="login.html" class="text-cyan-400 hover:underline text-sm font-semibold">Panel Utama &rarr;</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
