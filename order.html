@@ -31,23 +31,34 @@
     <main class="flex-grow flex items-center justify-center px-4 py-10">
         <div class="card-hd p-8 rounded-2xl w-full max-w-lg">
             <div class="text-center mb-6">
-                <h1 class="text-2xl font-bold text-cyan-400 mb-2">Checkout Pembayaran QRIS</h1>
-                <p class="text-gray-400 text-xs">Scan QRIS di bawah ini, lalu klik tombol cek pembayaran setelah transfer.</p>
+                <h1 class="text-2xl font-bold text-cyan-400 mb-2">Konfigurasi & Checkout QRIS</h1>
+                <p class="text-gray-400 text-xs">Pilih tipe server atau egg yang diinginkan sebelum melakukan pembayaran.</p>
             </div>
 
             <!-- Gambar QRIS -->
-            <div class="bg-white p-4 rounded-xl max-w-[220px] mx-auto mb-6 flex justify-center items-center shadow-lg">
-                <img src="qris.jpeg" alt="QRIS Pembayaran" class="w-48 h-48 object-contain">
+            <div class="bg-white p-4 rounded-xl max-w-[200px] mx-auto mb-6 flex justify-center items-center shadow-lg">
+                <img src="qris.jpeg" alt="QRIS Pembayaran" class="w-40 h-40 object-contain">
             </div>
 
             <div class="space-y-4 mb-6 bg-slate-950/40 p-4 rounded-xl border border-cyan-950">
                 <div class="flex justify-between text-sm">
-                    <span class="text-gray-400">Paket Server:</span>
+                    <span class="text-gray-400">Paket Pilihan:</span>
                     <span class="text-white font-semibold" id="displayPaket">Memuat...</span>
                 </div>
                 <div class="flex justify-between text-sm">
-                    <span class="text-gray-400">Total Pembayaran:</span>
+                    <span class="text-gray-400">Total Harga:</span>
                     <span class="text-cyan-400 font-bold" id="displayNominal">Memuat...</span>
+                </div>
+
+                <!-- Kolom Request Egg / Tipe Server (Sesuai Permintaan Kakak) -->
+                <div class="pt-2 border-t border-cyan-950">
+                    <label class="block text-gray-300 text-xs font-semibold mb-2" for="selectEgg">Request Tipe / Egg Server:</label>
+                    <select id="selectEgg" class="w-full bg-slate-900 border border-cyan-900 text-cyan-300 text-sm rounded-lg p-2.5 focus:outline-none focus:border-cyan-400">
+                        <option value="nodejs20">Node.js 20 (Khusus Bot / Aplikasi)</option>
+                        <option value="python">Python / Telegram Bot</option>
+                        <option value="minecraft">Minecraft Java / Bedrock (Game)</option>
+                        <option value="samp">SA-MP (San Andreas Multiplayer Game)</option>
+                    </select>
                 </div>
             </div>
 
@@ -57,7 +68,7 @@
             </button>
             
             <p class="text-center text-[11px] text-gray-500 mt-4" id="statusText">
-                Sistem akan memvalidasi mutasi QRIS secara real-time.
+                Sistem akan memproses otomatis sesuai pilihan Egg & Node yang ditentukan.
             </p>
         </div>
     </main>
@@ -67,7 +78,7 @@
         &copy; 2026 WINGS SERVERS. All rights reserved.
     </footer>
 
-    <!-- Script Pengecekan Pembayaran -->
+    <!-- Script Logika Pilihan Egg & Cek Pembayaran -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const paket = urlParams.get('paket') || 'Server Hosting Custom';
@@ -79,43 +90,38 @@
         function checkPayment() {
             const btn = document.getElementById('btnCheck');
             const statusText = document.getElementById('statusText');
+            const chosenEgg = document.getElementById('selectEgg').value;
 
-            // Ubah tombol jadi loading
             btn.disabled = true;
             btn.innerText = "Menghubungkan ke Gateway QRIS...";
-            statusText.innerText = "Mengecek mutasi pembayaran masuk...";
+            statusText.innerText = "Mengecek mutasi dan menyiapkan Node server...";
 
             setTimeout(() => {
-                // Skenario simulasi: 
-                // Karena ini uji coba dan Kakak belum transfer sungguhan, 
-                // sistem kita buat mendeteksi "Belum Bayar" agar sesuai kenyataan.
-                
-                let sudahBayar = false; // Ubah jadi true kalau nanti sudah dites bayar asli
+                let sudahBayar = false; // Ubah ke true jika sudah melakukan pembayaran asli
 
                 if (!sudahBayar) {
-                    // Jika belum bayar, tampilkan peringatan dan kembalikan tombol
-                    alert("❌ Peringatan: Pembayaran belum ditemukan!\n\nSilakan lakukan scan & transfer QRIS terlebih dahulu sebelum menekan tombol konfirmasi.");
+                    alert("❌ Peringatan: Pembayaran belum ditemukan!\n\nSilakan transfer QRIS terlebih dahulu untuk melanjutkan pembuatan server otomatis.");
                     btn.disabled = false;
                     btn.innerText = "Saya Sudah Bayar (Cek Mutasi)";
                     statusText.innerText = "Pembayaran belum terdeteksi. Silakan coba lagi setelah transfer.";
                 } else {
-                    // Jika sudah bayar, buat server otomatis dan masuk dashboard
                     const randomId = Math.floor(Math.random() * 900) + 100;
                     const autoData = {
                         username: "buyer_wings" + randomId,
                         password: "pass" + Math.random().toString(36).substring(2, 8),
                         panelUrl: "serv.wingsserver.my.id",
+                        eggType: chosenEgg,
                         status: "Online & Stabil"
                     };
 
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('panelData', JSON.stringify(autoData));
 
-                    alert("✅ Pembayaran Berhasil Terkonfirmasi! Server otomatis dibuat di panel.");
+                    alert("✅ Pembayaran Berhasil! Server dengan Egg [" + chosenEgg + "] otomatis dibuat.");
                     window.location.href = 'dashboard.html';
                 }
-            }, 2500); // Simulasi jeda loading 2,5 detik seolah-olah sedang ngecek sistem bank
+            }, 2500);
         }
     </script>
 </body>
-</html>s
+</html>
