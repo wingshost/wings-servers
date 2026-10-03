@@ -25,15 +25,15 @@
         <a href="index.html" class="text-sm text-gray-400 hover:underline">Kembali ke Beranda</a>
     </div>
 
-    <!-- Script Penghubung Backend Serveo -->
+    <!-- Script Penghubung Backend LocalTunnel -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const namaPaket = urlParams.get('paket') || 'Node.js 2GB';
         document.getElementById('txtPaket').innerText = namaPaket;
 
         async function prosesPembuatanServerOtomatis() {
-            // URL Serveo aktif saat ini
-            let backendUrl = "https://ded25b0b07fcb4d8-103-236-142-59.serveousercontent.com";
+            // URL LocalTunnel aktif saat ini
+            let backendUrl = "https://curly-colts-buy.loca.lt";
 
             let username = prompt("Masukkan Username Panel Pterodactyl yang diinginkan:");
             let email = prompt("Masukkan Email Aktif Kakak:");
@@ -73,7 +73,7 @@
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Gagal terhubung ke backend! Pastikan terminal backend dan Serveo tetap menyala.");
+                alert("Gagal terhubung ke backend! Pastikan link LocalTunnel sudah di-bypass di tab baru.");
             }
         }
     </script>
