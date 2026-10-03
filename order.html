@@ -12,6 +12,13 @@
         <h1 class="text-2xl font-bold mb-2 text-blue-400">Konfirmasi Pembayaran QRIS</h1>
         <p class="text-gray-400 text-sm mb-6">Selesaikan pembayaran untuk membuat server secara instan.</p>
 
+        <!-- Input untuk URL Localtunnel / Backend -->
+        <div class="mb-4 text-left">
+            <label class="block text-xs text-gray-400 mb-1">URL Backend Localtunnel:</label>
+            <input type="text" id="inputBackendUrl" placeholder="https://xxxx.loca.lt" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-blue-500">
+            <p class="text-[10px] text-gray-500 mt-1">Masukkan link `https://...loca.lt` dari terminal Kakak.</p>
+        </div>
+
         <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 mb-6 text-left">
             <p class="text-sm text-gray-300">Paket Pilihan: <span id="txtPaket" class="font-bold text-blue-300">Node.js Hosting</span></p>
             <p class="text-sm text-gray-300 mt-1">Status: <span class="text-yellow-400 font-bold">Menunggu Konfirmasi</span></p>
@@ -25,14 +32,32 @@
         <a href="index.html" class="text-sm text-gray-400 hover:underline">Kembali ke Beranda</a>
     </div>
 
-    <!-- Script Penghubung Backend Lokal (Port 3000) -->
+    <!-- Script Penghubung Backend Dinamis -->
     <script>
         // Ambil nama paket dari parameter URL jika ada
         const urlParams = new URLSearchParams(window.location.search);
         const namaPaket = urlParams.get('paket') || 'Node.js 2GB';
         document.getElementById('txtPaket').innerText = namaPaket;
 
+        // Otomatis isi jika pernah disimpan sebelumnya di browser
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedUrl = localStorage.getItem('saved_backend_url');
+            if (savedUrl) {
+                document.getElementById('inputBackendUrl').value = savedUrl;
+            }
+        });
+
         async function prosesPembuatanServerOtomatis() {
+            let backendUrl = document.getElementById('inputBackendUrl').value.trim();
+            
+            if (!backendUrl) {
+                alert("Mohon masukkan URL Backend Localtunnel terlebih dahulu!");
+                return;
+            }
+
+            // Simpan URL agar tidak perlu mengetik ulang nanti
+            localStorage.setItem('saved_backend_url', backendUrl);
+
             let username = prompt("Masukkan Username Panel Pterodactyl yang diinginkan:");
             let email = prompt("Masukkan Email Aktif Kakak:");
 
@@ -44,8 +69,10 @@
             alert("Menghubungkan ke backend & membuat akun Pterodactyl... Mohon tunggu sebentar.");
 
             try {
-                // Memanggil backend Node.js Kakak di port 3000
-                const response = await fetch('http://localhost:3000/api/create-server', {
+                // Hapus garis miring di akhir URL jika ada untuk menghindari double slash (//)
+                backendUrl = backendUrl.replace(/\/+$/, '');
+
+                const response = await fetch(`${backendUrl}/api/create-server`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -61,13 +88,8 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    // Ambil data list server yang sudah ada sebelumnya (jika ada)
                     let daftarServer = JSON.parse(localStorage.getItem('daftar_server_pterodactyl')) || [];
-                    
-                    // Tambahkan server baru ke dalam daftar
                     daftarServer.push(result.credentials);
-                    
-                    // Simpan kembali ke localStorage
                     localStorage.setItem('daftar_server_pterodactyl', JSON.stringify(daftarServer));
                     
                     alert("Berhasil! Server baru Anda telah ditambahkan.");
@@ -77,7 +99,7 @@
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Gagal terhubung ke backend server! Pastikan 'node server.js' sedang menyala di terminal komputer Kakak.");
+                alert("Gagal terhubung ke backend! Pastikan link Localtunnel benar dan terminal 'npx localtunnel --port 3000' sedang aktif.");
             }
         }
     </script>
