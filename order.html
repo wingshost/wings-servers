@@ -25,16 +25,15 @@
         <a href="index.html" class="text-sm text-gray-400 hover:underline">Kembali ke Beranda</a>
     </div>
 
-    <!-- Script Penghubung Backend Otomatis -->
+    <!-- Script Penghubung Backend Serveo -->
     <script>
-        // Ambil nama paket dari parameter URL jika ada
         const urlParams = new URLSearchParams(window.location.search);
         const namaPaket = urlParams.get('paket') || 'Node.js 2GB';
         document.getElementById('txtPaket').innerText = namaPaket;
 
         async function prosesPembuatanServerOtomatis() {
-            // URL Localtunnel aktif saat ini langsung di-set permanen di sini tanpa perlu input kotak
-            let backendUrl = "https://tall-cloths-kick.loca.lt";
+            // URL Serveo aktif terbaru
+            let backendUrl = "https://cea935bf8e863ec-103-236-142-59.serveousercontent.com";
 
             let username = prompt("Masukkan Username Panel Pterodactyl yang diinginkan:");
             let email = prompt("Masukkan Email Aktif Kakak:");
@@ -74,7 +73,7 @@
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Gagal terhubung ke backend! Pastikan terminal 'npx localtunnel --port 3000' dan 'node server.js' sedang aktif.");
+                alert("Gagal terhubung ke backend! Pastikan terminal backend dan Serveo tetap menyala.");
             }
         }
     </script>
